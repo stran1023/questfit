@@ -1,0 +1,21 @@
+{
+  "name": "ai-fitness-escape",
+  "version": "0.1.0",
+  "private": true,
+  "description": "AI-powered fitness game: perform real exercises via webcam pose detection to control an endless-runner character escaping a monster.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "@mediapipe/tasks-vision": "^0.10.14"
+  },
+  "devDependencies": {
+    "vite": "^5.4.0",
+    "@vitejs/plugin-react": "^4.3.1"
+  }
+}
