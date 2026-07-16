@@ -2,8 +2,8 @@
 
 ## Verified Now
 
-- What is currently working: all six MVP features pass, including pose, per-user calibration, jump/squat classification, responsive split UI, playable runner, miss tolerance, game over, replay, and camera recovery
-- What verification actually ran: user confirmed complete browser behavior including two replay cycles and denied-camera recovery; automated suite passed 9/9; final `./init.ps1` built 37 modules successfully; code review accepted at 11/12
+- What is currently working: all six MVP features pass; jump fires once per pose entry and squat produces one fixed 0.65-second slide even when either input remains held
+- What verification actually ran: prior browser lifecycle checks pass; automated suite now passes 11/11 including held-input regressions; production build passes with 37 modules
 
 ## Changed This Session
 
@@ -23,7 +23,7 @@
 - Why it is next: the MVP implementation and verification gates are complete
 - What counts as passing: already satisfied and recorded in `feature_list.json` and `evaluator-rubric.md`
 - What must not change during the next step: preserve the backend-free two-exercise MVP and verified pose -> action -> state -> render flow
-- Recommended Next Step: commit and push the current verified completion state
+- Recommended Next Step: manually confirm held jump/squat behavior, then commit and push the regression fix
 
 ## Commands
 

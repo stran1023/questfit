@@ -4,14 +4,22 @@
 
 - Last Updated: 2026-07-16
 - Repository root: `D:\OpenAI Hackathon\ai-fitness-escape`
-- Current Objective: MVP implementation complete and verified
+- Current Objective: MVP complete with bounded, edge-triggered player actions
 - Standard startup path: `./init.sh` on Bash or `./init.ps1` on PowerShell
 - Standard verification path: `npm install` then `npm run build`
 - Highest-priority unfinished feature: none; all six MVP features are passing
 - Blockers: none for the verified MVP; npm audit reports 1 moderate and 1 high dependency vulnerability
-- Recommended Next Step: commit and push the verified runner-loop and MVP polish changes
+- Recommended Next Step: manually confirm held jump and squat poses produce one bounded action, then commit the regression fix
 
 ## Session Log
+
+### 2026-07-16 — Held-pose action regression
+
+- Goal: prevent a held pose from producing repeated jumps or an indefinite slide
+- Completed: added per-action rearming, one jump per pose entry, and a fixed 0.65-second slide that cannot be extended by holding squat
+- Verification run: `npm test` passed 11/11 including held jump and held squat regression tests; `npm run build` passed with 37 transformed modules
+- Files updated: `src/game/gameState.js`, `src/game/gameState.test.js`, `feature_list.json`, `progress.md`, `session-handoff.md`
+- Next best step: manually hold each mock/real action once and confirm the character returns to running before committing
 
 ### 2026-07-16 — Runner loop and MVP completion
 

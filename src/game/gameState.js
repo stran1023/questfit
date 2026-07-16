@@ -13,16 +13,33 @@ export function createGameState() {
     elapsed: 0,
     spawnIn: 1.6,
     obstacles: [],
-    player: { x: 235, y: GROUND_Y, velocityY: 0, action: "none", grounded: true },
+    player: {
+      x: 235,
+      y: GROUND_Y,
+      velocityY: 0,
+      action: "none",
+      grounded: true,
+      slideRemaining: 0,
+      jumpArmed: true,
+      squatArmed: true,
+    },
     monster: { x: 58, targetX: 58 },
   };
 }
 
 export function applyPlayerAction(state, action) {
-  state.player.action = action;
-  if (action === "jump" && state.player.grounded) {
+  const player = state.player;
+  if (action !== "jump") player.jumpArmed = true;
+  if (action !== "squat") player.squatArmed = true;
+
+  if (action === "jump" && player.jumpArmed && player.grounded) {
+    player.jumpArmed = false;
     state.player.velocityY = -650;
     state.player.grounded = false;
+  }
+  if (action === "squat" && player.squatArmed && player.grounded) {
+    player.squatArmed = false;
+    player.slideRemaining = .65;
   }
   return state;
 }
@@ -46,6 +63,8 @@ export function updateGameState(state, deltaSeconds, action, random = Math.rando
   state.speed = Math.min(430, 285 + state.elapsed * 2.2);
   applyPlayerAction(state, action);
 
+  state.player.slideRemaining = Math.max(0, state.player.slideRemaining - dt);
+
   if (!state.player.grounded) {
     state.player.velocityY += 1550 * dt;
     state.player.y += state.player.velocityY * dt;
@@ -55,6 +74,12 @@ export function updateGameState(state, deltaSeconds, action, random = Math.rando
       state.player.grounded = true;
     }
   }
+
+  state.player.action = !state.player.grounded
+    ? "jump"
+    : state.player.slideRemaining > 0
+      ? "squat"
+      : "none";
 
   state.spawnIn -= dt;
   if (state.spawnIn <= 0) {

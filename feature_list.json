@@ -116,9 +116,10 @@
       "evidence": [
         "2026-07-16: npm test passed runner miss tolerance, jump physics, obstacle spawning, and score progression; full suite passed 9/9.",
         "2026-07-16: npm run build passed after runner-loop implementation; Vite transformed 37 modules.",
-        "2026-07-16: User confirmed mock jump and squat controls work, one miss continues play, and repeated misses reach game over."
+        "2026-07-16: User confirmed mock jump and squat controls work, one miss continues play, and repeated misses reach game over.",
+        "2026-07-16: Held-input regression tests confirm jump fires once per pose entry and squat ends after a fixed 0.65-second slide; full suite passed 11/11 and production build passed."
       ],
-      "notes": "Preserve pose -> action -> state -> render data flow. Implementation includes procedural animated characters, parallax, two obstacle types, score/speed progression, and three-miss game over."
+      "notes": "Preserve pose -> action -> state -> render data flow. Jump and squat are edge-triggered: holding a pose cannot cause repeated jumps or an indefinite slide, and the input must return to neutral before rearming."
     },
     {
       "id": "mvp-polish",
