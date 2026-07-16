@@ -1,0 +1,34 @@
+:root { font-family: Inter, ui-sans-serif, system-ui, sans-serif; color: #f5f3ff; background: #100d24; --cyan:#22d3ee; --magenta:#e879f9; --muted:#aaa5bf; --panel:rgba(37,30,70,.72); }
+* { box-sizing: border-box; }
+html, body, #root { min-height: 100%; margin: 0; }
+body { background-color:#100d24; background-image:linear-gradient(rgba(34,211,238,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(34,211,238,.055) 1px,transparent 1px),radial-gradient(circle at 70% 15%,rgba(232,121,249,.16),transparent 30%); background-size:40px 40px,40px 40px,auto; }
+button { min-height:48px; border:1px solid rgba(34,211,238,.65); border-radius:12px; padding:0 24px; background:rgba(34,211,238,.12); color:var(--cyan); font-weight:800; letter-spacing:.12em; text-transform:uppercase; cursor:pointer; box-shadow:0 0 24px rgba(34,211,238,.16); }
+button:disabled { opacity:.4; cursor:not-allowed; }
+button:focus-visible { outline:3px solid white; outline-offset:3px; }
+.app-shell { width:min(1180px,100%); min-height:100vh; margin:auto; padding:clamp(20px,4vw,48px); }
+.calibration-layout { display:grid; grid-template-columns:minmax(0,1fr) 360px; gap:28px; align-items:center; }
+.eyebrow { color:var(--muted); font:700 11px ui-monospace,monospace; text-transform:uppercase; letter-spacing:.28em; }
+h1 { margin:8px 0 18px; font-size:clamp(34px,5vw,58px); line-height:1; letter-spacing:-.04em; }
+h1 span { color:var(--cyan); text-shadow:0 0 22px rgba(34,211,238,.55); }
+h2 { font-size:22px; margin:8px 0; }
+.progress { display:flex; gap:8px; margin-bottom:18px; }
+.progress i { height:4px; flex:1; border-radius:10px; background:#332d52; }
+.progress i.active { background:linear-gradient(90deg,var(--cyan),var(--magenta)); box-shadow:0 0 12px rgba(34,211,238,.5); }
+.camera-stage { position:relative; aspect-ratio:4/3; overflow:hidden; border:1px solid rgba(34,211,238,.45); border-radius:20px; background:#090716; box-shadow:0 0 36px rgba(34,211,238,.18); }
+.camera-stage video,.camera-stage canvas { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+.camera-stage video { transform:scaleX(-1); }
+.framing-guide { position:absolute; inset:8% 24%; border:2px dashed rgba(255,255,255,.5); border-radius:48% 48% 24% 24%; }
+.status-pill { position:absolute; left:14px; top:14px; padding:7px 11px; border-radius:999px; background:rgba(16,13,36,.8); color:#fbbf24; font:700 10px ui-monospace,monospace; text-transform:uppercase; letter-spacing:.12em; backdrop-filter:blur(10px); }
+.status-pill.tracking { color:#4ade80; }
+.instruction-panel { display:flex; flex-direction:column; gap:14px; }
+.glass-card,.status-card,.space-check { border:1px solid rgba(255,255,255,.1); border-radius:18px; padding:20px; background:var(--panel); backdrop-filter:blur(14px); }
+.glass-card p,.space-check p,.status-card span { color:var(--muted); line-height:1.6; }
+.status-card { display:flex; flex-direction:column; gap:6px; border-color:rgba(74,222,128,.35); }
+.status-card.danger { border-color:rgba(248,113,113,.5); }
+.status-card.danger strong { color:#fca5a5; }
+.privacy { color:var(--muted); font:700 10px ui-monospace,monospace; text-transform:uppercase; letter-spacing:.12em; }
+@media(max-width:800px){.calibration-layout{grid-template-columns:1fr}.instruction-panel{padding-bottom:30px}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.001ms!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+.game-layout{display:grid;grid-template-columns:minmax(280px,35fr) minmax(0,65fr);gap:22px;max-width:1500px;align-items:center}.pose-panel,.game-panel{min-width:0}.panel-heading,.game-title{display:flex;justify-content:space-between;align-items:end;gap:18px}.panel-heading h2,.game-title h1{margin:4px 0 14px}.live-dot{color:#4ade80;font:700 9px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.1em}.pose-stage{position:relative;aspect-ratio:3/4;max-height:68vh;overflow:hidden;border:1px solid rgba(34,211,238,.4);border-radius:20px;background:#090716;box-shadow:0 0 30px rgba(34,211,238,.14)}.pose-stage video,.pose-stage canvas{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}.pose-stage video{transform:scaleX(-1)}.action-card{display:flex;align-items:center;justify-content:space-between;margin-top:12px;padding:14px 16px;border:1px solid rgba(255,255,255,.1);border-radius:14px;background:var(--panel)}.action-card span{color:var(--muted);font-size:12px}.action-card strong{font:800 16px ui-monospace,monospace;text-transform:uppercase;color:var(--cyan)}.action-card.squat strong{color:var(--magenta)}.mini-hud{display:flex;gap:9px}.mini-hud b{padding:10px;border:1px solid rgba(255,255,255,.1);border-radius:10px;background:rgba(16,13,36,.76);font:700 9px ui-monospace,monospace;text-transform:uppercase;color:var(--muted)}.mini-hud span{display:block;margin-top:4px;color:var(--cyan);font-size:14px}.game-canvas-wrap{position:relative;overflow:hidden;border:1px solid rgba(232,121,249,.4);border-radius:20px;box-shadow:0 0 34px rgba(232,121,249,.16)}.game-canvas-wrap canvas{display:block;width:100%;aspect-ratio:16/9}.placeholder-label{position:absolute;left:50%;top:46%;transform:translate(-50%,-50%);color:rgba(255,255,255,.52);font:700 10px ui-monospace,monospace;text-transform:uppercase;letter-spacing:.2em}.game-hint{text-align:center;color:var(--muted);font-size:12px}@media(max-width:850px){.game-layout{grid-template-columns:1fr}.pose-stage{aspect-ratio:4/3;max-height:none}.game-panel{order:2}.panel-heading,.game-title{align-items:center}}
+.dev-controls{display:flex;align-items:center;justify-content:flex-end;gap:8px;margin-top:14px;padding:10px 12px;border:1px dashed rgba(251,191,36,.35);border-radius:14px;background:rgba(16,13,36,.62)}.dev-controls>div{margin-right:auto}.dev-controls p{margin:0 0 3px;color:#fbbf24}.dev-controls span{color:var(--muted);font-size:10px}.dev-controls button{min-height:36px;padding:0 12px;font-size:10px}.dev-controls button.miss{border-color:rgba(248,113,113,.6);color:#fca5a5;background:rgba(248,113,113,.1)}@media(max-width:600px){.dev-controls{flex-wrap:wrap}.dev-controls>div{width:100%}}
+.dev-bypass{border-style:dashed;border-color:rgba(251,191,36,.55);background:rgba(251,191,36,.08);color:#fbbf24;box-shadow:none}

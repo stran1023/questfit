@@ -1,20 +1,26 @@
-import React, { useRef, useEffect } from "react";
+import React, { useEffect, useRef, useState } from "react";
+import { startWebcam, stopWebcam } from "../pose/captureWebcam.js";
+import { closePoseEngine, detectPose, initPoseEngine } from "../pose/poseEngine.js";
+import { classifyMovement, createLandmarkBuffer, pushLandmarks } from "../pose/movementClassifier.js";
 
-// GameScreen: hosts the canvas render loop and the (hidden) webcam
-// video element that feeds the pose engine.
+const BONES=[[11,12],[11,13],[13,15],[12,14],[14,16],[11,23],[12,24],[23,24],[23,25],[25,27],[24,26],[26,28]];
+function drawSkeleton(canvas,points){const c=canvas?.getContext("2d");if(!c)return;c.clearRect(0,0,canvas.width,canvas.height);c.strokeStyle="#22d3ee";c.lineWidth=4;for(const[a,b]of BONES){if(!points[a]||!points[b])continue;c.beginPath();c.moveTo((1-points[a].x)*canvas.width,points[a].y*canvas.height);c.lineTo((1-points[b].x)*canvas.width,points[b].y*canvas.height);c.stroke()}c.fillStyle="#e879f9";for(const p of points){c.beginPath();c.arc((1-p.x)*canvas.width,p.y*canvas.height,3,0,Math.PI*2);c.fill()}}
 
-export default function GameScreen({ onGameOver }) {
-  const canvasRef = useRef(null);
-  const videoRef = useRef(null);
-
-  useEffect(() => {
-    // TODO: start webcam, init pose engine, start requestAnimationFrame loop
-  }, []);
-
-  return (
-    <div className="game-screen">
-      <video ref={videoRef} style={{ display: "none" }} />
-      <canvas ref={canvasRef} width={800} height={450} />
-    </div>
-  );
+export default function GameScreen({ thresholds, onGameOver }) {
+  const videoRef=useRef(null),overlayRef=useRef(null),gameRef=useRef(null);
+  const mockUntilRef=useRef(0);
+  const [action,setAction]=useState("none");
+  const [tracking,setTracking]=useState("Connecting");
+  const [mockMisses,setMockMisses]=useState(0);
+  const triggerMockAction=(next)=>{mockUntilRef.current=performance.now()+700;setAction(next)};
+  useEffect(()=>{let stream,timer,cancelled=false;const buffer=createLandmarkBuffer();
+    (async()=>{try{stream=await startWebcam(videoRef.current);await initPoseEngine();const tick=()=>{if(cancelled)return;const now=performance.now();const landmarks=detectPose(videoRef.current,now);drawSkeleton(overlayRef.current,landmarks);if(landmarks.length){pushLandmarks(buffer,landmarks);if(now>=mockUntilRef.current)setAction(classifyMovement(buffer,thresholds));setTracking("Live tracking")}else setTracking("Body not visible");timer=setTimeout(tick,1000/24)};tick()}catch(e){console.error(e);setTracking("Camera unavailable")}})();
+    return()=>{cancelled=true;clearTimeout(timer);stopWebcam(stream);closePoseEngine()};
+  },[thresholds]);
+  useEffect(()=>{if(!import.meta.env.DEV)return;const onKeyDown=(event)=>{if(event.repeat)return;if(event.code==="Space"||event.code==="ArrowUp"){event.preventDefault();triggerMockAction("jump")}if(event.code==="ArrowDown"){event.preventDefault();triggerMockAction("squat")}if(event.code==="KeyM")setMockMisses((value)=>Math.min(3,value+1))};window.addEventListener("keydown",onKeyDown);return()=>window.removeEventListener("keydown",onKeyDown)},[]);
+  useEffect(()=>{const canvas=gameRef.current,c=canvas.getContext("2d");let raf;const draw=(now)=>{const w=canvas.width,h=canvas.height;c.clearRect(0,0,w,h);const g=c.createLinearGradient(0,0,0,h);g.addColorStop(0,"#17103b");g.addColorStop(.58,"#51215f");g.addColorStop(1,"#101226");c.fillStyle=g;c.fillRect(0,0,w,h);c.fillStyle="rgba(240,171,252,.18)";c.beginPath();c.arc(w*.72,h*.25,75,0,Math.PI*2);c.fill();c.fillStyle="#17142b";for(let i=0;i<7;i++){const x=(i*170-(now*.02)%170);c.beginPath();c.moveTo(x,h*.67);c.lineTo(x+90,h*.28);c.lineTo(x+180,h*.67);c.fill()}c.fillStyle="#1d2940";c.fillRect(0,h*.68,w,h*.32);c.strokeStyle="rgba(34,211,238,.25)";for(let x=-(now*.18)%80;x<w;x+=80){c.beginPath();c.moveTo(x,h);c.lineTo(x+180,h*.68);c.stroke()}c.fillStyle="#ef4444";c.fillRect(w*.06,h*.52,55,115);c.shadowColor="#22d3ee";c.shadowBlur=22;c.fillStyle="#22d3ee";c.fillRect(w*.24,h*.55,34,82);c.shadowBlur=0;c.fillStyle="#e879f9";c.fillRect(w*.77,h*.57,28,65);raf=requestAnimationFrame(draw)};raf=requestAnimationFrame(draw);return()=>cancelAnimationFrame(raf)},[]);
+  return <main className="app-shell game-layout">
+    <section className="pose-panel"><div className="panel-heading"><div><p className="eyebrow">AI controller</p><h2>Pose tracking</h2></div><span className="live-dot">● {tracking}</span></div><div className="pose-stage"><video ref={videoRef} muted playsInline/><canvas ref={overlayRef} width="640" height="480"/></div><div className={`action-card ${action}`}><span>Detected action</span><strong>{action === "none" ? "— Ready" : action === "jump" ? "▲ Jump" : "▼ Squat"}</strong></div><p className="privacy">🔒 Processed locally · Video is not uploaded</p></section>
+    <section className="game-panel"><div className="game-title"><div><p className="eyebrow">Escape run</p><h1>Stay ahead.</h1></div><div className="mini-hud"><b>Score <span>00000</span></b><b>Lives <span>{Array.from({length:3},(_,index)=>index<3-mockMisses?"◆":"◇").join(" ")}</span></b></div></div><div className="game-canvas-wrap"><canvas ref={gameRef} width="960" height="540"/><div className="placeholder-label">Runner engine loading next</div></div><p className="game-hint">Jump over cyan ground hazards · Squat under magenta barriers</p>{import.meta.env.DEV&&<div className="dev-controls" aria-label="Development controls"><div><p className="eyebrow">Dev controls</p><span>Space / ↑ Jump · ↓ Squat · M Miss</span></div><button type="button" onClick={()=>triggerMockAction("jump")}>▲ Jump</button><button type="button" onClick={()=>triggerMockAction("squat")}>▼ Squat</button><button type="button" className="miss" onClick={()=>setMockMisses(value=>Math.min(3,value+1))}>Miss</button></div>}</section>
+  </main>;
 }

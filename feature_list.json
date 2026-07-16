@@ -21,14 +21,18 @@
       "description": "Load MediaPipe PoseLandmarker and emit landmarks from webcam frames without blocking rendering.",
       "user_visible_behavior": "After camera permission, the calibration screen receives stable live body landmarks while the UI remains responsive.",
       "dependencies": [],
-      "status": "not_started",
+      "status": "passing",
       "verification": [
         "Run npm run build successfully.",
         "Open the app in a supported browser and grant camera access.",
         "Confirm landmarks are produced continuously and camera cleanup stops the stream when leaving the screen."
       ],
-      "evidence": [],
-      "notes": "Keep pose inference independent from requestAnimationFrame rendering."
+      "evidence": [
+        "2026-07-16: npm run build passed; Vite transformed 30 modules and produced dist/assets/index-CblomtYB.js.",
+        "2026-07-16: User granted camera access and confirmed continuous Tracking 33 body landmarks output.",
+        "2026-07-16: User confirmed the webcam indicator turns off after closing or leaving the page."
+      ],
+      "notes": "Keep pose inference independent from requestAnimationFrame rendering. Implementation loads MediaPipe PoseLandmarker with GPU-to-CPU fallback, runs detection on a separate 24 FPS timer, reports landmark count in calibration UI, and cleans up the stream/model on unmount."
     },
     {
       "id": "calibration",
@@ -38,14 +42,19 @@
       "description": "Capture representative jump and squat samples and derive thresholds for the current player.",
       "user_visible_behavior": "Every run guides the player through framing, one jump, and one squat before gameplay can begin.",
       "dependencies": ["pose-engine"],
-      "status": "not_started",
+      "status": "passing",
       "verification": [
         "Complete framing, jump, and squat calibration in order.",
         "Confirm calibration produces finite jump and squat thresholds from the captured samples.",
         "Confirm gameplay cannot start with missing or invalid thresholds."
       ],
-      "evidence": [],
-      "notes": "Do not replace per-user calibration with global hardcoded thresholds."
+      "evidence": [
+        "2026-07-16: npm test passed calibration threshold and incomplete-session tests (2/2).",
+        "2026-07-16: npm run build passed after calibration UI and flow implementation; Vite transformed 32 modules.",
+        "2026-07-16: User completed framing, jump, and squat in order and observed transition to the currently blank GameScreen placeholder.",
+        "2026-07-16: Automated weak-movement test confirms tiny jump/shallow squat samples cannot finalize thresholds or start gameplay."
+      ],
+      "notes": "Per-user thresholds are derived from the captured standing, jump, and squat samples; weak or incomplete samples are rejected."
     },
     {
       "id": "movement-classifier",
@@ -55,23 +64,48 @@
       "description": "Classify jump, squat, or none from a rolling landmark buffer and calibrated thresholds.",
       "user_visible_behavior": "A calibrated jump emits jump, a held squat emits squat, and neutral/noisy motion emits none.",
       "dependencies": ["calibration"],
-      "status": "not_started",
+      "status": "passing",
       "verification": [
         "Verify representative landmark sequences classify jump, squat, and none correctly.",
         "Confirm isolated noisy frames do not emit repeated actions.",
         "Run npm run build successfully."
       ],
-      "evidence": [],
-      "notes": "Keep classification pure and independent of DOM and canvas APIs."
+      "evidence": [
+        "2026-07-16: npm test passed jump, held-squat, and isolated-noise classifier cases; full suite passed 6/6.",
+        "2026-07-16: npm run build passed with the classifier implementation; Vite transformed 32 modules."
+      ],
+      "notes": "Classification remains pure and independent of DOM and canvas APIs; it consumes calibrated thresholds and a bounded landmark buffer."
+    },
+    {
+      "id": "split-screen-ui",
+      "priority": 4,
+      "area": "ui",
+      "name": "Pose and game split-screen layout",
+      "description": "Build the responsive gameplay shell with a 35 percent pose-tracking panel on the left and a 65 percent game panel on the right.",
+      "user_visible_behavior": "During gameplay, the player sees a mirrored camera feed, landmark overlay, tracking status, and recognized action beside a larger 16:9 game canvas; narrow screens stack the panels without losing readability.",
+      "dependencies": ["movement-classifier"],
+      "status": "in_progress",
+      "verification": [
+        "Open the gameplay screen at a laptop-sized landscape viewport and confirm the pose and game panels use an approximately 35/65 horizontal split.",
+        "Confirm the left panel shows the mirrored camera, landmark overlay, tracking status, and jump, squat, or ready feedback while the game panel remains responsive.",
+        "Resize to a narrow or portrait viewport and confirm the pose panel stacks above the game without stretching or cropping the 16:9 game canvas.",
+        "Confirm pose landmark updates remain smooth without causing React to render once per raw landmark frame.",
+        "Run npm run build successfully."
+      ],
+      "evidence": [
+        "2026-07-16: npm test passed 6/6 after split-screen integration.",
+        "2026-07-16: npm run build passed with the responsive pose/game shell; Vite transformed 33 modules."
+      ],
+      "notes": "Follow docs/UI-build-plan.md. Implementation uses an overlay canvas for landmarks, a 35/65 desktop grid, and a stacked narrow-screen media query. Desktop and narrow-screen visual behavior still require browser observation before passing."
     },
     {
       "id": "runner-loop",
-      "priority": 4,
+      "priority": 5,
       "area": "game",
       "name": "Playable runner loop",
       "description": "Connect classified actions to game state, obstacle spawning, collisions, rendering, score, and miss tolerance.",
       "user_visible_behavior": "Jump clears low obstacles, squat clears high obstacles, misses reduce the buffer, and repeated misses allow the monster to catch the player.",
-      "dependencies": ["movement-classifier"],
+      "dependencies": ["split-screen-ui"],
       "status": "not_started",
       "verification": [
         "Start a calibrated run and confirm obstacles and score advance continuously.",
@@ -83,7 +117,7 @@
     },
     {
       "id": "mvp-polish",
-      "priority": 5,
+      "priority": 6,
       "area": "ui",
       "name": "MVP lifecycle and recovery polish",
       "description": "Complete calibration feedback, HUD, game-over summary, replay, cleanup, and user-facing error states.",
@@ -93,6 +127,7 @@
       "verification": [
         "Complete calibration, gameplay, game over, and replay twice without refreshing.",
         "Deny camera access and confirm an actionable error is shown.",
+        "Confirm the 35/65 desktop layout and stacked narrow-screen layout remain readable with final styling and reduced-motion preferences enabled.",
         "Run npm run build successfully."
       ],
       "evidence": [],
