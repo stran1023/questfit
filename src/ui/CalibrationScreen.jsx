@@ -157,6 +157,7 @@ export default function CalibrationScreen({ onCalibrationComplete }) {
           <strong>{error || (cameraStatus === "tracking" ? "Body detected" : "Preparing camera and AI model…")}</strong>
           <span>{error ? "Adjust your position and try the current step again." : "Keep your full body visible throughout calibration."}</span>
         </div>
+        {cameraStatus === "error" && <button type="button" className="retry-button" onClick={() => window.location.reload()}>Retry camera</button>}
         {step === "framing" && <button disabled={!canAct} onClick={lockFraming}>Lock framing →</button>}
         {step === "jump" && <button disabled={!canAct} onClick={() => capture("jump")}>{busy ? "Capturing…" : "Capture jump"}</button>}
         {step === "squat" && <button disabled={!canAct} onClick={() => capture("squat")}>{busy ? "Capturing…" : "Capture squat"}</button>}

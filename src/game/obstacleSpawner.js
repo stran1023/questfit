@@ -1,13 +1,9 @@
-// obstacleSpawner.js
-// Spawns obstacles at an interval that shortens as speed increases.
-// Obstacle types map 1:1 to the two supported exercises.
+export const OBSTACLE_TYPES = { JUMP_OVER: "jump-over", SLIDE_UNDER: "slide-under" };
 
-export const OBSTACLE_TYPES = {
-  JUMP_OVER: "jump-over", // cleared by a jump
-  SLIDE_UNDER: "slide-under", // cleared by a squat
-};
+export function createObstacle(random = Math.random) {
+  return { id: `${Date.now()}-${random()}`, type: random() < .5 ? OBSTACLE_TYPES.JUMP_OVER : OBSTACLE_TYPES.SLIDE_UNDER, x: 1020, resolved: false };
+}
 
-export function spawnObstacle(existingObstacles, gameSpeed) {
-  const type = Math.random() < 0.5 ? OBSTACLE_TYPES.JUMP_OVER : OBSTACLE_TYPES.SLIDE_UNDER;
-  return [...existingObstacles, { type, x: 0, cleared: false }];
+export function spawnObstacle(existingObstacles, gameSpeed, random = Math.random) {
+  return [...existingObstacles, createObstacle(random)];
 }

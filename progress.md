@@ -4,14 +4,25 @@
 
 - Last Updated: 2026-07-16
 - Repository root: `D:\OpenAI Hackathon\ai-fitness-escape`
-- Current Objective: verify the responsive 35/65 split-screen pose/game UI
+- Current Objective: MVP implementation complete and verified
 - Standard startup path: `./init.sh` on Bash or `./init.ps1` on PowerShell
 - Standard verification path: `npm install` then `npm run build`
-- Highest-priority unfinished feature: `split-screen-ui`
-- Blockers: desktop proportions, live pose/action feedback, and narrow-screen stacking require browser observation
-- Recommended Next Step: complete calibration, inspect the gameplay layout at desktop width, then narrow the window and confirm the panels stack cleanly
+- Highest-priority unfinished feature: none; all six MVP features are passing
+- Blockers: none for the verified MVP; npm audit reports 1 moderate and 1 high dependency vulnerability
+- Recommended Next Step: commit and push the verified runner-loop and MVP polish changes
 
 ## Session Log
+
+### 2026-07-16 — Runner loop and MVP completion
+
+- Goal: complete the dependency-ordered runner loop and lifecycle polish using the Lovable project as a visual reference
+- Completed: added procedural player/monster animation, parallax rendering, jump physics, squat behavior, two obstacle families, collision/scoring, progressive speed, three-miss monster catch, final score, replay-to-calibration, and camera recovery actions
+- Verification run: `npm test` passed 9/9; final `./init.ps1` passed and built 37 modules; user confirmed responsive layout, mock controls, miss tolerance, game over, two replay cycles, and denied-camera recovery
+- Feature state: all six MVP features are `passing`
+- Review: `evaluator-rubric.md` returned Accept with 11/12 and no required fixes
+- Files updated: game state/render modules, game/calibration/game-over screens, styles, tests, feature evidence, progress, handoff, and evaluator rubric
+- Known issue: npm audit reports 2 dependency vulnerabilities (1 moderate, 1 high); no forced breaking upgrade was applied
+- Next best step: commit and push the verified completion state
 
 ### 2026-07-16 — Calibration implementation
 

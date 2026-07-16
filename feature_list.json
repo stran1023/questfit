@@ -84,7 +84,7 @@
       "description": "Build the responsive gameplay shell with a 35 percent pose-tracking panel on the left and a 65 percent game panel on the right.",
       "user_visible_behavior": "During gameplay, the player sees a mirrored camera feed, landmark overlay, tracking status, and recognized action beside a larger 16:9 game canvas; narrow screens stack the panels without losing readability.",
       "dependencies": ["movement-classifier"],
-      "status": "in_progress",
+      "status": "passing",
       "verification": [
         "Open the gameplay screen at a laptop-sized landscape viewport and confirm the pose and game panels use an approximately 35/65 horizontal split.",
         "Confirm the left panel shows the mirrored camera, landmark overlay, tracking status, and jump, squat, or ready feedback while the game panel remains responsive.",
@@ -94,9 +94,10 @@
       ],
       "evidence": [
         "2026-07-16: npm test passed 6/6 after split-screen integration.",
-        "2026-07-16: npm run build passed with the responsive pose/game shell; Vite transformed 33 modules."
+        "2026-07-16: npm run build passed with the responsive pose/game shell; Vite transformed 33 modules.",
+        "2026-07-16: User confirmed the game screen is visible and the narrow/mobile layout stacks with an undistorted game canvas."
       ],
-      "notes": "Follow docs/UI-build-plan.md. Implementation uses an overlay canvas for landmarks, a 35/65 desktop grid, and a stacked narrow-screen media query. Desktop and narrow-screen visual behavior still require browser observation before passing."
+      "notes": "Follow docs/UI-build-plan.md. Implementation uses an overlay canvas for landmarks, a 35/65 desktop grid, and a stacked narrow-screen media query."
     },
     {
       "id": "runner-loop",
@@ -106,14 +107,18 @@
       "description": "Connect classified actions to game state, obstacle spawning, collisions, rendering, score, and miss tolerance.",
       "user_visible_behavior": "Jump clears low obstacles, squat clears high obstacles, misses reduce the buffer, and repeated misses allow the monster to catch the player.",
       "dependencies": ["split-screen-ui"],
-      "status": "not_started",
+      "status": "passing",
       "verification": [
         "Start a calibrated run and confirm obstacles and score advance continuously.",
         "Confirm jump and squat affect the correct obstacle types.",
         "Confirm one miss does not end the game and repeated misses reach game over."
       ],
-      "evidence": [],
-      "notes": "Preserve pose -> action -> state -> render data flow."
+      "evidence": [
+        "2026-07-16: npm test passed runner miss tolerance, jump physics, obstacle spawning, and score progression; full suite passed 9/9.",
+        "2026-07-16: npm run build passed after runner-loop implementation; Vite transformed 37 modules.",
+        "2026-07-16: User confirmed mock jump and squat controls work, one miss continues play, and repeated misses reach game over."
+      ],
+      "notes": "Preserve pose -> action -> state -> render data flow. Implementation includes procedural animated characters, parallax, two obstacle types, score/speed progression, and three-miss game over."
     },
     {
       "id": "mvp-polish",
@@ -123,15 +128,21 @@
       "description": "Complete calibration feedback, HUD, game-over summary, replay, cleanup, and user-facing error states.",
       "user_visible_behavior": "The player can understand calibration, play a full run, recover from camera errors, and replay without refreshing.",
       "dependencies": ["runner-loop"],
-      "status": "not_started",
+      "status": "passing",
       "verification": [
         "Complete calibration, gameplay, game over, and replay twice without refreshing.",
         "Deny camera access and confirm an actionable error is shown.",
         "Confirm the 35/65 desktop layout and stacked narrow-screen layout remain readable with final styling and reduced-motion preferences enabled.",
         "Run npm run build successfully."
       ],
-      "evidence": [],
-      "notes": "Do not add post-MVP exercises or backend features."
+      "evidence": [
+        "2026-07-16: npm test passed the full 9/9 suite after lifecycle polish.",
+        "2026-07-16: npm run build passed after game-over and recovery UI; Vite transformed 37 modules.",
+        "2026-07-16: User confirmed two complete game-over and replay cycles work without refreshing and each replay returns to calibration.",
+        "2026-07-16: User denied camera access and confirmed the actionable error and retry control work.",
+        "2026-07-16: Final ./init.ps1 passed and evaluator-rubric.md returned Accept with 11/12."
+      ],
+      "notes": "Do not add post-MVP exercises or backend features. MVP lifecycle and recovery gates are verified."
     }
   ]
 }

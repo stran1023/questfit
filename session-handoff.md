@@ -2,8 +2,8 @@
 
 ## Verified Now
 
-- What is currently working: pose-engine and calibration are passing; classifier tests pass for jump, held squat, and noise; the gameplay screen now renders a Lovable-referenced 35/65 live pose/game shell
-- What verification actually ran: user completed live calibration and reached GameScreen; automated suite passed 6/6; production build passed with 33 transformed modules
+- What is currently working: all six MVP features pass, including pose, per-user calibration, jump/squat classification, responsive split UI, playable runner, miss tolerance, game over, replay, and camera recovery
+- What verification actually ran: user confirmed complete browser behavior including two replay cycles and denied-camera recovery; automated suite passed 9/9; final `./init.ps1` built 37 modules successfully; code review accepted at 11/12
 
 ## Changed This Session
 
@@ -13,17 +13,17 @@
 
 ## Broken Or Unverified
 
-- Known defect: runner gameplay remains a visual placeholder; npm reports 2 dependency vulnerabilities (1 moderate, 1 high)
-- Unverified path: 35/65 desktop proportions, visible live action feedback, and narrow-screen stacked layout
-- Blockers for the next session: completing `split-screen-ui` verification requires browser visual observation
+- Known defect: no known functional defect in the verified MVP; npm reports 2 dependency vulnerabilities (1 moderate, 1 high)
+- Unverified path: none within the defined MVP completion gate
+- Blockers for the next session: none
 
 ## Next Session
 
-- Highest-priority unfinished feature: `split-screen-ui`
-- Why it is next: implementation and build checks pass, but the completion gate requires visual confirmation at desktop and narrow widths
-- What counts as passing: approximately 35/65 desktop panels, mirrored landmark overlay and action feedback, stacked narrow layout, and undistorted 16:9 game canvas
-- What must not change during that step: pose inference remains separate from React and game rendering; no 50/50 desktop split
-- Recommended Next Step: run through calibration, verify the gameplay screen at desktop width, then resize below 850px and report whether the layout stacks correctly
+- Highest-priority unfinished feature: none; all features are passing
+- Why it is next: the MVP implementation and verification gates are complete
+- What counts as passing: already satisfied and recorded in `feature_list.json` and `evaluator-rubric.md`
+- What must not change during the next step: preserve the backend-free two-exercise MVP and verified pose -> action -> state -> render flow
+- Recommended Next Step: commit and push the current verified completion state
 
 ## Commands
 

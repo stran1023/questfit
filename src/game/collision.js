@@ -4,8 +4,8 @@
 
 import { OBSTACLE_TYPES } from "./obstacleSpawner.js";
 
-export function checkCollision(obstacle, playerAction) {
-  if (obstacle.type === OBSTACLE_TYPES.JUMP_OVER) return playerAction === "jump";
+export function checkCollision(obstacle, playerAction, playerGrounded = true) {
+  if (obstacle.type === OBSTACLE_TYPES.JUMP_OVER) return playerAction === "jump" || !playerGrounded;
   if (obstacle.type === OBSTACLE_TYPES.SLIDE_UNDER) return playerAction === "squat";
   return false;
 }
