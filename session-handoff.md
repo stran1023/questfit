@@ -3,13 +3,13 @@
 ## Verified Now
 
 - What is currently working: all six MVP features pass; jump fires once per pose entry and squat produces one fixed 0.65-second slide even when either input remains held
-- What verification actually ran: prior browser lifecycle checks pass; automated suite now passes 11/11 including held-input regressions; production build passes with 37 modules
+- What verification actually ran: prior browser lifecycle checks pass; automated suite passes 11/11 including held-input regressions; `./init.ps1` passed on 2026-07-17 and the production build transformed 37 modules
 
 ## Changed This Session
 
 - Code or behavior added: per-user calibration math and capture flow, rejected-sample handling, landmark overlay, progress/status UI, and threshold handoff to the app lifecycle
 - Infrastructure or harness changes: added the 35/65 UI plan and dependency-ordered `split-screen-ui` feature
-- Files modified: `src/pose/poseEngine.js`, `src/ui/CalibrationScreen.jsx`, `feature_list.json`, `docs/UI-build-plan.md`, `progress.md`, `session-handoff.md`
+- Files modified: removed the obsolete untracked `lovable-project/` reference scaffold; updated `feature_list.json`, `progress.md`, and `session-handoff.md`
 
 ## Broken Or Unverified
 

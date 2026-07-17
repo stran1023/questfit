@@ -2,7 +2,7 @@
 
 ## Current Verified State
 
-- Last Updated: 2026-07-16
+- Last Updated: 2026-07-17
 - Repository root: `D:\OpenAI Hackathon\ai-fitness-escape`
 - Current Objective: MVP complete with bounded, edge-triggered player actions
 - Standard startup path: `./init.sh` on Bash or `./init.ps1` on PowerShell
@@ -12,6 +12,14 @@
 - Recommended Next Step: manually confirm held jump and squat poses produce one bounded action, then commit the regression fix
 
 ## Session Log
+
+### 2026-07-17 - Remove obsolete Lovable reference project
+
+- Goal: determine whether `lovable-project/` was still required and remove it if redundant
+- Completed: confirmed the directory was an untracked standalone scaffold with no imports or active configuration references, then removed it
+- Verification run: `./init.ps1` passed before removal; Vite built 37 modules successfully
+- Files updated: removed `lovable-project/`; updated `feature_list.json`, `progress.md`, and `session-handoff.md`
+- Next best step: commit the verified MVP and cleanup changes
 
 ### 2026-07-16 — Held-pose action regression
 

@@ -1,6 +1,6 @@
 {
   "project": "AI Fitness Escape",
-  "last_updated": "2026-07-16",
+  "last_updated": "2026-07-17",
   "rules": {
     "single_active_feature": true,
     "passing_requires_evidence": true,
