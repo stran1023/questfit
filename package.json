@@ -2,21 +2,41 @@
   "name": "ai-fitness-escape",
   "version": "0.1.0",
   "private": true,
-  "description": "AI-powered fitness game: perform real exercises via webcam pose detection to control an endless-runner character escaping a monster.",
+  "description": "Personalized workouts compiled into browser-based, webcam-controlled fitness adventures.",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "test": "node --test",
-    "preview": "vite preview"
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "npm run test:core && npm run test:unit",
+    "test:core": "node --test src/calibration/*.test.js src/pose/*.test.js",
+    "test:unit": "vitest run",
+    "test:e2e": "playwright test",
+    "verify": "npm run lint && npm run typecheck && npm test && npm run test:e2e && npm run build"
   },
   "dependencies": {
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "@mediapipe/tasks-vision": "^0.10.14"
+    "@mediapipe/tasks-vision": "^0.10.14",
+    "next": "^15.5.20",
+    "phaser": "^3.90.0",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7",
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "vite": "^5.4.0",
-    "@vitejs/plugin-react": "^4.3.1"
+    "@playwright/test": "^1.61.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.0",
+    "@testing-library/user-event": "^14.6.1",
+    "@types/node": "^24.10.1",
+    "@types/react": "^19.2.7",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.0.4",
+    "eslint": "^9.39.2",
+    "eslint-config-next": "^15.5.20",
+    "happy-dom": "^20.10.6",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10"
   }
 }

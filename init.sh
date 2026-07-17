@@ -6,13 +6,13 @@ echo "=== Harness Initialization ==="
 echo "=== npm install ==="
 npm install
 
-echo "=== npm run build ==="
-npm run build
+echo "=== npm run verify ==="
+npm run verify
 
 echo "=== Verification Complete ==="
 echo ""
 echo "Next steps:"
-echo "1. Read feature_list.json to see current feature state"
-echo "2. Pick ONE unfinished feature to work on"
-echo "3. Implement only that feature"
-echo "4. Re-run verification before claiming done"
+echo "1. Read progress.md, session-handoff.md, and feature_list.json"
+echo "2. Read docs/ARCHITECTURE.md and the active plan in docs/PLANS.md"
+echo "3. Work only on the feature marked in_progress"
+echo "4. Re-run this verification and record evidence before claiming done"

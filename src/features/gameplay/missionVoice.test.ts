@@ -1,0 +1,5 @@
+import {describe,expect,it} from "vitest";
+import type {MissionSnapshot} from "./missionController";
+import {missionVoiceCue} from "./missionVoice";
+const snapshot:MissionSnapshot={status:"playing",segmentIndex:0,segmentProgress:0,missionProgress:0,xpEarned:0,combo:0,misses:0,totalMisses:0,completedByExercise:{},pauseReason:null};
+describe("mission voice cues",()=>{it("announces objectives, progress, corrections, recovery, and completion from facts",()=>{expect(missionVoiceCue(snapshot,"punch-left","")?.text).toContain("left punch");expect(missionVoiceCue({...snapshot,segmentProgress:2},"squat","")?.text).toBe("2 squat complete.");expect(missionVoiceCue(snapshot,"plank","Turn sideways and keep shoulders visible.")?.text).toContain("Turn sideways");expect(missionVoiceCue({...snapshot,status:"paused",pauseReason:"Camera disconnected."},"jump","")?.text).toBe("Camera disconnected.");expect(missionVoiceCue({...snapshot,status:"complete",xpEarned:210},"plank","")?.text).toContain("210 XP")})});
