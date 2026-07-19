@@ -22,6 +22,7 @@ describe("missionSceneView", () => {
       progressLabel: "40% TO SAFETY",
       progress: 0.4,
       playerX: 402,
+      tension: "ERUPTION RISING",
     });
   });
 

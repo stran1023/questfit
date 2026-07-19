@@ -80,13 +80,14 @@ test("reduced-motion preference is honored by the application shell", async ({ p
 
 test("mission world is distance-readable, responsive, and frame-stable", async ({ page }, testInfo) => {
   test.slow();
+  const capturesActiveMotion = process.env.CAPTURE_VISUAL_EVIDENCE === "1";
   await page.addInitScript(() => {
     Object.defineProperty(navigator, "mediaDevices", {
       configurable: true,
       value: { getUserMedia: async () => { throw new DOMException("Synthetic camera unavailable", "NotAllowedError"); } },
     });
   });
-  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.emulateMedia({ reducedMotion: capturesActiveMotion ? "no-preference" : "reduce" });
   await page.goto("/");
   await page.evaluate((session) => {
     sessionStorage.setItem("ai-fitness-escape:mission-v1", JSON.stringify(session));
@@ -127,7 +128,9 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
 
   const movements = ["jump", "squat", "lunge", "high-knees", "jumping-jack", "punch-left", "punch-right", "side-reach-left", "side-reach-right", "push-up", "plank"] as const;
   const encounters = ["boulder", "fire-gate", "broken-bridge", "lava-steps", "storm-gate", "left-wall", "right-wall", "left-vines", "right-vines", "low-tunnel", "ember-storm"] as const;
+  const actions = ["leap", "duck", "stride", "sprint", "power", "strike-left", "strike-right", "reach-left", "reach-right", "push", "shield"] as const;
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-encounter", encounters[0]);
+  await expect(page.locator(".game-canvas")).toHaveAttribute("data-world-motion", capturesActiveMotion ? "active" : "reduced");
   for (const [index, movement] of movements.entries()) {
     await page.evaluate(({ movement, index }) => {
       window.dispatchEvent(new CustomEvent("ai-fitness-escape:movement", { detail: {
@@ -137,6 +140,7 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
         occurredAtMs: index + 1,
       } }));
     }, { movement, index });
+    await expect(page.locator(".game-canvas")).toHaveAttribute("data-runner-action", actions[index]);
     if (index < movements.length - 1) {
       await expect(page.locator(".objective-hud")).toHaveAttribute("data-target", movements[index + 1]);
       await expect(page.locator(".game-canvas")).toHaveAttribute("data-encounter", encounters[index + 1]);
@@ -146,6 +150,7 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
   await expect(page.getByText("Opening results…")).toBeVisible();
   await expect(page.locator(".objective-hud progress")).toHaveAttribute("value", "100");
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-last-feedback", "complete");
+  await expect(page.locator(".game-canvas")).toHaveAttribute("data-cinematic-phase", "portal-escape");
   await expect(page.getByText("Assistant recap · grounded in session facts")).toBeVisible();
   await expect(page.getByRole("link", { name: "Replay this adventure" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Build a new plan" })).toBeVisible();

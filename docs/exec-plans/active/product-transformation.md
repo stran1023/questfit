@@ -29,8 +29,9 @@ It does not include roadmap-only social, multiplayer, seasonal, wearable, medica
 15. Add truthful presenter preflight without adding a second launch action.
 16. Tune hands-free cue density, target announcements, and distance-readable set progress.
 17. Polish the factual results finale and replay/new-plan actions.
-18. Physically rehearse the guest happy path twice with a clean judged navigation surface and presenter runbook.
-19. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
+18. Add a cinematic body-controlled mission pass with movement-matched hero actions, reactive hazards, environmental motion, escalation, and portal finale.
+19. Physically rehearse the guest happy path twice with a clean judged navigation surface and presenter runbook.
+20. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
 
 ## Verification
 

@@ -22,6 +22,8 @@
 - Rebuilt results as a factual finale with completion visualization, canonical movement names, bounded next-session guidance, replay/new-plan actions, and an explicit no-health-score boundary.
 - Focused checks and the final full gate pass. A camera-start Playwright stall exposed and fixed cancellation of in-flight MediaPipe initialization; synthetic browser camera denial is now deterministic, mission-to-results cleanup passes at both viewports, and the harness scores 100/100.
 - Mission success now saves results and automatically opens `/results` after a 2.6-second celebration/voice dwell; the manual **View results** action is removed and desktop/narrow browser journeys pass without touch.
+- Added and accepted `cinematic-mission`: all eleven movements now drive distinct hero actions; hazards approach and react; embers, lava glow, and tension stages animate the world; and eruption/portal motion creates a coherent automatic-results finale.
+- Review caught and fixed transition ordering so the credited movement resolves the old hazard before the next encounter appears and runner action no longer cancels forward progress. Full verification passes 86 Vitest and 10 Playwright checks; active-motion desktop evidence is visually accepted and the harness remains 100/100.
 
 ### 2026-07-18 — Guest-only demo boundary and engaging Volcano Escape polish
 

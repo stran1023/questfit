@@ -22,6 +22,22 @@ export type EncounterPresentation = {
   accent: number;
 };
 
+export type RunnerAction = "leap" | "duck" | "stride" | "sprint" | "power" | "strike-left" | "strike-right" | "reach-left" | "reach-right" | "push" | "shield";
+
+export const runnerActionByMovement: Record<SupportedMovement, RunnerAction> = {
+  jump: "leap",
+  squat: "duck",
+  lunge: "stride",
+  "high-knees": "sprint",
+  "jumping-jack": "power",
+  "punch-left": "strike-left",
+  "punch-right": "strike-right",
+  "side-reach-left": "reach-left",
+  "side-reach-right": "reach-right",
+  "push-up": "push",
+  plank: "shield",
+};
+
 export const encounterByMovement: Record<SupportedMovement, EncounterPresentation> = {
   jump: { ...encounterCopyByMovement.jump, kind: "boulder", color: 0x64748b, accent: 0x67e8f9 },
   squat: { ...encounterCopyByMovement.squat, kind: "fire-gate", color: 0xf97316, accent: 0xfbbf24 },

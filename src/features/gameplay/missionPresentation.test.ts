@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { supportedMovements } from "@/contracts";
 import type { MissionSnapshot } from "./missionController";
-import { encounterByMovement, encounterProgressAt, missionPresentationFeedback } from "./missionPresentation";
+import { encounterByMovement, encounterProgressAt, missionPresentationFeedback, runnerActionByMovement } from "./missionPresentation";
 
 const snapshot = (changes: Partial<MissionSnapshot> = {}): MissionSnapshot => ({
   status: "playing",
@@ -26,6 +26,10 @@ describe("mission presentation", () => {
     }
     expect(encounterByMovement["punch-left"].kind).not.toBe(encounterByMovement["punch-right"].kind);
     expect(encounterByMovement["push-up"].kind).not.toBe(encounterByMovement.plank.kind);
+    expect(Object.keys(runnerActionByMovement)).toEqual(expect.arrayContaining([...supportedMovements]));
+    expect(runnerActionByMovement.jump).toBe("leap");
+    expect(runnerActionByMovement.squat).toBe("duck");
+    expect(runnerActionByMovement["punch-left"]).not.toBe(runnerActionByMovement["punch-right"]);
   });
 
   it("numbers repeated movement encounters without changing their movement identity", () => {
