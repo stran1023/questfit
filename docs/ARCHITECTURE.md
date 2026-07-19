@@ -116,6 +116,8 @@ For the hackathon theme, project-owned generated raster art, code-native Phaser 
 
 The cinematic mission layer derives a movement-matched runner action, hazard reaction, environmental pressure, and finale exclusively from successive `MissionSceneUpdate` snapshots. These animations are disposable views: they never publish movement events, mutate the mission controller, calculate XP, or delay authoritative progress. Automatic results navigation remains React-owned after result persistence, so Phaser teardown cannot block the route transition.
 
+Mission music is a license-safe procedural Web Audio presentation adapter. It derives only a calm, rising, or escape tier from authoritative mission progress; it cannot affect timing, scoring, pose detection, or objective transitions. Music and action effects require one explicit browser gesture, use a low-volume music bus beneath independent voice coaching, pause with mission state, and close on route cleanup.
+
 ## Movement Detection Architecture
 
 MediaPipe provides pretrained body landmarks; it does not decide whether a workout repetition is complete. The pose domain normalizes landmarks and routes each frame through a registered detector. Most MVP movements use deterministic geometry plus short temporal windows. A separately trained temporal classifier may be introduced only when recorded fixtures show that deterministic rules cannot meet the quality target; it must consume normalized landmark sequences, not uploaded video, and it is never trained during user onboarding.
@@ -159,6 +161,7 @@ Canonical encounter copy is contract-adjacent presentation metadata keyed by the
 | 2026-07-18 | Make the hackathon judged path guest-only and prioritize Phaser polish before Supabase | maximizes demo reliability and visible product value while keeping remote claims honest |
 | 2026-07-18 | Treat game effects and sound as snapshot-derived presentation, never gameplay authority | preserves deterministic scoring and the independent pose/React/Phaser loops |
 | 2026-07-19 | Add cinematic actions and world escalation as disposable snapshot views | makes the demo feel game-like without creating a second gameplay authority or coupling pose inference to Phaser |
+| 2026-07-19 | Use opt-in procedural adaptive music instead of a streamed track | avoids autoplay, network, and licensing risk while allowing progress-driven urgency and deterministic cleanup |
 | 2026-07-19 | Keep preparation as a route/state but make successful readiness auto-launch the mission | preserves camera/calibration validation and recovery without adding a second user decision |
 | 2026-07-19 | Make workout policy deterministic and keep AI subordinate to validated rationale phrasing | makes goal/profile changes meaningful, keeps safety reproducible, and prevents provider output from overriding playable constraints |
 

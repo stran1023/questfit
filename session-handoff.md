@@ -82,6 +82,7 @@
 - Fixed in-flight MediaPipe initialization cancellation so navigating to results cannot leak a late-created landmarker; the browser mission test now uses deterministic synthetic camera denial and verifies cleanup at desktop and narrow widths.
 - Successful missions now persist authoritative facts and automatically replace `/mission` with `/results` after a 2.6-second completion celebration; no results click is required.
 - Completed `cinematic-mission`: snapshot-derived hero actions for all eleven movements, current-hazard recoil, approaching next hazards, ember/lava atmosphere, escalating tension, and eruption-to-portal finale. Full gate and 12/12 review pass; `demo-liftoff` is active again for two physical rehearsals.
+- Completed `adaptive-mission-music`: opt-in procedural soundtrack/effects, calm/rising/escape progress tiers, voice-safe gain, pause/resume, late-start cancellation, and route cleanup. Full gate and 12/12 review pass; real-camera rehearsal should explicitly judge music/voice balance.
 
 ## Broken or Unverified
 

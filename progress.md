@@ -24,6 +24,8 @@
 - Mission success now saves results and automatically opens `/results` after a 2.6-second celebration/voice dwell; the manual **View results** action is removed and desktop/narrow browser journeys pass without touch.
 - Added and accepted `cinematic-mission`: all eleven movements now drive distinct hero actions; hazards approach and react; embers, lava glow, and tension stages animate the world; and eruption/portal motion creates a coherent automatic-results finale.
 - Review caught and fixed transition ordering so the credited movement resolves the old hazard before the next encounter appears and runner action no longer cancels forward progress. Full verification passes 86 Vitest and 10 Playwright checks; active-motion desktop evidence is visually accepted and the harness remains 100/100.
+- Added and accepted `adaptive-mission-music`: an explicit Music + effects gesture starts a low-volume procedural adventure loop, authoritative progress selects calm/rising/escape tiers, mission pause suppresses notes, and disable/results cleanup clears the scheduler and AudioContext.
+- Browser coverage enables the soundtrack at desktop/narrow widths, crosses all three tiers, completes, and reaches results cleanly. Full verification passes 87 Vitest and 10 Playwright checks; `demo-liftoff` is active again.
 
 ### 2026-07-18 — Guest-only demo boundary and engaging Volcano Escape polish
 

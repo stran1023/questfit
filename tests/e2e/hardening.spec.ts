@@ -101,10 +101,14 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
   await expect(canvas).toBeVisible();
   await expect(page.getByRole("heading", { name: "Mission in progress" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Voice on" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Sound off" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Music + effects off" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Resume" })).toBeVisible();
   await page.getByRole("button", { name: "Resume" }).click();
   await expect(page.getByRole("button", { name: "Pause" })).toBeVisible();
+  await page.getByRole("button", { name: "Music + effects off" }).click();
+  await expect(page.getByRole("button", { name: "Music + effects on" })).toBeVisible();
+  await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-state", "on");
+  await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-tier", "calm");
 
   const bounds = await page.locator(".game-canvas").boundingBox();
   expect(bounds).not.toBeNull();
@@ -120,11 +124,11 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
     await page.screenshot({ path: testInfo.outputPath("mission-world.png"), fullPage: true });
   }
 
-  // Keep CI deterministic and quiet while the presentation boundary is driven
-  // through all objectives; cue selection itself has focused unit coverage.
+  // Mute browser speech while keeping the explicitly enabled procedural audio
+  // path active through progression and cleanup.
   await page.getByRole("button", { name: "Voice on" }).click();
   await expect(page.getByRole("button", { name: "Voice off" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Sound off" })).toBeVisible();
+  await expect(page.getByRole("button", { name: "Music + effects on" })).toBeVisible();
 
   const movements = ["jump", "squat", "lunge", "high-knees", "jumping-jack", "punch-left", "punch-right", "side-reach-left", "side-reach-right", "push-up", "plank"] as const;
   const encounters = ["boulder", "fire-gate", "broken-bridge", "lava-steps", "storm-gate", "left-wall", "right-wall", "left-vines", "right-vines", "low-tunnel", "ember-storm"] as const;
@@ -141,6 +145,8 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
       } }));
     }, { movement, index });
     await expect(page.locator(".game-canvas")).toHaveAttribute("data-runner-action", actions[index]);
+    if (index === 3) await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-tier", "rising");
+    if (index === 8) await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-tier", "escape");
     if (index < movements.length - 1) {
       await expect(page.locator(".objective-hud")).toHaveAttribute("data-target", movements[index + 1]);
       await expect(page.locator(".game-canvas")).toHaveAttribute("data-encounter", encounters[index + 1]);

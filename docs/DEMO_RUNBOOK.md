@@ -63,7 +63,7 @@ Use this version when judging time is limited. It is normal returning-guest beha
 - Framing correction: follow the spoken cue and keep head, hips, knees, and feet visible with enough lateral room for jumping jacks and punches.
 - Tracking interruption: pause, reconnect or restore the camera, and retry; automated regression coverage verifies progress preservation.
 - Planner unavailable: use the visible retry; deterministic fallback content keeps the mission playable.
-- Sound silent: leave voice enabled. Action sound is optional and may require selecting **Sound off** once to change it to **Sound on**.
+- Music silent: leave voice enabled, then select **Music + effects off** once so it changes to **Music + effects on**. The procedural theme begins only after this browser-required gesture and should rise in urgency near the portal.
 
 ## Evidence Boundary
 

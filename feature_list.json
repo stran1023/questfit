@@ -462,13 +462,36 @@
       "notes": "Phaser owns presentation only. Every action and effect derives from validated mission snapshot transitions; no scene animation may award XP, consume movement, or advance objectives."
     },
     {
-      "id": "demo-liftoff",
+      "id": "adaptive-mission-music",
       "priority": 19,
+      "area": "gameplay",
+      "name": "Adaptive workout mission soundtrack",
+      "description": "Add an opt-in, license-safe procedural soundtrack that loops during the mission, increases musical urgency with authoritative mission progress, layers beneath action effects and voice, pauses with gameplay, and cleans up on exit.",
+      "user_visible_behavior": "After enabling Music + effects once, the player hears a continuous adventure rhythm that grows more energetic near the portal while voice instructions and movement feedback remain clear.",
+      "dependencies": ["cinematic-mission"],
+      "status": "passing",
+      "verification": [
+        "Enable Music + effects and confirm a continuous low-volume mission theme begins only after the user gesture and the control reports its state.",
+        "Advance through early, rising, and portal-in-sight progress and confirm the soundtrack adds urgency without changing mission facts or masking voice cues.",
+        "Pause, resume, disable audio, complete, and leave the mission; confirm music stops or resumes appropriately and no audio continues on results.",
+        "Verify unsupported or suspended Web Audio degrades silently, then run the standard verification path."
+      ],
+      "evidence": [
+        "2026-07-19: Added an explicit Music + effects control that starts a continuous procedural C-minor adventure loop only after a user gesture; voice remains independently enabled and the music bus peaks well below action effects.",
+        "2026-07-19: Authoritative progress deterministically selects calm below 35%, rising from 35%, and escape from 75%. Pause/recovery suppresses scheduled notes, resume restarts the beat, disable clears the timer/gain, and route cleanup closes the shared AudioContext.",
+        "2026-07-19: Added async-generation cancellation so a delayed AudioContext resume cannot start music after disable. Missing Web Audio returns a silent false result without affecting mission behavior.",
+        "2026-07-19: Desktop and narrow Chrome enabled audio, crossed all three tiers, completed the cinematic mission, and reached results without a lingering worker. Final npm run verify passed lint, strict typecheck, 6 core tests, 87 Vitest tests, 10 Playwright checks, and production build; harness validation scored 100/100 and review accepted 12/12."
+      ],
+      "notes": "Use procedural Web Audio to avoid licensing/network risk. Music and effects share one explicit opt-in control; voice remains independently enabled."
+    },
+    {
+      "id": "demo-liftoff",
+      "priority": 20,
       "area": "release",
       "name": "Guest happy-path demo lift-off",
       "description": "Package and physically rehearse the guest path from welcome through profile, preparation, planning, mission, results, and replay.",
       "user_visible_behavior": "A judge can complete and understand the mission from several feet away without confusion or hidden setup.",
-      "dependencies": ["cinematic-mission"],
+      "dependencies": ["adaptive-mission-music"],
       "status": "in_progress",
       "verification": [
         "Complete the guest happy path twice from clean browser profiles on the reference laptop with the real camera.",
@@ -483,7 +506,7 @@
     },
     {
       "id": "progress-persistence",
-      "priority": 20,
+      "priority": 21,
       "area": "data",
       "name": "Supabase identity sync, progress, history, and leaderboard",
       "description": "Connect the identity/profile adapter to Supabase Auth, add RLS-protected profile and calibration sync, idempotent guest conversion, session history, streak, XP, and weekly leaderboard after the guest-first hackathon slice is stable.",

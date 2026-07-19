@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import type { MissionSnapshot } from "./missionController";
-import { missionSoundCue } from "./missionSound";
+import { missionMusicTier, missionSoundCue } from "./missionSound";
 
 const snapshot = (changes: Partial<MissionSnapshot> = {}): MissionSnapshot => ({
   status: "playing",
@@ -25,5 +25,14 @@ describe("mission sound cues", () => {
     expect(missionSoundCue(base, snapshot({ totalMisses: 1 }))).toBe("miss");
     expect(missionSoundCue(base, snapshot({ status: "complete", xpEarned: 100 }))).toBe("complete");
     expect(missionSoundCue(base, base)).toBeNull();
+  });
+
+  it("derives soundtrack urgency only from authoritative mission progress", () => {
+    expect(missionMusicTier(0)).toBe("calm");
+    expect(missionMusicTier(34)).toBe("calm");
+    expect(missionMusicTier(35)).toBe("rising");
+    expect(missionMusicTier(74)).toBe("rising");
+    expect(missionMusicTier(75)).toBe("escape");
+    expect(missionMusicTier(100)).toBe("escape");
   });
 });
