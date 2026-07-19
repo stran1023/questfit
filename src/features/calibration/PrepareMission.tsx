@@ -197,6 +197,10 @@ export default function PrepareMission() {
     ready: ["Mission ready", "Full-body tracking is stable. Stay in position—the adventure launches automatically."],
   }[step];
   const stepIndex = { framing: 0, "jump-countdown": 1, "jump-sampling": 1, "squat-countdown": 2, "squat-sampling": 2, ready: 2 }[step];
+  const voiceAvailable = typeof window !== "undefined" && "speechSynthesis" in window && "SpeechSynthesisUtterance" in window;
+  const cameraCheck = cameraStatus === "error" ? ["attention", "Needs attention"] : cameraStatus === "tracking" ? ["ready", "Ready"] : ["pending", "Checking"];
+  const bodyCheck = cameraStatus === "tracking" ? ["ready", "Full body found"] : cameraStatus === "error" ? ["attention", "Unavailable"] : ["pending", "Step into view"];
+  const setupCheck = step === "ready" ? ["ready", "Ready"] : calibrationRequiredRef.current ? ["pending", "Recording once"] : ["pending", "Validating saved setup"];
 
   return (
     <main className="app-shell calibration-layout prepare-layout">
@@ -233,6 +237,20 @@ export default function PrepareMission() {
       </section>
 
       <aside className="instruction-panel">
+        <section className="preflight-card" aria-labelledby="preflight-title">
+          <div className="preflight-heading">
+            <div><p className="eyebrow">Presenter preflight</p><h2 id="preflight-title">{step === "ready" ? "All systems ready" : "Launch checks"}</h2></div>
+            <span className={step === "ready" && cameraStatus === "tracking" ? "ready" : "pending"}>{step === "ready" && cameraStatus === "tracking" ? "Launch ready" : "Automatic"}</span>
+          </div>
+          <ul className="preflight-list">
+            <li data-state={cameraCheck[0]}><span>Camera + model</span><strong>{cameraCheck[1]}</strong></li>
+            <li data-state={bodyCheck[0]}><span>Full-body framing</span><strong>{bodyCheck[1]}</strong></li>
+            <li data-state={setupCheck[0]}><span>Movement setup</span><strong>{setupCheck[1]}</strong></li>
+            <li data-state={voiceAvailable ? "ready" : "attention"}><span>Assistant voice</span><strong>{voiceAvailable ? "Available" : "Text fallback"}</strong></li>
+            <li data-state="ready"><span>Validated mission</span><strong>{mission.workout.exercises.length} stages loaded</strong></li>
+          </ul>
+          <p>No button needed. Countdown begins when tracking and setup are ready.</p>
+        </section>
         <div className="glass-card">
           <p className="eyebrow">Instruction</p>
           <h2>{stepCopy[0]}</h2>

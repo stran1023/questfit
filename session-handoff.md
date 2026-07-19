@@ -3,7 +3,7 @@
 ## Verified Now
 
 - Next.js 15 is the only product runtime; routes cover guest onboarding, planning, preparation, Phaser mission, results, and the planning API.
-- `npm run verify` passes ESLint, strict TypeScript, 6 core pose/calibration tests, 84 Vitest tests, ten responsive Playwright checks, and the production build.
+- `npm run verify` passes ESLint, strict TypeScript, 6 core pose/calibration tests, 86 Vitest tests, ten responsive Playwright checks, and the production build.
 - The obsolete compatibility game route and runner implementation are removed; reusable calibration and pose foundations are integrated behind current typed feature adapters.
 - The pre-refactor harness validator scored 100/100.
 - Documentation now has one canonical source for product, architecture, frontend, data, reliability, security, quality, and planning concerns.
@@ -74,6 +74,12 @@
 - Polished the launch countdown into a distance-readable camera overlay with individual number transitions, energy rings, progress marks, a gold `GO!` state, and reduced-motion fallback; navigation occurs after the payoff remains visible for 650 ms.
 - Implemented and accepted goal-aware planning 12/12: four distinct curated goals, duration-based 5/6/7 stages, profile-derived activity/limitations, bounded targets/rest, safety exclusions, goal-specific replacements, profile-aware fallbacks, and validated phased rationale. `demo-liftoff` is active again.
 - User review removed punches from standard lower-body strength plans; every duration now uses jumping-jack warm-up, repeated squat/lunge work, and a jump finale, protected by exact-sequence tests.
+- Committed the countdown/planner baseline as `c1fb4f6`, then expanded the recommended demo sequence into dependency-ordered, session-sized feature records.
+- Completed canonical encounter coherence and repeated-set stage progression across planner, React HUD, assistant voice, and Phaser.
+- Completed the presenter preflight card without adding a launch decision or bypass; existing readiness remains authoritative.
+- Completed target-aware lower-noise voice cues and current/target HUD progress for hands-free play.
+- Completed the factual results finale with completion visualization, canonical strongest-movement naming, grounded recommendation, replay, and new-plan actions.
+- Fixed in-flight MediaPipe initialization cancellation so navigating to results cannot leak a late-created landmarker; the browser mission test now uses deterministic synthetic camera denial and verifies cleanup at desktop and narrow widths.
 
 ## Broken or Unverified
 
@@ -86,7 +92,7 @@
 ## Next Session
 
 - Active feature: `demo-liftoff`.
-- Next step: use `docs/DEMO_RUNBOOK.md` to run the complete real-camera guest path twice from clean Chrome profiles and record the observed results; automated packaging and verification are complete.
+- Next step: use `docs/DEMO_RUNBOOK.md` to run the complete real-camera guest path twice from clean Chrome profiles, record the observed results, then commit and push the release candidate.
 - Preserve deterministic fallbacks and do not claim live AI, remote auth, or physical movement evidence without observation.
 
 ## Commands

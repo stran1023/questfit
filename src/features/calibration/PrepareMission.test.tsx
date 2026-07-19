@@ -80,6 +80,7 @@ describe("PrepareMission camera lifecycle", () => {
     render(<PrepareMission />);
 
     expect(await screen.findByText(/Camera permission is blocked/)).toBeVisible();
+    expect(screen.getByText("Needs attention")).toBeVisible();
     await user.click(screen.getByRole("button", { name: "Retry camera" }));
     await waitFor(() => expect(startWebcamMock).toHaveBeenCalledTimes(2));
   });
@@ -99,6 +100,8 @@ describe("PrepareMission camera lifecycle", () => {
     await vi.advanceTimersByTimeAsync(700);
 
     expect(screen.getByRole("heading", { name: "Mission ready" })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "All systems ready" })).toBeVisible();
+    expect(screen.getByText(`${validWorkoutPlanFixture.exercises.length} stages loaded`)).toBeVisible();
     expect(screen.queryByRole("button", { name: "Begin mission" })).not.toBeInTheDocument();
     expect(screen.getByLabelText("Mission launch countdown")).toBeVisible();
     expect(screen.getByText("3")).toBeVisible();

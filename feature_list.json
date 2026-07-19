@@ -351,19 +351,19 @@
       "notes": "Deterministic rules own safety, allowed movements, order, targets, rest, and intensity. AI may phrase bounded presentation copy only after validation and may not provide hidden chain-of-thought or override authoritative values."
     },
     {
-      "id": "demo-liftoff",
+      "id": "encounter-coherence",
       "priority": 14,
-      "area": "release",
-      "name": "Guest happy-path demo lift-off",
-      "description": "Package and rehearse one obvious guest-only path from welcome through profile, saved setup, planning, polished mission, factual results, and replay without exposing migration or deferred account breadth.",
-      "user_visible_behavior": "A judge can enter as a guest, understand what to do from several feet away, complete the polished mission, see grounded results, and start another adventure without confusion or hidden setup.",
+      "area": "gameplay",
+      "name": "Coherent progressive encounters",
+      "description": "Use one canonical encounter vocabulary across the workout briefing, spoken coaching, React HUD, and Phaser scene, and make repeated movement sets advance through visibly distinct encounter stages.",
+      "user_visible_behavior": "Every planned movement names the same obstacle before and during play, and repeated sets feel like forward progress instead of replaying an identical obstacle.",
       "dependencies": ["goal-aware-planning"],
-      "status": "in_progress",
+      "status": "passing",
       "verification": [
-        "Complete the guest happy path twice from a clean browser profile on the reference laptop without refresh, hidden controls, or manual storage repair.",
-        "Verify primary navigation contains no prototype, unavailable-account, or unfinished-cloud distractions during the judged walkthrough while provider modes remain honest.",
-        "Record the reference browser, viewport, demo sequence, expected voice/sound behavior, pose and frame latency, and recovery instructions for the presenter.",
-        "Run the standard verification path, visually inspect every judged screen, and produce a concise demo runbook."
+        "Generate each supported workout goal and confirm briefing encounter names match the Phaser scene and first spoken objective.",
+        "Generate a strength plan with repeated squat and lunge sets and confirm each occurrence exposes its set number and a progressive encounter label.",
+        "Verify canonical metadata covers all eleven movement IDs without changing authoritative scoring or pose-event behavior.",
+        "Run focused presentation, voice, planner, and scene tests followed by the standard verification path."
       ],
       "evidence": [
         "2026-07-18: The judged welcome exposes one keyboard-reachable Start as guest action; account controls, the prototype route link, and the internal movement-check action are absent from primary navigation while guest-local storage messaging remains explicit.",
@@ -373,13 +373,91 @@
         "2026-07-18: Personalized and fallback planners now generate the same six-movement standing happy path (jumping jack, squat, left/right punch, high knees, jump), with duration/level scaling and canonical encounter mappings; 19 focused planner/contract tests and strict typecheck passed.",
         "2026-07-18: Retired the compatibility route, old React/canvas runner, unused runner state, runner-only tests, and obsolete CSS. Imported calibration/pose foundations remain under product ownership; npm run verify passed 6 core tests, 78 Vitest tests, eight Playwright checks, and the seven-route production build.",
         "2026-07-19: Preparation is now a hands-free launch state. Compatible thresholds skip rerecording but still require 12 stable full-body frames; successful saved or first-time setup speaks/displays a three-second countdown and navigates automatically with no Begin mission button. Full verification passed 6 core tests, 79 Vitest tests, eight Playwright checks, lint, strict typecheck, and production build.",
-        "2026-07-19: The camera-stage launch overlay now presents one animated number at a time, concentric energy rings, progress marks, and a gold GO payoff held for 650 ms before navigation; reduced-motion rules preserve a clear non-animated sequence. Full verification passed lint, strict typecheck, 6 core tests, 79 Vitest tests, eight Playwright checks, and production build."
+        "2026-07-19: The camera-stage launch overlay now presents one animated number at a time, concentric energy rings, progress marks, and a gold GO payoff held for 650 ms before navigation; reduced-motion rules preserve a clear non-animated sequence. Full verification passed lint, strict typecheck, 6 core tests, 79 Vitest tests, eight Playwright checks, and production build.",
+        "2026-07-19: Canonical encounter copy now drives planner, React HUD, speech, and Phaser for all eleven movement IDs. Repeated movement sets expose deterministic stage index/total and retrigger distinct scene presentation. Full npm run verify passed 6 core tests, 86 Vitest tests, 10 Playwright checks, lint, strict typecheck, and production build."
       ],
-      "notes": "This is release packaging and rehearsal, not a hidden demo bypass. Preserve real calibration, validated pose events, deterministic metrics, and local privacy boundaries."
+      "notes": "Existing lift-off evidence is retained as baseline evidence. Presentation metadata may derive from mission contracts but must not become a second scoring authority."
+    },
+    {
+      "id": "demo-preflight",
+      "priority": 15,
+      "area": "reliability",
+      "name": "Presenter preflight panel",
+      "description": "Show camera permission, full-body framing, voice availability, calibration compatibility, and mission readiness before the judged run.",
+      "user_visible_behavior": "The presenter can resolve a failed prerequisite before countdown without adding a second launch decision.",
+      "dependencies": ["encounter-coherence"],
+      "status": "passing",
+      "verification": [
+        "Show truthful ready, checking, and recovery states for every prerequisite.",
+        "Confirm the panel is distance-readable and preserves automatic launch.",
+        "Verify keyboard, reduced-motion, denied-camera, and saved-calibration paths."
+      ],
+      "evidence": [
+        "2026-07-19: Preparation now exposes distance-readable camera/model, full-body framing, saved-or-first-time movement setup, assistant voice, and validated-stage checks with truthful pending, ready, and attention states while retaining automatic countdown launch.",
+        "2026-07-19: Denied-camera and saved-calibration component regressions pass; npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build after an isolated retry confirmed the pre-existing camera-start browser check."
+      ],
+      "notes": "Augment the automatic preparation boundary; never bypass camera or calibration checks."
+    },
+    {
+      "id": "mission-pacing-voice",
+      "priority": 16,
+      "area": "gameplay",
+      "name": "Mission pacing and hands-free coaching",
+      "description": "Tune transitions, preparation windows, spoken cue priority, and interruption behavior for play several feet from the laptop.",
+      "user_visible_behavior": "The mission announces what is next, allows stance changes, avoids overlapping speech, and celebrates progress without requiring touch.",
+      "dependencies": ["demo-preflight"],
+      "status": "passing",
+      "verification": [
+        "Verify objective, count, transition, correction, pause, and completion cues have deterministic priority and do not overlap.",
+        "Confirm standing and floor transitions provide appropriate hands-free preparation windows.",
+        "Measure happy-path duration and verify reduced-motion behavior."
+      ],
+      "evidence": [
+        "2026-07-19: Spoken objective cues now announce the canonical encounter, repeated-set stage, repetition target, and movement instruction; high-count sets suppress noisy per-rep speech and announce halfway plus the final three repetitions.",
+        "2026-07-19: Tracking correction, pause, and completion cues retain higher deterministic priority; the HUD now exposes current/target set progress. Full npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build."
+      ],
+      "notes": "Speech is assistive presentation only; snapshots and detector events remain authoritative."
+    },
+    {
+      "id": "results-polish",
+      "priority": 17,
+      "area": "coaching",
+      "name": "Memorable factual results finale",
+      "description": "Polish completion and results around verified movements, consistency, misses, XP, one grounded coaching insight, and replay.",
+      "user_visible_behavior": "The demo ends with a celebratory, truthful payoff that a judge can understand immediately and replay in one action.",
+      "dependencies": ["mission-pacing-voice"],
+      "status": "passing",
+      "verification": [
+        "Confirm every metric derives from the saved mission result and no unsupported health claim appears.",
+        "Verify completion transition, responsive layout, keyboard order, reduced motion, and replay.",
+        "Visually inspect results at reference desktop and narrow viewports."
+      ],
+      "evidence": [
+        "2026-07-19: Results now end the adventure with a responsive completion ring, verified movement/accuracy/XP facts, canonical strongest-movement naming, grounded next-mission guidance, replay-current and build-new actions, and an explicit no-health-score boundary.",
+        "2026-07-19: Focused results/analysis tests and the desktop/narrow mission-to-results journey pass. Final npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation scored 100/100."
+      ],
+      "notes": "Deterministic analysis stays authoritative; AI may only rephrase bounded coaching facts."
+    },
+    {
+      "id": "demo-liftoff",
+      "priority": 18,
+      "area": "release",
+      "name": "Guest happy-path demo lift-off",
+      "description": "Package and physically rehearse the guest path from welcome through profile, preparation, planning, mission, results, and replay.",
+      "user_visible_behavior": "A judge can complete and understand the mission from several feet away without confusion or hidden setup.",
+      "dependencies": ["results-polish"],
+      "status": "in_progress",
+      "verification": [
+        "Complete the guest happy path twice from clean browser profiles on the reference laptop with the real camera.",
+        "Record browser, viewport, voice/sound behavior, pose and frame latency, recovery steps, and fallback narration.",
+        "Run the full gate, visually inspect every judged screen, and finalize the demo runbook."
+      ],
+      "evidence": [],
+      "notes": "Physical rehearsals cannot be replaced by synthetic evidence. Preserve real pose events, deterministic metrics, and local privacy."
     },
     {
       "id": "progress-persistence",
-      "priority": 15,
+      "priority": 19,
       "area": "data",
       "name": "Supabase identity sync, progress, history, and leaderboard",
       "description": "Connect the identity/profile adapter to Supabase Auth, add RLS-protected profile and calibration sync, idempotent guest conversion, session history, streak, XP, and weekly leaderboard after the guest-first hackathon slice is stable.",

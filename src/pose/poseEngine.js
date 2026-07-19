@@ -11,6 +11,7 @@ const MODEL_URL =
 
 let landmarker = null;
 let initialization = null;
+let lifecycleGeneration = 0;
 
 async function createLandmarker(delegate) {
   const vision = await FilesetResolver.forVisionTasks(WASM_ROOT);
@@ -31,13 +32,20 @@ export async function initPoseEngine() {
   if (landmarker) return landmarker;
   if (initialization) return initialization;
 
+  const initializationGeneration = lifecycleGeneration;
   initialization = (async () => {
+    let createdLandmarker;
     try {
-      landmarker = await createLandmarker("GPU");
+      createdLandmarker = await createLandmarker("GPU");
     } catch (gpuError) {
       console.warn("GPU pose initialization failed; using CPU.", gpuError);
-      landmarker = await createLandmarker("CPU");
+      createdLandmarker = await createLandmarker("CPU");
     }
+    if (initializationGeneration !== lifecycleGeneration) {
+      createdLandmarker.close();
+      throw new Error("Pose engine initialization was cancelled.");
+    }
+    landmarker = createdLandmarker;
     return landmarker;
   })();
 
@@ -59,6 +67,7 @@ export function detectPose(videoElement, timestampMs) {
 }
 
 export function closePoseEngine() {
+  lifecycleGeneration += 1;
   landmarker?.close();
   landmarker = null;
   initialization = null;

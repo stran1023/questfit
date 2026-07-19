@@ -29,4 +29,8 @@ describe("missionSceneView", () => {
     expect(missionSceneView({ snapshot: { ...snapshot, status: "paused", missionProgress: -4 }, target: "plank" }).status).toBe("MISSION PAUSED");
     expect(missionSceneView({ snapshot: { ...snapshot, status: "complete", missionProgress: 140 }, target: "jump" })).toMatchObject({ status: "ESCAPED", progress: 1, playerX: 828 });
   });
+
+  it("makes repeated encounters visibly progressive", () => {
+    expect(missionSceneView({ snapshot: { ...snapshot, segmentIndex: 3 }, target: "squat", encounter: { index: 2, total: 3 } }).objective).toBe("Squat · Set 2/3");
+  });
 });

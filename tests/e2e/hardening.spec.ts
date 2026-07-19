@@ -80,6 +80,12 @@ test("reduced-motion preference is honored by the application shell", async ({ p
 
 test("mission world is distance-readable, responsive, and frame-stable", async ({ page }, testInfo) => {
   test.slow();
+  await page.addInitScript(() => {
+    Object.defineProperty(navigator, "mediaDevices", {
+      configurable: true,
+      value: { getUserMedia: async () => { throw new DOMException("Synthetic camera unavailable", "NotAllowedError"); } },
+    });
+  });
   await page.emulateMedia({ reducedMotion: "reduce" });
   await page.goto("/");
   await page.evaluate((session) => {
@@ -132,7 +138,7 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
       } }));
     }, { movement, index });
     if (index < movements.length - 1) {
-      await expect(page.locator(".objective-hud strong").first()).toHaveText(movements[index + 1]);
+      await expect(page.locator(".objective-hud")).toHaveAttribute("data-target", movements[index + 1]);
       await expect(page.locator(".game-canvas")).toHaveAttribute("data-encounter", encounters[index + 1]);
     }
   }
@@ -140,10 +146,14 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
   await expect(page.getByRole("link", { name: "View results" })).toBeVisible();
   await expect(page.locator(".objective-hud progress")).toHaveAttribute("value", "100");
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-last-feedback", "complete");
+  await page.getByRole("link", { name: "View results" }).click();
+  await expect(page.getByText("Assistant recap · grounded in session facts")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Replay this adventure" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Build a new plan" })).toBeVisible();
   await page.evaluate(() => window.scrollTo(0, 0));
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
   if (process.env.CAPTURE_VISUAL_EVIDENCE === "1") {
     await page.waitForTimeout(550);
-    await page.locator(".mission-shell").screenshot({ path: testInfo.outputPath("mission-complete.png") });
+    await page.locator(".results-shell").screenshot({ path: testInfo.outputPath("mission-results.png") });
   }
 });

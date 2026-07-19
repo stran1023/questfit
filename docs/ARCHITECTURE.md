@@ -127,6 +127,8 @@ MediaPipe provides pretrained body landmarks; it does not decide whether a worko
 
 The movement registry is the single source of supported capabilities. Workout planning, calibration, gameplay, metrics, and UI consume the registry or validated contracts; they must not maintain independent movement lists.
 
+Canonical encounter copy is contract-adjacent presentation metadata keyed by the movement registry. Planning, React HUD, speech, and Phaser consume the same names and instructions; Phaser extends them only with visual kind and color. Repeated-set stage numbering derives from the validated blueprint order and never changes controller progress or scoring.
+
 ## Architectural Invariants
 
 1. Cross-domain payloads enter through executable schemas; callers never trust AI or network shapes directly.

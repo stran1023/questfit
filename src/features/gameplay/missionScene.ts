@@ -1,5 +1,5 @@
 import type PhaserType from "phaser";
-import type { SupportedMovement } from "@/contracts";
+import { encounterStageTitle, type EncounterProgress, type SupportedMovement } from "@/contracts";
 import type { MissionSnapshot } from "./missionController";
 import {
   encounterByMovement,
@@ -12,6 +12,7 @@ export const missionSceneUpdateEvent = "ai-fitness-escape:scene-update";
 export type MissionSceneUpdate = {
   snapshot: MissionSnapshot;
   target: SupportedMovement;
+  encounter?: EncounterProgress;
 };
 
 const movementNames: Record<SupportedMovement, string> = {
@@ -30,8 +31,9 @@ const movementNames: Record<SupportedMovement, string> = {
 
 export function missionSceneView(update: MissionSceneUpdate) {
   const { snapshot, target } = update;
+  const encounter = update.encounter ?? { index: 1, total: 1 };
   return {
-    objective: movementNames[target],
+    objective: encounter.total > 1 ? `${movementNames[target]} · Set ${encounter.index}/${encounter.total}` : movementNames[target],
     status:
       snapshot.status === "complete"
         ? "ESCAPED"
@@ -66,7 +68,7 @@ export function createMissionScene(
     private xpText!: PhaserType.GameObjects.Text;
     private completionLayer?: PhaserType.GameObjects.Container;
     private previousUpdate?: MissionSceneUpdate;
-    private currentEncounter?: SupportedMovement;
+    private currentEncounter?: string;
     private updateListener?: EventListener;
     private reducedMotion = false;
 
@@ -189,13 +191,14 @@ export function createMissionScene(
       return graphics;
     }
 
-    private showEncounter(target: SupportedMovement) {
-      if (this.currentEncounter === target) return;
-      this.currentEncounter = target;
+    private showEncounter(target: SupportedMovement, progress: EncounterProgress) {
+      const encounterKey = `${target}:${progress.index}:${progress.total}`;
+      if (this.currentEncounter === encounterKey) return;
+      this.currentEncounter = encounterKey;
       this.encounter?.destroy(true);
       const presentation = encounterByMovement[target];
       host.dataset.encounter = presentation.kind;
-      const title = this.add.text(0, -88, presentation.title.toUpperCase(), { fontFamily: "system-ui", fontSize: "15px", color: "#f8fafc", fontStyle: "bold" }).setOrigin(0.5).setLetterSpacing(1.4);
+      const title = this.add.text(0, -88, encounterStageTitle(target, progress).toUpperCase(), { fontFamily: "system-ui", fontSize: "15px", color: "#f8fafc", fontStyle: "bold" }).setOrigin(0.5).setLetterSpacing(1.4);
       const instruction = this.add.text(0, -64, presentation.instruction, { fontFamily: "system-ui", fontSize: "18px", color: `#${presentation.accent.toString(16).padStart(6, "0")}`, fontStyle: "bold" }).setOrigin(0.5);
       this.encounter = this.add.container(704, 340, [this.drawEncounter(presentation.kind, presentation.color, presentation.accent), title, instruction]).setDepth(8);
       if (!this.reducedMotion) {
@@ -258,7 +261,7 @@ export function createMissionScene(
       this.progressFill.width = 850 * view.progress;
       this.comboText.setText(`COMBO ×${update.snapshot.combo}`);
       this.xpText.setText(`${update.snapshot.xpEarned} XP`);
-      this.showEncounter(update.target);
+      this.showEncounter(update.target, update.encounter ?? { index: 1, total: 1 });
       if (this.reducedMotion) this.player.x = view.playerX;
       else this.tweens.add({ targets: this.player, x: view.playerX, duration: 280, ease: "Cubic.easeOut" });
       this.pauseVeil.setVisible(update.snapshot.status === "paused" || update.snapshot.status === "recovery");

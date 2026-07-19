@@ -7,12 +7,12 @@ Grades describe verified current state, not target intent: `A` verified/stable, 
 | Domain | Grade | Current evidence | Key gap | Updated |
 | --- | --- | --- | --- | --- |
 | Pose and calibration | A | automatic all-family setup, versioned thresholds, all-eleven physical movement check, mirrored landmark overlay, camera recovery tests, and 16.9 ms inference | physical device-loss retry observation remains TD-005 | 2026-07-18 |
-| Gameplay | A | eleven movement-specific encounters, authoritative snapshot feedback, combo/XP effects, procedural sound, escape celebration, physical x11 completion, recovery/cleanup, and sub-25-ms reduced-motion cadence | replace procedural art/audio with a licensed production pack after the hackathon if desired | 2026-07-18 |
+| Gameplay | A | canonical all-movement encounters, repeated-set progression, target-aware hands-free voice, authoritative feedback, combo/XP effects, sound, escape celebration, physical x11 completion, and sub-25-ms cadence | replace procedural art/audio with a licensed production pack after the hackathon if desired | 2026-07-19 |
 | Workout planning | A | four goal-aware structures, 5/6/7 stage policy, profile-derived scaling/limitations, goal-specific replacements, validated rationale, profile-aware fallback, and desktop/narrow browser evidence | live provider phrasing remains optional | 2026-07-19 |
 | Level compilation | A | validated all-movement blueprint contracts, referential checks, deterministic fixtures, and Phaser objective mapping | broaden themes after the MVP | 2026-07-18 |
 | Coaching | A | deterministic metrics/recommendations, fact-preserving provider boundary, timeout/invalid fallback, result persistence/UI, and focused tests | live configured provider evidence remains optional for the guest-first MVP | 2026-07-18 |
 | Auth and progress | - | design only | Supabase setup, RLS, guest migration, persistence tests | 2026-07-17 |
-| Product UI | A | responsive welcome/profile, planner/briefing, automatic preparation, live pose overlay/voice, factual results, and system-Chrome keyboard/reduced-motion/desktop/narrow hardening | physical camera-loss recovery observation remains TD-005 | 2026-07-18 |
+| Product UI | A | responsive onboarding/planner, automatic preparation with truthful preflight, live pose overlay/voice, polished factual results/replay, and browser accessibility/responsive hardening | two clean-profile physical rehearsals remain the release gate | 2026-07-19 |
 
 ## Harness and Layers
 

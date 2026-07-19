@@ -34,9 +34,9 @@ AI Fitness Escape turns a personalized guest workout into a body-controlled Volc
 | 3. Plan | Continue, choose goal/time/level, and generate the adventure | Preferences compile into a validated Volcano Escape briefing; provider mode remains honest. |
 | 4. Prepare | Select **Prepare for mission**, step back, and follow automatic spoken/visible setup | No lock-framing or capture button is required; saved calibration skips recording but still confirms live full-body readiness. |
 | 5. Launch | Stay in position through the spoken full-screen `3 · 2 · 1 · GO!`; the mission opens automatically | Energy rings and the gold `GO!` create the transition; there is no second launch button. Voice starts enabled and action sound remains an optional in-mission control. |
-| 6. Play | Complete jumping jacks, squats, left/right punches, high knees, and final jumps; return to neutral after each action | Six standing movements produce distinct encounters, immediate XP feedback, combo energy, and visible progress toward the cyan portal. |
+| 6. Play | Follow the spoken encounter, target, and final-count cues; return to neutral after each action | Canonical encounters match the briefing, repeated sets show stage progress, and verified actions produce XP, combo energy, and progress toward the cyan portal. |
 | 7. Escape | Complete the final objective | Transient hazards clear and the mission shows the exclusive **Volcano escaped** payoff. |
-| 8. Results | Select **View results** | Completion, accuracy, XP, best/focus movement, and coaching are factual and reproducible. |
+| 8. Results | Select **View results** | The completion ring, accuracy, XP, strongest movement, and next-mission guidance are factual; replay and new-plan actions are obvious. |
 | 9. Replay | Select the next-adventure action and continue through preparation | Compatible saved calibration is reused; replay does not require new recording. |
 
 ## Short Saved-Setup Walkthrough — 2–3 Minutes

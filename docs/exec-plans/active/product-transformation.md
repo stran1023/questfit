@@ -25,8 +25,12 @@ It does not include roadmap-only social, multiplayer, seasonal, wearable, medica
 11. Implement deterministic metrics/recommendations and grounded coaching.
 12. Harden the guest-first hackathon journey with degraded paths, performance, accessibility, privacy, cleanup, and repeatable demo evidence.
 13. Polish the Phaser mission with movement-specific encounters, immediate action feedback, combo/reward energy, sound, transitions, and a memorable completion payoff.
-14. Package and rehearse the guest happy path with a clean judged navigation surface and presenter runbook.
-15. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
+14. Unify encounter vocabulary and repeated-set progression across planning, voice, React, and Phaser.
+15. Add truthful presenter preflight without adding a second launch action.
+16. Tune hands-free cue density, target announcements, and distance-readable set progress.
+17. Polish the factual results finale and replay/new-plan actions.
+18. Physically rehearse the guest happy path twice with a clean judged navigation surface and presenter runbook.
+19. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
 
 ## Verification
 
@@ -94,7 +98,8 @@ Every feature owns observable steps in `feature_list.json`. The standard gate wi
 - 2026-07-18: retired the compatibility route and unused React/canvas runner after the Phaser golden journey passed; retained imported calibration/pose foundations as core product modules, renamed their gate to `test:core`, and passed the full release verification.
 - 2026-07-19: retained preparation as the camera/calibration safety boundary but removed its second launch decision; compatible saved setup now performs stable live framing validation and every successful path speaks/displays a three-second countdown before automatic mission navigation.
 - 2026-07-19: replaced fixed workout generation with deterministic goal-aware policy: four distinct curated structures, 5/6/7 stages by duration, level/activity scaling, recognized limitation exclusions, goal-specific replacements, profile-aware fallback, and validated user-facing rationale. Desktop/narrow browser evidence passed and review accepted the slice 12/12.
+- 2026-07-19: completed the automated demo-polish order: canonical progressive encounters, truthful launch preflight, lower-noise target-aware voice coaching, and a responsive factual results finale with replay and new-plan paths.
 
 ## Next Action
 
-Implement `demo-liftoff`: remove judged-path distractions, verify the exact guest sequence twice, visually inspect every demo screen, and write the presenter runbook.
+Run the exact real-camera guest sequence twice from clean Chrome profiles, record observed latency/cue behavior in the demo runbook, then commit and push the release candidate.

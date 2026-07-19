@@ -2,7 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
-import type { AdventureBlueprint, WorkoutPlan } from "@/contracts";
+import { encounterCopyByMovement, encounterStageTitle, type AdventureBlueprint, type WorkoutPlan } from "@/contracts";
 import type { WorkoutRequest } from "./planningSchemas";
 import { saveMissionSession } from "@/features/calibration/missionSession";
 import { createLocalProfileRepository } from "@/features/identity/profileRepository";
@@ -219,12 +219,18 @@ export default function WorkoutPlanner() {
               {result.adventure.segments.map((segment) => {
                 const exercise = result.workout.exercises.find((item) => item.id === segment.exerciseId);
                 const phase = result.rationale.phases.find((item) => item.exerciseId === segment.exerciseId)?.phase;
+                const matchingSegments = exercise ? result.adventure.segments.filter((candidate) => {
+                  const candidateExercise = result.workout.exercises.find((item) => item.id === candidate.exerciseId);
+                  return candidateExercise?.movement === exercise.movement;
+                }) : [];
+                const encounterIndex = matchingSegments.findIndex((candidate) => candidate.id === segment.id) + 1;
                 return (
                   <li key={segment.id}>
                     <span>0{segment.order}</span>
                     <div>
                       <strong>{phase ? phaseLabel[phase] : "Workout"}</strong>
-                      <p>{exercise?movementLabel[exercise.movement]:"Movement"} × {segment.target}</p>
+                      <p>{exercise ? encounterStageTitle(exercise.movement, { index: encounterIndex, total: matchingSegments.length }) : "Encounter"}</p>
+                      <small>{exercise ? movementLabel[exercise.movement] : "Movement"} × {segment.target}{exercise ? ` · ${encounterCopyByMovement[exercise.movement].instruction}` : ""}</small>
                     </div>
                   </li>
                 );

@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 import { supportedMovements } from "@/contracts";
 import type { MissionSnapshot } from "./missionController";
-import { encounterByMovement, missionPresentationFeedback } from "./missionPresentation";
+import { encounterByMovement, encounterProgressAt, missionPresentationFeedback } from "./missionPresentation";
 
 const snapshot = (changes: Partial<MissionSnapshot> = {}): MissionSnapshot => ({
   status: "playing",
@@ -26,6 +26,13 @@ describe("mission presentation", () => {
     }
     expect(encounterByMovement["punch-left"].kind).not.toBe(encounterByMovement["punch-right"].kind);
     expect(encounterByMovement["push-up"].kind).not.toBe(encounterByMovement.plank.kind);
+  });
+
+  it("numbers repeated movement encounters without changing their movement identity", () => {
+    const movements = ["jumping-jack", "squat", "lunge", "squat", "lunge", "jump"] as const;
+    expect(encounterProgressAt([...movements], 1)).toEqual({ index: 1, total: 2 });
+    expect(encounterProgressAt([...movements], 3)).toEqual({ index: 2, total: 2 });
+    expect(encounterProgressAt([...movements], 5)).toEqual({ index: 1, total: 1 });
   });
 
   it("derives feedback only from authoritative snapshot changes", () => {

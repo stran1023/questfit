@@ -52,6 +52,8 @@ The demo may use a documented reference device, but it may not rely on manually 
 - Invalid, rejected, timed-out, or policy-incompatible workout proposals regenerate through the same goal/profile-aware deterministic policy. Fallbacks must preserve duration, goal, limitation exclusions, playability, and rationale truth.
 - Save operations are idempotent where retry could duplicate XP or session rows.
 - Guest storage failures keep validated form/mission state recoverable and display an actionable message. Completed results fall back to page-lifetime memory with an explicit temporary-results warning rather than discarding authoritative metrics.
+- The launch preflight reflects existing camera, model, framing, calibration, voice, and mission state; it cannot override readiness or create a synthetic demo-ready state.
+- Speech cues are derived from coarse mission snapshots and canonical encounter copy. New cues cancel stale speech, corrections and pause/completion take priority, and nonessential high-count repetition announcements are suppressed.
 
 ## Baseline Policy
 

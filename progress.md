@@ -2,15 +2,25 @@
 
 ## Current Verified State
 
-- Last updated: 2026-07-18
+- Last updated: 2026-07-19
 - Objective: migrate the verified endless-runner prototype to the workout-to-adventure product
 - Active feature: `demo-liftoff`
 - Canonical plan: `docs/exec-plans/active/product-transformation.md`
-- Baseline: `npm run verify` passes lint, strict typecheck, 6 core pose/calibration tests, 84 Vitest tests, ten system-Chrome Playwright checks, and Next.js production builds for all current application routes
+- Baseline: `npm run verify` passes lint, strict typecheck, 6 core pose/calibration tests, 86 Vitest tests, ten system-Chrome Playwright checks, and Next.js production builds for all current application routes
 - Known baseline issue: npm audit reports two moderate vulnerabilities
 - Next action: complete the real-camera guest journey twice using `docs/DEMO_RUNBOOK.md`, then record the observed rehearsal evidence
 
 ## Session Log
+
+### 2026-07-19 — Ordered hackathon demo polish
+
+- Committed the verified countdown and goal-aware planner baseline as `c1fb4f6` before starting the new sequence.
+- Replaced the broad release task with dependency-ordered encounter coherence, presenter preflight, mission pacing/voice, results polish, physical lift-off, and deferred persistence slices.
+- Centralized encounter copy for all eleven movements across the briefing, React HUD, voice, and Phaser; repeated squat/lunge sets now expose deterministic stage progress.
+- Added truthful automatic-launch preflight checks for camera/model, body framing, movement setup, voice availability, and validated mission stages.
+- Reduced high-count speech noise, announced encounter/set/target at transitions, emphasized halfway and the final three repetitions, and added current/target progress to the HUD.
+- Rebuilt results as a factual finale with completion visualization, canonical movement names, bounded next-session guidance, replay/new-plan actions, and an explicit no-health-score boundary.
+- Focused checks and the final full gate pass. A camera-start Playwright stall exposed and fixed cancellation of in-flight MediaPipe initialization; synthetic browser camera denial is now deterministic, mission-to-results cleanup passes at both viewports, and the harness scores 100/100.
 
 ### 2026-07-18 — Guest-only demo boundary and engaging Volcano Escape polish
 
