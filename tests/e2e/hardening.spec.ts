@@ -143,10 +143,9 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
     }
   }
   await expect(page.getByRole("heading", { name: "Mission complete" })).toBeVisible();
-  await expect(page.getByRole("link", { name: "View results" })).toBeVisible();
+  await expect(page.getByText("Opening results…")).toBeVisible();
   await expect(page.locator(".objective-hud progress")).toHaveAttribute("value", "100");
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-last-feedback", "complete");
-  await page.getByRole("link", { name: "View results" }).click();
   await expect(page.getByText("Assistant recap · grounded in session facts")).toBeVisible();
   await expect(page.getByRole("link", { name: "Replay this adventure" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Build a new plan" })).toBeVisible();

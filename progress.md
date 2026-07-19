@@ -21,6 +21,7 @@
 - Reduced high-count speech noise, announced encounter/set/target at transitions, emphasized halfway and the final three repetitions, and added current/target progress to the HUD.
 - Rebuilt results as a factual finale with completion visualization, canonical movement names, bounded next-session guidance, replay/new-plan actions, and an explicit no-health-score boundary.
 - Focused checks and the final full gate pass. A camera-start Playwright stall exposed and fixed cancellation of in-flight MediaPipe initialization; synthetic browser camera denial is now deterministic, mission-to-results cleanup passes at both viewports, and the harness scores 100/100.
+- Mission success now saves results and automatically opens `/results` after a 2.6-second celebration/voice dwell; the manual **View results** action is removed and desktop/narrow browser journeys pass without touch.
 
 ### 2026-07-18 — Guest-only demo boundary and engaging Volcano Escape polish
 

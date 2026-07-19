@@ -452,7 +452,10 @@
         "Record browser, viewport, voice/sound behavior, pose and frame latency, recovery steps, and fallback narration.",
         "Run the full gate, visually inspect every judged screen, and finalize the demo runbook."
       ],
-      "evidence": [],
+      "evidence": [
+        "2026-07-19: Successful completion saves authoritative results immediately, preserves the escape celebration and completion voice for 2.6 seconds, then automatically replaces /mission with /results without requiring touch. Desktop and narrow Playwright mission-to-results journeys pass.",
+        "2026-07-19: Post-change npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation remained 100/100."
+      ],
       "notes": "Physical rehearsals cannot be replaced by synthetic evidence. Preserve real pose events, deterministic metrics, and local privacy."
     },
     {
