@@ -324,13 +324,40 @@
       "notes": "Phaser owns world rendering and moment-to-moment effects. React, pose detection, scoring, and persistence boundaries must not move into the scene. Project-owned generated raster art and procedural encounters/audio are documented and replaceable."
     },
     {
-      "id": "demo-liftoff",
+      "id": "goal-aware-planning",
       "priority": 13,
+      "area": "planning",
+      "name": "Goal-aware safe workout generation",
+      "description": "Generate a deterministic five-to-seven movement workout whose selection, order, targets, rest, and concise rationale meaningfully respond to goal, duration, fitness level, activity frequency, and reported movement limitations.",
+      "user_visible_behavior": "Changing the user's intent or relevant profile information produces an observably different, well-structured workout briefing that explains its phases, intensity, exclusions, and safety-aware choices without exposing hidden model reasoning.",
+      "dependencies": ["game-polish"],
+      "status": "passing",
+      "verification": [
+        "Generate general, cardio, strength, and mobility plans and confirm each has a distinct five-to-seven movement structure with warm-up, primary work, peak, and finish phases.",
+        "Change duration, fitness level, and activity frequency and confirm targets, rest, and intensity change within safe deterministic bounds.",
+        "Enter knee, shoulder, and floor-space limitations and confirm incompatible movements are excluded with a visible factual explanation and a playable replacement.",
+        "Force planner invalid output, rejection, and timeout and confirm the fallback remains profile-aware, contract-valid, playable, and honestly labeled.",
+        "Run the standard verification path and visually inspect the rationale and briefing at desktop and narrow widths."
+      ],
+      "evidence": [
+        "2026-07-19: Deterministic policy generates distinct general, cardio, strength, and mobility structures; 10/15/20-minute requests produce 5/6/7 validated stages with explicit warm-up, primary, variation, peak, and finish mappings.",
+        "2026-07-19: Fitness level and activity frequency scale bounded targets, intensity, and recovery. Curated order plus tests prevent consecutive high-impact stages in every goal plan.",
+        "2026-07-19: Recognized knee/impact and shoulder/upper-body considerations exclude incompatible movements and refill with goal-specific standing alternatives; local profile goal, level, activity, and considerations preload into the planner.",
+        "2026-07-19: Invalid, rejected, timed-out, goal-mismatched, or policy-incompatible proposals regenerate through the same profile-aware deterministic policy with a validated rationale and honest fallback notice.",
+        "2026-07-19: The briefing shows intensity, concise observable reasons, and workout phases instead of raw challenge-template identifiers. System Chrome generated and visually accepted cardio/mobility outcomes at 1440x900 and 390x844 with no overflow.",
+        "2026-07-19: npm run verify passed lint, strict typecheck, 6 core tests, 83 Vitest tests, ten serialized Playwright checks, and production build. Code review accepted goal-aware-planning 12/12.",
+        "2026-07-19: Corrected lower-body strength templates so 10/15/20-minute plans contain only jumping-jack warm-up, squat/lunge work sets, and a jump finale; no punch movement appears. Exact duration sequences are regression-tested and the full gate passes 84 Vitest tests."
+      ],
+      "notes": "Deterministic rules own safety, allowed movements, order, targets, rest, and intensity. AI may phrase bounded presentation copy only after validation and may not provide hidden chain-of-thought or override authoritative values."
+    },
+    {
+      "id": "demo-liftoff",
+      "priority": 14,
       "area": "release",
       "name": "Guest happy-path demo lift-off",
       "description": "Package and rehearse one obvious guest-only path from welcome through profile, saved setup, planning, polished mission, factual results, and replay without exposing migration or deferred account breadth.",
       "user_visible_behavior": "A judge can enter as a guest, understand what to do from several feet away, complete the polished mission, see grounded results, and start another adventure without confusion or hidden setup.",
-      "dependencies": ["game-polish"],
+      "dependencies": ["goal-aware-planning"],
       "status": "in_progress",
       "verification": [
         "Complete the guest happy path twice from a clean browser profile on the reference laptop without refresh, hidden controls, or manual storage repair.",
@@ -345,13 +372,14 @@
         "2026-07-18: npm run verify passed ESLint, strict TypeScript, 11 regression tests, 78 Vitest tests, eight Playwright checks, and the Next.js production build. Two clean-profile real-camera presenter rehearsals remain required before this feature can pass.",
         "2026-07-18: Personalized and fallback planners now generate the same six-movement standing happy path (jumping jack, squat, left/right punch, high knees, jump), with duration/level scaling and canonical encounter mappings; 19 focused planner/contract tests and strict typecheck passed.",
         "2026-07-18: Retired the compatibility route, old React/canvas runner, unused runner state, runner-only tests, and obsolete CSS. Imported calibration/pose foundations remain under product ownership; npm run verify passed 6 core tests, 78 Vitest tests, eight Playwright checks, and the seven-route production build.",
-        "2026-07-19: Preparation is now a hands-free launch state. Compatible thresholds skip rerecording but still require 12 stable full-body frames; successful saved or first-time setup speaks/displays a three-second countdown and navigates automatically with no Begin mission button. Full verification passed 6 core tests, 79 Vitest tests, eight Playwright checks, lint, strict typecheck, and production build."
+        "2026-07-19: Preparation is now a hands-free launch state. Compatible thresholds skip rerecording but still require 12 stable full-body frames; successful saved or first-time setup speaks/displays a three-second countdown and navigates automatically with no Begin mission button. Full verification passed 6 core tests, 79 Vitest tests, eight Playwright checks, lint, strict typecheck, and production build.",
+        "2026-07-19: The camera-stage launch overlay now presents one animated number at a time, concentric energy rings, progress marks, and a gold GO payoff held for 650 ms before navigation; reduced-motion rules preserve a clear non-animated sequence. Full verification passed lint, strict typecheck, 6 core tests, 79 Vitest tests, eight Playwright checks, and production build."
       ],
       "notes": "This is release packaging and rehearsal, not a hidden demo bypass. Preserve real calibration, validated pose events, deterministic metrics, and local privacy boundaries."
     },
     {
       "id": "progress-persistence",
-      "priority": 14,
+      "priority": 15,
       "area": "data",
       "name": "Supabase identity sync, progress, history, and leaderboard",
       "description": "Connect the identity/profile adapter to Supabase Auth, add RLS-protected profile and calibration sync, idempotent guest conversion, session history, streak, XP, and weekly leaderboard after the guest-first hackathon slice is stable.",

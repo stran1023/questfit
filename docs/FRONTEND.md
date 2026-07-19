@@ -15,7 +15,7 @@
 | Home | guest/sign-in entry, level/XP/streak for returning users, generate-adventure CTA |
 | Welcome and authentication | product promise, sign up, sign in, guest continuation, authentication error/retry |
 | Profile onboarding | height, weight, activity frequency, goal, fitness level, optional movement limitations, validation and privacy explanation |
-| Workout generator | goal, time, fitness level; validating, fallback, retry, success |
+| Workout generator | goal, time, fitness level, activity frequency, movement considerations; validating, profile-aware fallback, retry, rationale, phased success briefing |
 | Adventure briefing | theme, duration, difficulty, exercise objectives, rewards, begin CTA |
 | Movement setup | camera permission, automatic standing/floor readiness, safety notice, distance-readable prompts, audiovisual countdown, automatic per-family sampling, correction/retry, completion |
 | Gameplay | mirrored pose panel with live landmark skeleton, Phaser mission, current objective and progress, spoken/visible coaching, tracking recovery |
@@ -35,6 +35,8 @@ During a mission, the pose panel draws a mirrored on-device skeleton over the ca
 The Volcano Escape world uses a project-owned illustrated volcanic valley, lava bridge, cyan escape portal, and fitness-hero runner. Each supported movement has a distinct procedural encounter: boulder, flame gate, broken bridge, lava steps, storm gate, directional walls or vines, low tunnel, or ember storm. The encounter name and short action cue remain visible inside the world so the next move is recognizable from several feet away.
 
 For the judged guest route, the briefing presents six standing objectives in a stable order: jumping jack, squat, left punch, right punch, high knees, and jump. This keeps the camera setup consistent while alternating cardio, lower-body, and directional actions.
+
+The briefing labels each exercise by workout phase—warm-up, primary work, variation, peak, or finale—and includes a compact **Why this plan** panel with intensity and observable policy reasons. Do not show raw blueprint template IDs as user-facing encounter promises. Goal-aware plans remain five to seven stages and use goal-specific replacements when a recognized limitation excludes an exercise.
 
 Successful movement events produce immediate XP/ring feedback; every third combo produces a larger surge. Misses show a short recovery warning. Objective changes replace the encounter without changing mission authority, and completion clears transient hazards before revealing the escape portal and results-ready celebration. In-world objective, mission state, runner position, combo, XP, and progress still mirror the authoritative React snapshot.
 
@@ -66,6 +68,7 @@ Critical flows require Playwright coverage plus browser evidence at desktop and 
 
 - Provide a single obvious path from welcome to profile, movement setup, adventure briefing, gameplay, results, and replay.
 - Present `/prepare` as a cinematic hands-free launch: open the camera automatically, confirm stable full-body framing, reuse compatible thresholds, speak and display `3 · 2 · 1`, then enter the mission without another button. Show calibration steps only when recording is genuinely required.
+- Render launch numbers one at a time as a full camera-stage overlay with high-contrast scale, energy rings, progress marks, and a distinct gold `GO!` payoff. Reduced motion removes the scale/ring animation while preserving timing, color, speech, and readable state changes.
 - Show whether planning, coaching, and persistence are live-provider or fallback/local modes without exposing technical noise to the player.
 - Preflight camera availability and viewport suitability before the judged mission begins.
 - Keep primary navigation focused on the single guest product journey.

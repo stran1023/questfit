@@ -205,7 +205,8 @@
   font-weight: 800;
 }
 
-.planner-form select {
+.planner-form select,
+.planner-form textarea {
   width: 100%;
   min-height: 48px;
   margin-top: 8px;
@@ -215,6 +216,19 @@
   color: #f8fafc;
   background: #0f172a;
   font: inherit;
+}
+
+.planner-form textarea {
+  resize: vertical;
+  padding: 12px;
+  line-height: 1.45;
+}
+
+.optional-label {
+  color: #64748b;
+  font-size: 10px;
+  letter-spacing: .08em;
+  text-transform: uppercase;
 }
 
 .planner-form fieldset {
@@ -254,7 +268,8 @@
 }
 
 .choice input:focus-visible + span,
-.planner-form select:focus-visible {
+.planner-form select:focus-visible,
+.planner-form textarea:focus-visible {
   outline: 3px solid white;
   outline-offset: 3px;
 }
@@ -350,6 +365,35 @@
   color: #fde68a;
 }
 
+.plan-rationale {
+  margin-top: 24px;
+  border: 1px solid rgb(34 211 238 / 22%);
+  border-radius: 16px;
+  padding: 18px;
+  background: linear-gradient(135deg, rgb(8 47 73 / 48%), rgb(15 23 42 / 72%));
+}
+
+.plan-rationale h3 {
+  margin: 6px 0 8px;
+  color: #ecfeff;
+}
+
+.plan-rationale > p:not(.planner-kicker) {
+  margin: 0;
+  color: #bae6fd;
+  line-height: 1.55;
+}
+
+.plan-rationale ul {
+  display: grid;
+  gap: 7px;
+  margin: 14px 0 0;
+  padding-left: 20px;
+  color: #cbd5e1;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
 .objectives {
   display: grid;
   gap: 10px;
@@ -429,6 +473,116 @@
 
 .prepare-layout .camera-stage {
   min-height: 360px;
+}
+
+.launch-countdown {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  overflow: hidden;
+  color: #fff;
+  text-align: center;
+  background:
+    radial-gradient(circle, rgb(34 211 238 / 24%) 0 18%, transparent 48%),
+    linear-gradient(180deg, rgb(2 6 23 / 42%), rgb(8 15 35 / 78%));
+  backdrop-filter: blur(3px) saturate(1.25);
+}
+
+.launch-countdown p,
+.launch-countdown small {
+  z-index: 2;
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  text-shadow: 0 2px 14px rgb(0 0 0 / 80%);
+}
+
+.launch-countdown p {
+  color: #a5f3fc;
+  font-size: clamp(.65rem, 1.2vw, .85rem);
+}
+
+.launch-countdown strong {
+  z-index: 2;
+  min-width: 2.2ch;
+  font: 1000 clamp(7rem, 24vw, 13rem)/.9 Inter, ui-sans-serif, sans-serif;
+  letter-spacing: -.08em;
+  color: #fff;
+  filter: drop-shadow(0 0 18px rgb(34 211 238 / 90%));
+  animation: launch-number-in 720ms cubic-bezier(.16, 1, .3, 1) both;
+}
+
+.launch-countdown-0 {
+  background:
+    radial-gradient(circle, rgb(250 204 21 / 34%) 0 20%, transparent 54%),
+    linear-gradient(180deg, rgb(6 78 59 / 38%), rgb(8 15 35 / 74%));
+}
+
+.launch-countdown-0 strong {
+  min-width: 0;
+  color: #fef08a;
+  font-size: clamp(5rem, 18vw, 10rem);
+  filter: drop-shadow(0 0 24px rgb(250 204 21 / 95%));
+}
+
+.launch-countdown small {
+  color: #e2e8f0;
+  font-size: clamp(.6rem, 1vw, .75rem);
+}
+
+.launch-countdown-ring {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  border: 2px solid rgb(103 232 249 / 64%);
+  border-radius: 50%;
+  translate: -50% -50%;
+  box-shadow: 0 0 28px rgb(34 211 238 / 36%), inset 0 0 28px rgb(34 211 238 / 18%);
+  animation: launch-ring 1s ease-out infinite;
+}
+
+.launch-countdown-ring-outer { width: min(64vw, 390px); aspect-ratio: 1; }
+.launch-countdown-ring-inner { width: min(42vw, 250px); aspect-ratio: 1; animation-delay: 160ms; }
+
+.launch-countdown-steps {
+  z-index: 2;
+  display: flex;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+.launch-countdown-steps i {
+  width: 32px;
+  height: 5px;
+  border-radius: 999px;
+  background: rgb(148 163 184 / 28%);
+}
+
+.launch-countdown-steps i.active {
+  background: #67e8f9;
+  box-shadow: 0 0 14px rgb(34 211 238 / 90%);
+}
+
+@keyframes launch-number-in {
+  from { opacity: 0; scale: 1.65; rotate: -5deg; }
+  55% { opacity: 1; scale: .92; rotate: 1deg; }
+  to { opacity: 1; scale: 1; rotate: 0deg; }
+}
+
+@keyframes launch-ring {
+  from { opacity: .9; scale: .66; }
+  to { opacity: 0; scale: 1.18; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .launch-countdown strong,
+  .launch-countdown-ring {
+    animation: none;
+  }
 }
 
 .identity-shell {

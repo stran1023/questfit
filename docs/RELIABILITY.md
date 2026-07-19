@@ -49,6 +49,7 @@ The demo may use a documented reference device, but it may not rely on manually 
 - A camera track ending pauses the mission and offers in-place retry; denied startup permission offers the same recovery path without requiring reload or losing mission progress.
 - Spoken mission cues are derived only from validated mission snapshots and coarse tracking guidance, and muting or leaving the mission cancels queued speech.
 - AI calls have timeouts, structured error categories, schema validation, and deterministic fallback content.
+- Invalid, rejected, timed-out, or policy-incompatible workout proposals regenerate through the same goal/profile-aware deterministic policy. Fallbacks must preserve duration, goal, limitation exclusions, playability, and rationale truth.
 - Save operations are idempotent where retry could duplicate XP or session rows.
 - Guest storage failures keep validated form/mission state recoverable and display an actionable message. Completed results fall back to page-lifetime memory with an explicit temporary-results warning rather than discarding authoritative metrics.
 

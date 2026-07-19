@@ -147,15 +147,15 @@ export default function PrepareMission() {
     setLaunchCountdown(3);
     if (typeof speechSynthesis !== "undefined") {
       speechSynthesis.cancel();
-      speechSynthesis.speak(new SpeechSynthesisUtterance("Mission starts in 3, 2, 1"));
+      speechSynthesis.speak(new SpeechSynthesisUtterance("Mission starts in 3, 2, 1, go!"));
     }
     const timers = [
       setTimeout(() => setLaunchCountdown(2), 1_000),
       setTimeout(() => setLaunchCountdown(1), 2_000),
       setTimeout(() => {
         setLaunchCountdown(0);
-        push("/mission");
       }, 3_000),
+      setTimeout(() => push("/mission"), 3_650),
     ];
     return () => timers.forEach(clearTimeout);
   }, [cameraStatus, push, step]);
@@ -217,6 +217,18 @@ export default function PrepareMission() {
           <div className={`status-pill ${cameraStatus}`}>
             ● {cameraStatus === "tracking" ? "Live tracking" : cameraStatus.replace("-", " ")}
           </div>
+          {step === "ready" && launchCountdown !== null && (
+            <div className={`launch-countdown launch-countdown-${launchCountdown}`} role="status" aria-live="assertive" aria-label="Mission launch countdown">
+              <span className="launch-countdown-ring launch-countdown-ring-outer" aria-hidden="true" />
+              <span className="launch-countdown-ring launch-countdown-ring-inner" aria-hidden="true" />
+              <p>Escape sequence</p>
+              <strong key={launchCountdown}>{launchCountdown || "GO!"}</strong>
+              <small>{launchCountdown ? "Hold your position" : "Move!"}</small>
+              <div className="launch-countdown-steps" aria-hidden="true">
+                {[3, 2, 1].map((value) => <i key={value} className={launchCountdown <= value ? "active" : ""} />)}
+              </div>
+            </div>
+          )}
         </div>
       </section>
 
@@ -236,7 +248,6 @@ export default function PrepareMission() {
         {cameraStatus === "error" && <button className="retry-button" onClick={retryCamera} type="button">Retry camera</button>}
         {(step === "jump-countdown" || step === "squat-countdown") && <div className="hands-free-countdown" aria-label="Countdown">3 · 2 · 1</div>}
         {step !== "ready" && cameraStatus !== "error" && <p className="hands-free-note">Hands-free setup · Stay in position and follow the cues</p>}
-        {step === "ready" && launchCountdown !== null && <div className="hands-free-countdown" aria-label="Mission launch countdown">{launchCountdown || "GO"}</div>}
 
         <div className="space-check">
           <p className="eyebrow">Space check</p>

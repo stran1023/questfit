@@ -21,7 +21,7 @@ Read [AGENTS.md](AGENTS.md) for the agent workflow and [docs/PRODUCT.md](docs/PR
 
 - Runtime: Next.js 15 App Router, React 19, TypeScript 5.9
 - Product routes: guest onboarding, planning, automatic preparation, Phaser mission, and factual results
-- Implemented boundaries: executable Zod contracts, deterministic six-movement demo planning, responsive briefing, typed pose/calibration adapters, and Vitest coverage
+- Implemented boundaries: executable Zod contracts, deterministic goal/profile-aware 5–7 stage planning with validated rationale, responsive briefing, typed pose/calibration adapters, and Vitest coverage
 - Implemented runtime: polished Phaser 3 Volcano Escape missions, eleven on-device MediaPipe movements, deterministic coaching, procedural action sound, and Playwright desktop/narrow hardening checks
 - Demo boundary: complete guest-local happy path; Supabase account/progress sync is deferred until after the hackathon walkthrough
 - Standard verification: `npm run verify`

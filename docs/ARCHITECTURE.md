@@ -92,7 +92,7 @@ contracts/config -> pure domain logic -> adapters/services -> runtime coordinato
 
 | Component | Implementation | Authority |
 | --- | --- | --- |
-| Workout Planner | LLM + schema validation + fallback | proposes a workout |
+| Workout Planner | deterministic goal/profile policy + schema validation; optional LLM phrasing | owns safe selection, ordering, targets, rest, intensity, exclusions, and bounded rationale facts |
 | Level Compiler | templates and/or LLM + schema validation | proposes a playable blueprint |
 | Pose Engine | MediaPipe landmarks + registered deterministic/temporal classifiers | emits movement observations |
 | Metrics Analyzer | deterministic TypeScript | calculates session facts |
@@ -136,6 +136,7 @@ The movement registry is the single source of supported capabilities. Workout pl
 5. There is one product runtime and one judged journey; reusable pose/calibration foundations stay behind typed feature adapters and core tests.
 6. Calibration persists derived thresholds and metadata only; video frames, images, and raw landmarks are never recorded or synchronized.
 7. No movement is advertised as supported until its registry definition, detector, calibration/setup behavior, gameplay mapping, fixtures, and browser evidence all pass.
+8. Workout goal, duration, level, activity, and recognized limitation rules deterministically own plan structure; AI cannot override exercise eligibility or authoritative targets.
 
 ## Decisions
 
@@ -154,6 +155,7 @@ The movement registry is the single source of supported capabilities. Workout pl
 | 2026-07-18 | Make the hackathon judged path guest-only and prioritize Phaser polish before Supabase | maximizes demo reliability and visible product value while keeping remote claims honest |
 | 2026-07-18 | Treat game effects and sound as snapshot-derived presentation, never gameplay authority | preserves deterministic scoring and the independent pose/React/Phaser loops |
 | 2026-07-19 | Keep preparation as a route/state but make successful readiness auto-launch the mission | preserves camera/calibration validation and recovery without adding a second user decision |
+| 2026-07-19 | Make workout policy deterministic and keep AI subordinate to validated rationale phrasing | makes goal/profile changes meaningful, keeps safety reproducible, and prevents provider output from overriding playable constraints |
 
 ## Hard Constraints
 

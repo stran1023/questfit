@@ -38,6 +38,10 @@ The MVP movement library contains squat, jump, lunge, jumping jack, high knees, 
 
 The judged guest plan uses a six-movement standing sequence: jumping jack, squat, left punch, right punch, high knees, then jump. It demonstrates full-body, lower-body, cardio, and directional tracking without asking the presenter to reposition the laptop or transition to the floor. Other registered movements remain available for future plan variation and the verified full-library check.
 
+That sequence is the default 15-minute general-fitness path, not a universal result. Cardio, strength, and mobility intents use distinct curated structures. Ten-, fifteen-, and twenty-minute requests produce five, six, and seven stages respectively. Fitness level and activity frequency scale bounded targets and recovery; recognized knee/impact and shoulder/upper-body considerations remove incompatible movements and use goal-appropriate replacements. The briefing shows phases and concise reasons rather than internal encounter identifiers or hidden model reasoning.
+
+Lower-body strength remains faithful to its stated intent: jumping jacks provide the warm-up, repeated squat/lunge sets provide the work, and jumps provide the power finale. Punches are reserved for general/cardio structures and limitation-driven fallback only when lower-body options have been explicitly excluded.
+
 ## Hackathon Release Boundary
 
 The hackathon MVP is a complete, demoable vertical slice rather than a production launch. It must work on one documented reference laptop and a current Chromium browser, use one polished adventure theme, and complete the primary journey without manual state repair.
@@ -48,6 +52,7 @@ Must work for judging:
 - Automatic, hands-free standing and floor movement setup with local-processing disclosure
 - The full registered movement library, with the generated workout restricted to movements whose detection and gameplay gates pass
 - Validated workout generation with a deterministic fallback when an external AI provider is unavailable
+- Goal-aware five-to-seven-stage workouts that use goal, time, level, activity frequency, and recognized movement considerations to select, order, scale, and explain a safe standing mission
 - One blueprint-driven mission with readable objectives, forgiving misses, completion, and replay
 - Deterministic session results and a fact-grounded coaching recap with fallback copy
 - Local guest profile, calibration, and latest-session continuity

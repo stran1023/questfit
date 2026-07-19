@@ -18,7 +18,7 @@ export async function POST(request: Request) {
     return NextResponse.json(
       {
         error: "INVALID_REQUEST",
-        message: "Choose a supported goal, duration, and fitness level.",
+        message: "Choose a supported goal, duration, fitness level, activity frequency, and movement considerations.",
         issues: parsed.error.issues.map((issue) => ({
           path: issue.path.join("."),
           message: issue.message,

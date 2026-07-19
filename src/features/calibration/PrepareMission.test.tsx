@@ -101,8 +101,12 @@ describe("PrepareMission camera lifecycle", () => {
     expect(screen.getByRole("heading", { name: "Mission ready" })).toBeVisible();
     expect(screen.queryByRole("button", { name: "Begin mission" })).not.toBeInTheDocument();
     expect(screen.getByLabelText("Mission launch countdown")).toBeVisible();
+    expect(screen.getByText("3")).toBeVisible();
 
     await vi.advanceTimersByTimeAsync(3_200);
+    expect(screen.getByText("GO!")).toBeVisible();
+    expect(routerPushMock).not.toHaveBeenCalled();
+    await vi.advanceTimersByTimeAsync(500);
     expect(routerPushMock).toHaveBeenCalledWith("/mission");
   });
 });

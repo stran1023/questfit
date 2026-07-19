@@ -93,6 +93,7 @@ Every feature owns observable steps in `feature_list.json`. The standard gate wi
 - 2026-07-18: replaced the prototype two-movement generated plan and fallback with the six-movement standing demo sequence (jumping jack, squat, directional punches, high knees, jump), scaled targets by duration/level, and mapped every segment through the canonical challenge registry.
 - 2026-07-18: retired the compatibility route and unused React/canvas runner after the Phaser golden journey passed; retained imported calibration/pose foundations as core product modules, renamed their gate to `test:core`, and passed the full release verification.
 - 2026-07-19: retained preparation as the camera/calibration safety boundary but removed its second launch decision; compatible saved setup now performs stable live framing validation and every successful path speaks/displays a three-second countdown before automatic mission navigation.
+- 2026-07-19: replaced fixed workout generation with deterministic goal-aware policy: four distinct curated structures, 5/6/7 stages by duration, level/activity scaling, recognized limitation exclusions, goal-specific replacements, profile-aware fallback, and validated user-facing rationale. Desktop/narrow browser evidence passed and review accepted the slice 12/12.
 
 ## Next Action
 

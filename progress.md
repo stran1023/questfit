@@ -6,7 +6,7 @@
 - Objective: migrate the verified endless-runner prototype to the workout-to-adventure product
 - Active feature: `demo-liftoff`
 - Canonical plan: `docs/exec-plans/active/product-transformation.md`
-- Baseline: `npm run verify` passes lint, strict typecheck, 6 core pose/calibration tests, 79 Vitest tests, eight system-Chrome Playwright checks, and Next.js production builds for all current application routes
+- Baseline: `npm run verify` passes lint, strict typecheck, 6 core pose/calibration tests, 84 Vitest tests, ten system-Chrome Playwright checks, and Next.js production builds for all current application routes
 - Known baseline issue: npm audit reports two moderate vulnerabilities
 - Next action: complete the real-camera guest journey twice using `docs/DEMO_RUNBOOK.md`, then record the observed rehearsal evidence
 
@@ -38,6 +38,20 @@
 - After 12 stable landmark frames, or after first-time calibration completes, the screen speaks and displays `3 · 2 · 1` and navigates to `/mission` automatically with no **Begin mission** button.
 - Focused preparation tests now cover camera lifecycle, permission recovery, saved-setup readiness, absence of the extra button, and automatic navigation; lint and strict typecheck pass.
 - Full `npm run verify` passed 6 core tests, 79 Vitest tests, eight responsive Playwright checks, lint, strict typecheck, and the production build.
+- Upgraded the automatic launch to a full camera-stage `3 · 2 · 1 · GO!` overlay with individually animated numerals, concentric energy rings, progress marks, a gold final payoff, 650 ms GO dwell, and reduced-motion compatibility.
+- Post-polish `npm run verify` passed lint, strict typecheck, 6 core tests, 79 Vitest tests, eight responsive Playwright checks, and the production build.
+
+### 2026-07-19 — Goal-aware workout planning
+
+- Inserted and completed `goal-aware-planning` before final rehearsal; `demo-liftoff` is active again.
+- Added deterministic general, cardio, strength, and mobility policies with curated ordering, 5/6/7 stages by duration, bounded level/activity scaling, rest rules, and no consecutive high-impact stages.
+- Guest goal, level, activity frequency, and movement considerations now preload from the local profile and remain editable in the planner.
+- Recognized knee/impact and shoulder/upper-body considerations remove incompatible movements and refill with goal-specific standing alternatives; invalid, rejected, timeout, goal-mismatched, or policy-incompatible proposals use the same profile-aware fallback.
+- Added validated bounded rationale with intensity, phase mapping, and concise observable reasons; the briefing no longer exposes unrelated internal challenge-template names.
+- System Chrome visually accepted mobility limitation briefings at 1440×900 and 390×844 with no overflow; browser tests generated distinct cardio and mobility plans and asserted exclusions.
+- `npm run verify` passed lint, strict typecheck, 6 core tests, 83 Vitest tests, ten Playwright checks, and production build; code review accepted 12/12.
+- Corrected lower-body strength after user review: 10/15/20-minute templates now use jumping-jack warm-up, repeated squat/lunge work, and a jump finale with no punches; exact sequences are regression-tested.
+- Post-correction `npm run verify` passed lint, strict typecheck, 6 core tests, 84 Vitest tests, ten Playwright checks, and production build; `demo-liftoff` is active again.
 
 ### 2026-07-18 — Mission presentation acceptance and startup-loss fix
 

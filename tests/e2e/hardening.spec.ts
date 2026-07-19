@@ -32,10 +32,39 @@ test("planning failure recovers without losing the selected preference", async (
   await page.getByRole("button", { name: "Generate my adventure" }).click();
   await expect(page.locator(".planner-error")).toContainText("Planner temporarily unavailable");
   await page.getByRole("button", { name: "Retry planning" }).click();
-  await expect(page.getByRole("heading", { name: "Volcano Training Escape" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Race the Eruption" })).toBeVisible();
   await expect(page.getByLabel("Goal")).toHaveValue("cardio");
   await expect(page.getByText("Camera processing stays on this device.")).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+});
+
+test("goal-aware planning changes structure and explains safety-aware choices", async ({ page }, testInfo) => {
+  await page.goto("/plan");
+  await page.getByLabel("Goal").selectOption("cardio");
+  await page.getByLabel("Activity frequency").selectOption("weekly");
+  await page.getByRole("button", { name: "Generate my adventure" }).click();
+
+  await expect(page.getByRole("heading", { name: "Race the Eruption" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Built for today's intent" })).toBeVisible();
+  await expect(page.locator(".objectives li")).toHaveCount(5);
+  await expect(page.getByText(/faster-paced standing circuit/i)).toBeVisible();
+
+  await page.getByLabel("Goal").selectOption("mobility");
+  await page.getByText("20 min", { exact: true }).click();
+  await page.getByLabel("Activity frequency").selectOption("rarely");
+  await page.getByLabel(/Movement considerations/).fill("Knee sensitivity; low impact and no jumping");
+  await page.getByRole("button", { name: "Generate my adventure" }).click();
+
+  await expect(page.getByRole("heading", { name: "Flow Through the Fire" })).toBeVisible();
+  await expect(page.locator(".objectives li")).toHaveCount(7);
+  await expect(page.locator(".objectives")).not.toContainText("Jumps ×");
+  await expect(page.locator(".objectives")).not.toContainText("Jumping jacks ×");
+  await expect(page.locator(".objectives")).not.toContainText("Lunges ×");
+  await expect(page.getByText(/remove jumps, jumping jacks, and lunges/i)).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
+  if (process.env.CAPTURE_VISUAL_EVIDENCE === "1") {
+    await page.screenshot({ path: testInfo.outputPath("goal-aware-plan.png"), fullPage: true });
+  }
 });
 
 test("reduced-motion preference is honored by the application shell", async ({ page }) => {

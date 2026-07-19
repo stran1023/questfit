@@ -1,15 +1,18 @@
 "use client";
 
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import type { AdventureBlueprint, WorkoutPlan } from "@/contracts";
 import type { WorkoutRequest } from "./planningSchemas";
 import { saveMissionSession } from "@/features/calibration/missionSession";
+import { createLocalProfileRepository } from "@/features/identity/profileRepository";
+import type { PlanRationale } from "./planningSchemas";
 
 type PlanningResponse = {
   source: "personalized" | "fallback";
   workout: WorkoutPlan;
   adventure: AdventureBlueprint;
+  rationale: PlanRationale;
   notice: string | null;
 };
 
@@ -17,8 +20,11 @@ const initialRequest: WorkoutRequest = {
   goal: "general",
   durationMinutes: 10,
   fitnessLevel: "beginner",
+  activityFrequency: "weekly",
+  movementLimitations: "",
 };
 const movementLabel:Record<WorkoutPlan["exercises"][number]["movement"],string>={jump:"Jumps",squat:"Squats",lunge:"Lunges","high-knees":"High knees","jumping-jack":"Jumping jacks","punch-left":"Left punches","punch-right":"Right punches","side-reach-left":"Left side reaches","side-reach-right":"Right side reaches","push-up":"Push-ups",plank:"Plank"};
+const phaseLabel:Record<PlanRationale["phases"][number]["phase"],string>={"warm-up":"Warm-up",primary:"Primary work",variation:"Variation",peak:"Peak challenge",finish:"Finale"};
 
 export default function WorkoutPlanner() {
   const router = useRouter();
@@ -26,6 +32,18 @@ export default function WorkoutPlanner() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [result, setResult] = useState<PlanningResponse | null>(null);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const profile = createLocalProfileRepository(localStorage).load();
+    if (!profile) return;
+    setRequest((current) => ({
+      ...current,
+      goal: profile.goal,
+      fitnessLevel: profile.fitnessLevel,
+      activityFrequency: profile.activityFrequency,
+      movementLimitations: profile.movementLimitations,
+    }));
+  }, []);
 
   async function generate(event?: FormEvent<HTMLFormElement>) {
     event?.preventDefault();
@@ -135,6 +153,30 @@ export default function WorkoutPlanner() {
             </select>
           </label>
 
+          <label>
+            Activity frequency
+            <select
+              value={request.activityFrequency}
+              onChange={(event) => setRequest((current) => ({ ...current, activityFrequency: event.target.value as WorkoutRequest["activityFrequency"] }))}
+            >
+              <option value="rarely">Rarely active</option>
+              <option value="weekly">Active weekly</option>
+              <option value="regular">Active 3–4 days/week</option>
+              <option value="frequent">Active most days</option>
+            </select>
+          </label>
+
+          <label>
+            Movement considerations <span className="optional-label">Optional</span>
+            <textarea
+              maxLength={300}
+              onChange={(event) => setRequest((current) => ({ ...current, movementLimitations: event.target.value }))}
+              placeholder="Example: knee sensitivity, avoid jumping, limited floor space"
+              rows={3}
+              value={request.movementLimitations}
+            />
+          </label>
+
           <button className="planner-submit" disabled={status === "loading"} type="submit">
             {status === "loading" ? "Building your adventure…" : "Generate my adventure"}
           </button>
@@ -167,14 +209,21 @@ export default function WorkoutPlanner() {
               {result.adventure.rewards.baseXp} XP
             </p>
             {result.notice && <p className="fallback-notice">{result.notice}</p>}
+            <section className="plan-rationale" aria-labelledby="plan-rationale-title">
+              <p className="planner-kicker">Why this plan · {result.rationale.intensity} intensity</p>
+              <h3 id="plan-rationale-title">Built for today&apos;s intent</h3>
+              <p>{result.rationale.summary}</p>
+              <ul>{result.rationale.reasons.map((reason) => <li key={reason}>{reason}</li>)}</ul>
+            </section>
             <ol className="objectives">
               {result.adventure.segments.map((segment) => {
                 const exercise = result.workout.exercises.find((item) => item.id === segment.exerciseId);
+                const phase = result.rationale.phases.find((item) => item.exerciseId === segment.exerciseId)?.phase;
                 return (
                   <li key={segment.id}>
                     <span>0{segment.order}</span>
                     <div>
-                      <strong>{segment.challengeTemplate.replaceAll("-"," ")}</strong>
+                      <strong>{phase ? phaseLabel[phase] : "Workout"}</strong>
                       <p>{exercise?movementLabel[exercise.movement]:"Movement"} × {segment.target}</p>
                     </div>
                   </li>

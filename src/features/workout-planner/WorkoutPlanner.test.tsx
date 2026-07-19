@@ -3,8 +3,9 @@
 import { cleanup, render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import "@testing-library/jest-dom/vitest";
-import { afterEach, describe, expect, it, vi } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { validAdventureBlueprintFixture, validWorkoutPlanFixture } from "@/contracts";
+import { createLocalProfileRepository } from "@/features/identity/profileRepository";
 import WorkoutPlanner from "./WorkoutPlanner";
 
 vi.mock("next/navigation", () => ({
@@ -15,6 +16,12 @@ const planningResponse = {
   source: "personalized" as const,
   workout: validWorkoutPlanFixture,
   adventure: validAdventureBlueprintFixture,
+  rationale: {
+    summary: "A balanced standing session for today's goal.",
+    intensity: "moderate" as const,
+    reasons: ["The goal sets movement balance.", "The session stays standing."],
+    phases: validWorkoutPlanFixture.exercises.map((exercise, index) => ({ exerciseId: exercise.id, phase: (index === 0 ? "warm-up" : index === validWorkoutPlanFixture.exercises.length - 1 ? "finish" : "primary") as "warm-up" | "primary" | "finish" })),
+  },
   notice: null,
 };
 
@@ -23,6 +30,8 @@ afterEach(() => {
   vi.unstubAllGlobals();
   vi.restoreAllMocks();
 });
+
+beforeEach(() => localStorage.clear());
 
 function successfulFetch() {
   return vi.fn<typeof fetch>(async () =>
@@ -34,6 +43,22 @@ function successfulFetch() {
 }
 
 describe("WorkoutPlanner", () => {
+  it("loads goal, level, activity, and movement considerations from the guest profile", async () => {
+    createLocalProfileRepository(localStorage).save({
+      heightCm: 170,
+      weightKg: 65,
+      activityFrequency: "regular",
+      fitnessLevel: "intermediate",
+      goal: "mobility",
+      movementLimitations: "Limited floor space",
+    });
+    render(<WorkoutPlanner />);
+    await waitFor(() => expect(screen.getByRole("combobox", { name: "Goal" })).toHaveValue("mobility"));
+    expect(screen.getByRole("combobox", { name: "Fitness level" })).toHaveValue("intermediate");
+    expect(screen.getByRole("combobox", { name: "Activity frequency" })).toHaveValue("regular");
+    expect(screen.getByRole("textbox", { name: /Movement considerations/ })).toHaveValue("Limited floor space");
+  });
+
   it("exposes the complete form through keyboard focus", async () => {
     const user = userEvent.setup();
     render(<WorkoutPlanner />);
@@ -57,6 +82,8 @@ describe("WorkoutPlanner", () => {
     await user.selectOptions(screen.getByRole("combobox", { name: "Goal" }), "strength");
     await user.click(screen.getByRole("radio", { name: "15 min" }));
     await user.selectOptions(screen.getByRole("combobox", { name: "Fitness level" }), "intermediate");
+    await user.selectOptions(screen.getByRole("combobox", { name: "Activity frequency" }), "regular");
+    await user.type(screen.getByRole("textbox", { name: /Movement considerations/ }), "Avoid jumping");
     await user.click(screen.getByRole("button", { name: "Generate my adventure" }));
 
     expect(await screen.findByRole("heading", { name: planningResponse.adventure.title })).toBeVisible();
@@ -72,7 +99,9 @@ describe("WorkoutPlanner", () => {
     }
 
     const submitted = JSON.parse(String(fetchMock.mock.calls[0]?.[1]?.body));
-    expect(submitted).toEqual({ goal: "strength", durationMinutes: 15, fitnessLevel: "intermediate" });
+    expect(submitted).toEqual({ goal: "strength", durationMinutes: 15, fitnessLevel: "intermediate", activityFrequency: "regular", movementLimitations: "Avoid jumping" });
+    expect(screen.getByRole("heading", { name: "Built for today's intent" })).toBeVisible();
+    expect(screen.getByText("The session stays standing.")).toBeVisible();
   });
 
   it("announces a request failure and retries without losing preferences", async () => {

@@ -3,7 +3,7 @@
 ## Verified Now
 
 - Next.js 15 is the only product runtime; routes cover guest onboarding, planning, preparation, Phaser mission, results, and the planning API.
-- `npm run verify` passes ESLint, strict TypeScript, 6 core pose/calibration tests, 79 Vitest tests, eight responsive Playwright checks, and the production build.
+- `npm run verify` passes ESLint, strict TypeScript, 6 core pose/calibration tests, 84 Vitest tests, ten responsive Playwright checks, and the production build.
 - The obsolete compatibility game route and runner implementation are removed; reusable calibration and pose foundations are integrated behind current typed feature adapters.
 - The pre-refactor harness validator scored 100/100.
 - Documentation now has one canonical source for product, architecture, frontend, data, reliability, security, quality, and planning concerns.
@@ -67,10 +67,13 @@
 - `mvp-hardening` and `game-polish` passed review 12/12; `demo-liftoff` is the sole active feature.
 - Added distinct Phaser encounters for all eleven movement IDs, snapshot-derived XP/combo/miss feedback, procedural action sound with its own control, and an exclusive escape-portal completion payoff.
 - Desktop and narrow Chrome drove every encounter kind through validated movement events, visually accepted active/completed frames, preserved no-overflow/16:9 layout, and retained the under-25-ms reduced-motion cadence target.
-- Current full gate: ESLint, strict TypeScript, 11 regression tests, 78 Vitest tests, eight Playwright system-Chrome checks, and production build all pass.
+- Current full gate: ESLint, strict TypeScript, 6 core pose/calibration tests, 83 Vitest tests, ten Playwright system-Chrome checks, and production build all pass.
 - Generated and fallback workouts now use the same six-movement standing demo sequence—jumping jack, squat, left/right punch, high knees, jump—with duration/level target scaling and canonical encounter mappings; focused planner/contracts tests and typecheck pass.
 - Consolidated the application into one product: removed the compatibility route, old React/canvas runner, runner state and unused CSS; renamed retained foundation verification to `test:core` and passed the full gate.
 - Converted `/prepare` into a hands-free launch state: saved calibration still validates stable live framing, first-time setup retains automatic calibration, and both paths use a spoken/visible three-second countdown followed by automatic `/mission` navigation.
+- Polished the launch countdown into a distance-readable camera overlay with individual number transitions, energy rings, progress marks, a gold `GO!` state, and reduced-motion fallback; navigation occurs after the payoff remains visible for 650 ms.
+- Implemented and accepted goal-aware planning 12/12: four distinct curated goals, duration-based 5/6/7 stages, profile-derived activity/limitations, bounded targets/rest, safety exclusions, goal-specific replacements, profile-aware fallbacks, and validated phased rationale. `demo-liftoff` is active again.
+- User review removed punches from standard lower-body strength plans; every duration now uses jumping-jack warm-up, repeated squat/lunge work, and a jump finale, protected by exact-sequence tests.
 
 ## Broken or Unverified
 
