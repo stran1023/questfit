@@ -6,9 +6,9 @@ Write-Host '=== npm install ==='
 npm install
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
-Write-Host '=== npm run build ==='
-npm run build
+Write-Host '=== npm run verify ==='
+npm run verify
 if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
 
 Write-Host '=== Verification Complete ==='
-Write-Host 'Read feature_list.json, select one dependency-ready feature, and update evidence before marking it passing.'
+Write-Host 'Read lifecycle state and the active plan, work only on the in-progress feature, then record verification evidence.'

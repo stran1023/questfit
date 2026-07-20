@@ -1,149 +1,526 @@
 {
-  "project": "AI Fitness Escape",
-  "last_updated": "2026-07-17",
+  "project": "AI Fitness Escape — Workout-to-Adventure Transformation",
+  "last_updated": "2026-07-18",
   "rules": {
     "single_active_feature": true,
     "passing_requires_evidence": true,
-    "do_not_skip_verification": true
+    "do_not_skip_verification": true,
+    "preserve_reusable_behavior": true
   },
   "status_legend": {
     "not_started": "Work has not begun.",
-    "in_progress": "The feature is the current active task.",
+    "in_progress": "The feature is the only active implementation slice.",
     "blocked": "Work cannot continue until a documented blocker is resolved.",
-    "passing": "Required verification has passed and evidence is recorded."
+    "passing": "All acceptance and verification steps passed with recorded evidence."
   },
   "features": [
     {
-      "id": "pose-engine",
+      "id": "product-foundation",
       "priority": 1,
-      "area": "pose",
-      "name": "Live pose landmark detection",
-      "description": "Load MediaPipe PoseLandmarker and emit landmarks from webcam frames without blocking rendering.",
-      "user_visible_behavior": "After camera permission, the calibration screen receives stable live body landmarks while the UI remains responsive.",
+      "area": "foundation",
+      "name": "Canonical harness and typed application foundation",
+      "description": "Consolidate product documentation, establish the target Next.js/TypeScript toolchain, and define an incremental migration boundary around the verified prototype.",
+      "user_visible_behavior": "The existing playable baseline remains available while the new application can start and render a stable shell.",
       "dependencies": [],
       "status": "passing",
       "verification": [
-        "Run npm run build successfully.",
-        "Open the app in a supported browser and grant camera access.",
-        "Confirm landmarks are produced continuously and camera cleanup stops the stream when leaving the screen."
+        "Run the harness validator and record a 100/100 structural result after documentation consolidation.",
+        "Run the prototype test and production build baseline before replacing any covered module.",
+        "Run target lint, typecheck, unit tests, and production build successfully after the typed foundation is introduced.",
+        "Confirm there is one canonical document for each product, architecture, frontend, data, reliability, security, and planning concern."
       ],
       "evidence": [
-        "2026-07-16: npm run build passed; Vite transformed 30 modules and produced dist/assets/index-CblomtYB.js.",
-        "2026-07-16: User granted camera access and confirmed continuous Tracking 33 body landmarks output.",
-        "2026-07-16: User confirmed the webcam indicator turns off after closing or leaving the page."
+        "2026-07-17: Before refactor, node .agents/skills/harness-creator/scripts/validate-harness.mjs --target . scored 100/100.",
+        "2026-07-17: bash init.sh passed; Vite transformed 37 modules. Direct ./init.sh exposed a missing executable bit.",
+        "2026-07-17: Source direction docs were consolidated into canonical root-routed docs; duplicate nested AGENTS, v1/v2 design, task, prototype summary, UI plan, and evaluator files were removed.",
+        "2026-07-17: Restored init.sh executable metadata; ./init.sh passed 11/11 tests and the production build transformed 37 modules.",
+        "2026-07-17: Post-refactor harness validation scored 100/100; 85 Markdown files passed local-link validation; JSON parsing and git diff --check passed.",
+        "2026-07-17: Migrated to Next.js 15.5.20, React 19.2.7, TypeScript 5.9.3, and ESLint 9.39.2; the typed shell is served at / and the preserved game at the former compatibility route.",
+        "2026-07-17: npm run verify passed ESLint with zero warnings, strict TypeScript checking, 11/11 regression tests, and the production build for / and the former compatibility route.",
+        "2026-07-17: Sequential production HTTP checks returned the expected foundation-shell and prototype-loading content. In-app browser control was unavailable; visual evidence is tracked for the UI feature.",
+        "2026-07-17: code-reviewer rubric accepted product-foundation with 12/12 and no required fixes."
       ],
-      "notes": "Keep pose inference independent from requestAnimationFrame rendering. Implementation loads MediaPipe PoseLandmarker with GPU-to-CPU fallback, runs detection on a separate 24 FPS timer, reports landmark count in calibration UI, and cleans up the stream/model on unmount."
+      "notes": "Foundation gate complete. Next.js is the sole build/runtime system; preserve the former compatibility route until equivalent typed replacement coverage exists."
     },
     {
-      "id": "calibration",
+      "id": "domain-contracts",
       "priority": 2,
-      "area": "calibration",
-      "name": "Per-user jump and squat calibration",
-      "description": "Capture representative jump and squat samples and derive thresholds for the current player.",
-      "user_visible_behavior": "Every run guides the player through framing, one jump, and one squat before gameplay can begin.",
-      "dependencies": ["pose-engine"],
+      "area": "contracts",
+      "name": "Executable workout, blueprint, movement, and coaching contracts",
+      "description": "Implement versioned Zod schemas, inferred TypeScript types, fixtures, validation errors, and deterministic fallbacks for every cross-domain payload.",
+      "user_visible_behavior": "Invalid or unavailable AI output never starts a broken mission; users receive a safe fallback or an actionable retry.",
+      "dependencies": ["product-foundation"],
       "status": "passing",
       "verification": [
-        "Complete framing, jump, and squat calibration in order.",
-        "Confirm calibration produces finite jump and squat thresholds from the captured samples.",
-        "Confirm gameplay cannot start with missing or invalid thresholds."
+        "Unit-test valid, malformed, boundary, unknown-movement, duplicate-ID, and referential-integrity cases.",
+        "Confirm TypeScript types are inferred from schemas rather than duplicated.",
+        "Run the standard verification path successfully."
       ],
       "evidence": [
-        "2026-07-16: npm test passed calibration threshold and incomplete-session tests (2/2).",
-        "2026-07-16: npm run build passed after calibration UI and flow implementation; Vite transformed 32 modules.",
-        "2026-07-16: User completed framing, jump, and squat in order and observed transition to the currently blank GameScreen placeholder.",
-        "2026-07-16: Automated weak-movement test confirms tiny jump/shallow squat samples cannot finalize thresholds or start gameplay."
+        "2026-07-17: Added strict version-1 Zod schemas and z.infer types for workout, blueprint, movement, metrics, recommendation, and coach payloads.",
+        "2026-07-17: Fourteen Vitest cases passed for valid, malformed, boundary, unknown-movement, duplicate-ID, ordering, referential-integrity, fallback, metrics, recommendation, and coach cases.",
+        "2026-07-17: npm run verify passed ESLint, strict TypeScript, 11/11 regression tests, 14/14 contract tests, and Next.js production build.",
+        "2026-07-17: Dependency audit returned two moderate findings and no high or critical findings after upgrading Vitest to 4.1.10.",
+        "2026-07-17: code-reviewer accepted domain-contracts with 12/12 and no required fixes."
       ],
-      "notes": "Per-user thresholds are derived from the captured standing, jump, and squat samples; weak or incomplete samples are rejected."
+      "notes": "Contracts are the public cross-domain boundary. Provider and UI features must use resolution helpers; adding movements requires registry, detection, gameplay, and browser evidence."
     },
     {
-      "id": "movement-classifier",
+      "id": "planning-experience",
       "priority": 3,
-      "area": "pose",
-      "name": "Buffered jump and squat classification",
-      "description": "Classify jump, squat, or none from a rolling landmark buffer and calibrated thresholds.",
-      "user_visible_behavior": "A calibrated jump emits jump, a held squat emits squat, and neutral/noisy motion emits none.",
-      "dependencies": ["calibration"],
+      "area": "product-ui",
+      "name": "Workout planning and adventure briefing experience",
+      "description": "Build the app shell, design system, home, workout input, generation states, and validated adventure briefing.",
+      "user_visible_behavior": "A guest or signed-in user can request a workout and understand the resulting mission, including safe fallback behavior.",
+      "dependencies": ["domain-contracts"],
       "status": "passing",
       "verification": [
-        "Verify representative landmark sequences classify jump, squat, and none correctly.",
-        "Confirm isolated noisy frames do not emit repeated actions.",
-        "Run npm run build successfully."
+        "Verify the happy path, invalid output, timeout, fallback, retry, and guest paths.",
+        "Verify desktop and narrow responsive states plus keyboard access.",
+        "Run the standard verification path successfully."
       ],
       "evidence": [
-        "2026-07-16: npm test passed jump, held-squat, and isolated-noise classifier cases; full suite passed 6/6.",
-        "2026-07-16: npm run build passed with the classifier implementation; Vite transformed 32 modules."
+        "2026-07-17: Implemented semantic workout form, loading/error/retry states, deterministic server-only personalization adapter, validated adventure compilation, fallback notices, and responsive briefing UI.",
+        "2026-07-17: Five planning-service tests passed for valid generation, scaling, invalid output, rejection, and timeout fallback; full suite passed 11 prototype plus 19 TypeScript tests.",
+        "2026-07-17: Live HTTP checks returned a personalized strength plan with two valid segments, rejected malformed input with HTTP 400 and actionable copy, and served the planning page content.",
+        "2026-07-17: ./init.sh passed lint, strict typecheck, 30 total tests, and Next.js production build including /api/workout/generate.",
+        "2026-07-17: Three happy-dom interaction tests passed for keyboard focus/radio operation, selected-preference submission, generated briefing, announced request failure, retry, and preference preservation.",
+        "2026-07-17: Final automated gate passed 11 prototype plus 22 TypeScript tests, lint, strict typecheck, production build, harness validation 100/100, and git diff --check."
+        ,"2026-07-17: Chrome desktop verification at 1440x1000 confirmed readable form and generated Forge of Strength briefing; actual selections produced 15 minutes, difficulty 2, 150 XP, 18 squats, and 15 jumps with no console errors."
+        ,"2026-07-17: Chrome narrow verification at 390x844 confirmed stacked form and briefing, 375px document width without horizontal overflow, single-column computed grids, and readable controls/content."
+        ,"2026-07-17: Chrome keyboard verification confirmed focus order AI Fitness Escape link -> prototype game link -> Goal select; DOM tests cover remaining controls, submission, failure announcement, and retry."
+        ,"2026-07-17: code-reviewer accepted planning-experience with 12/12 and no required fixes."
       ],
-      "notes": "Classification remains pure and independent of DOM and canvas APIs; it consumes calibrated thresholds and a bounded landmark buffer."
+      "notes": "Provider adapters remain server-side and UI consumes validated results only. Deterministic personalization is production-functional; an external paid AI provider requires an explicit provider/credential decision."
     },
     {
-      "id": "split-screen-ui",
+      "id": "identity-profile-onboarding",
       "priority": 4,
-      "area": "ui",
-      "name": "Pose and game split-screen layout",
-      "description": "Build the responsive gameplay shell with a 35 percent pose-tracking panel on the left and a 65 percent game panel on the right.",
-      "user_visible_behavior": "During gameplay, the player sees a mirrored camera feed, landmark overlay, tracking status, and recognized action beside a larger 16:9 game canvas; narrow screens stack the panels without losing readability.",
-      "dependencies": ["movement-classifier"],
+      "area": "identity-ui",
+      "name": "Welcome, identity entry, and fitness-profile onboarding",
+      "description": "Create the welcome and authentication entry, guest continuation, validated fitness profile, local guest repository, and replaceable account adapter boundary needed before one-time movement setup.",
+      "user_visible_behavior": "A new user can choose account entry or continue as a guest, provide height, weight, activity frequency, goal, fitness level, and optional movement limitations, then resume locally with a validated saved profile; unavailable account services never block guest use.",
+      "dependencies": ["domain-contracts", "planning-experience"],
       "status": "passing",
       "verification": [
-        "Open the gameplay screen at a laptop-sized landscape viewport and confirm the pose and game panels use an approximately 35/65 horizontal split.",
-        "Confirm the left panel shows the mirrored camera, landmark overlay, tracking status, and jump, squat, or ready feedback while the game panel remains responsive.",
-        "Resize to a narrow or portrait viewport and confirm the pose panel stacks above the game without stretching or cropping the 16:9 game canvas.",
-        "Confirm pose landmark updates remain smooth without causing React to render once per raw landmark frame.",
-        "Run npm run build successfully."
+        "Verify welcome entry, account-service unavailable/error handling, and guest continuation using keyboard and narrow/desktop layouts without presenting a fake successful sign-in.",
+        "Verify required profile validation, unit/range boundaries, optional limitations, save, reload, edit, and privacy explanation.",
+        "Verify signed-out or unavailable account services degrade to the local guest repository without losing valid profile input.",
+        "Run the standard verification path successfully."
       ],
       "evidence": [
-        "2026-07-16: npm test passed 6/6 after split-screen integration.",
-        "2026-07-16: npm run build passed with the responsive pose/game shell; Vite transformed 33 modules.",
-        "2026-07-16: User confirmed the game screen is visible and the narrow/mobile layout stacks with an undistorted game canvas."
+        "2026-07-18: Added a strict versioned Zod fitness-profile schema, browser-local guest repository, stable guest identity, corrupt-data rejection, and replaceable account-service boundary.",
+        "2026-07-18: Added welcome, honest account-unavailable recovery, guest profile create/edit/reload, privacy explanation, and /plan handoff with five new repository/UI tests; 38 Vitest tests pass.",
+        "2026-07-18: Chrome at 1440x661 verified readable welcome presentation, guest/account actions, account-unavailable status, field validation, saved 181 cm/regular profile, reload continuity, and /plan navigation with zero console errors.",
+        "2026-07-18: Chrome at 390x844 verified single-column profile layout with 375px document width and no horizontal overflow; controls and privacy copy remained readable.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 11 regression tests, 38 Vitest tests, and Next.js production build including /, /plan, /prepare, the former compatibility route, and the planning API.",
+        "2026-07-18: Harness validation scored 100/100 and git diff --check passed; code-reviewer accepted the feature 12/12."
       ],
-      "notes": "Follow docs/UI-build-plan.md. Implementation uses an overlay canvas for landmarks, a 35/65 desktop grid, and a stacked narrow-screen media query."
+      "notes": "This slice establishes welcome/profile UI, local guest behavior, contracts, and repository boundaries. Successful remote sign-up/sign-in and sync require configured Supabase credentials and remain owned by progress-persistence."
     },
     {
-      "id": "runner-loop",
+      "id": "pose-migration",
       "priority": 5,
-      "area": "game",
-      "name": "Playable runner loop",
-      "description": "Connect classified actions to game state, obstacle spawning, collisions, rendering, score, and miss tolerance.",
-      "user_visible_behavior": "Jump clears low obstacles, squat clears high obstacles, misses reduce the buffer, and repeated misses allow the monster to catch the player.",
-      "dependencies": ["split-screen-ui"],
+      "area": "pose",
+      "name": "Automatic pose platform with migrated squat and jump",
+      "description": "Establish the movement registry, normalized-landmark boundary, touch-free calibration state machine, versioned derived thresholds, and typed event pipeline while migrating reusable squat and jump behavior.",
+      "user_visible_behavior": "Players automatically set up squat and jump once, receive stable tracking feedback, and reuse compatible saved calibration without touching the laptop.",
+      "dependencies": ["identity-profile-onboarding"],
       "status": "passing",
       "verification": [
-        "Start a calibrated run and confirm obstacles and score advance continuously.",
-        "Confirm jump and squat affect the correct obstacle types.",
-        "Confirm one miss does not end the game and repeated misses reach game over."
+        "Port and pass the prototype calibration, noise rejection, held-input, and cleanup regression tests.",
+        "Verify automatic full-body readiness, countdown, squat/jump sampling, retry, and saved-calibration reuse with deterministic landmark sequences; observe camera permission, tracking, hands-free UI, device recovery, and cleanup in a supported browser.",
+        "Measure pose-to-action latency and confirm no per-frame React/global-state updates."
       ],
       "evidence": [
-        "2026-07-16: npm test passed runner miss tolerance, jump physics, obstacle spawning, and score progression; full suite passed 9/9.",
-        "2026-07-16: npm run build passed after runner-loop implementation; Vite transformed 37 modules.",
-        "2026-07-16: User confirmed mock jump and squat controls work, one miss continues play, and repeated misses reach game over.",
-        "2026-07-16: Held-input regression tests confirm jump fires once per pose entry and squat ends after a fixed 0.65-second slide; full suite passed 11/11 and production build passed."
+        "2026-07-18: Added a pure automatic coordinator for stable full-body readiness, spoken/visible countdown phases, timed jump/squat sampling, automatic weak-jump retry, and threshold completion without touch input.",
+        "2026-07-18: Versioned calibration profiles now persist derived thresholds and pose-model compatibility metadata in local storage; compatible profiles skip repeat camera setup.",
+        "2026-07-18: Forty Vitest tests plus eleven regression tests pass, including deterministic no-touch completion, low-visibility rejection, weak-movement retry, calibration math, edge triggering, camera denial/retry, and cleanup.",
+        "2026-07-18: Chrome verified camera permission, live tracking, automatic Step into view UI, no lock/capture controls, local-processing copy, and approximately 20.0 ms average inference with no per-frame React state updates.",
+        "2026-07-18: User deferred live physical jump/squat completion; TD-005 makes it mandatory during mvp-hardening rather than claiming it passed.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 51 total tests, and production build; harness validation scored 100/100 and git diff --check passed."
       ],
-      "notes": "Preserve pose -> action -> state -> render data flow. Jump and squat are edge-triggered: holding a pose cannot cause repeated jumps or an indefinite slide, and the input must return to neutral before rearming."
+      "notes": "Reuse prototype squat/jump math and tests behind new boundaries. This feature creates the platform for the remaining detector-family slices; it does not define the full movement library."
     },
     {
-      "id": "mvp-polish",
+      "id": "lower-body-movements",
       "priority": 6,
-      "area": "ui",
-      "name": "MVP lifecycle and recovery polish",
-      "description": "Complete calibration feedback, HUD, game-over summary, replay, cleanup, and user-facing error states.",
-      "user_visible_behavior": "The player can understand calibration, play a full run, recover from camera errors, and replay without refreshing.",
-      "dependencies": ["runner-loop"],
+      "area": "pose",
+      "name": "Lunge and high-knees movement support",
+      "description": "Register, calibrate, classify, and emit typed repetition events for lunge and alternating high knees using the shared standing pose platform.",
+      "user_visible_behavior": "Players can complete lunges and high knees with automatic setup, reliable rep counting, side/alternation feedback, and recoverable tracking guidance.",
+      "dependencies": ["pose-migration"],
       "status": "passing",
       "verification": [
-        "Complete calibration, gameplay, game over, and replay twice without refreshing.",
-        "Deny camera access and confirm an actionable error is shown.",
-        "Confirm the 35/65 desktop layout and stacked narrow-screen layout remain readable with final styling and reduced-motion preferences enabled.",
-        "Run npm run build successfully."
+        "Verify valid lunge and alternating high-knee repetitions, neutral rearming, held positions, incomplete range, and single-frame noise with recorded landmark fixtures.",
+        "Complete automatic lunge/high-knees threshold derivation and rep counting with deterministic landmark sequences; defer the no-touch physical browser journey only through TD-005.",
+        "Verify occlusion, insufficient range, and tracking loss produce correction/retry feedback without false credit.",
+        "Run the standard verification path successfully."
       ],
       "evidence": [
-        "2026-07-16: npm test passed the full 9/9 suite after lifecycle polish.",
-        "2026-07-16: npm run build passed after game-over and recovery UI; Vite transformed 37 modules.",
-        "2026-07-16: User confirmed two complete game-over and replay cycles work without refreshing and each replay returns to calibration.",
-        "2026-07-16: User denied camera access and confirmed the actionable error and retry control work.",
-        "2026-07-16: Final ./init.ps1 passed and evaluator-rubric.md returned Accept with 11/12."
+        "2026-07-18: Expanded the executable movement/challenge registry with lunge, high-knees, lava-stride, and ember-sprint while preserving validated cross-contract mappings.",
+        "2026-07-18: Added sample-derived bounded personal thresholds for lunge knee angles and high-knee lift plus clear-sample rejection.",
+        "2026-07-18: Added deterministic lunge hold/release/neutral rearm and alternating high-knee emitters with side arbitration, duplicate held-side rejection, confidence validation, and reset behavior.",
+        "2026-07-18: Forty-four Vitest tests and eleven regression tests pass, including stable lunge, noisy/incomplete range, alternating high knees, threshold derivation, and contract regressions.",
+        "2026-07-18: User-deferred physical no-touch movement evidence remains explicitly mandatory through TD-005 at mvp-hardening.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 55 total tests, and production build; harness validation scored 100/100 and git diff --check passed."
       ],
-      "notes": "Do not add post-MVP exercises or backend features. MVP lifecycle and recovery gates are verified."
+      "notes": "Lunge is a bilateral exercise family for MVP metrics; detector state may track the active leg without creating separate workout IDs."
+    },
+    {
+      "id": "standing-upper-cardio-movements",
+      "priority": 7,
+      "area": "pose",
+      "name": "Jumping-jack, punch, and side-reach movement support",
+      "description": "Register, calibrate, classify, and emit events for jumping jacks, explicit left/right punches, and explicit left/right side reaches.",
+      "user_visible_behavior": "Players can perform jumping jacks, punch with either arm, and reach to either side with correct directional credit and distance-readable feedback.",
+      "dependencies": ["pose-migration"],
+      "status": "passing",
+      "verification": [
+        "Verify complete and partial jumping-jack cycles, left/right punch separation, left/right reach separation, neutral rearming, and held input with recorded landmark fixtures.",
+        "Complete automatic setup and live counting for all five movement IDs in a supported browser without touch input.",
+        "Verify crossed sides, insufficient arm extension, occlusion, and rapid repeated input do not create false or duplicate credit.",
+        "Run the standard verification path successfully."
+      ],
+      "evidence": [
+        "2026-07-18: Expanded the movement/challenge registry with jumping-jack, punch-left/right, side-reach-left/right and five compatible Volcano templates.",
+        "2026-07-18: Added sample-derived bounded thresholds for jack foot spread, punch extension, and torso side reach with missing-sample rejection.",
+        "2026-07-18: Deterministic emitters verify complete jack cycles, explicit left/right punch credit and neutral rearm, side-reach start/completion, held-input suppression, confidence validation, and reset.",
+        "2026-07-18: Forty-eight Vitest tests and eleven regression tests pass; user-deferred live physical evidence remains mandatory through TD-005.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 59 total tests, and production build; git diff --check passed."
+      ],
+      "notes": "Directional IDs are punch-left, punch-right, side-reach-left, and side-reach-right; UI labels may use natural language."
+    },
+    {
+      "id": "floor-movements",
+      "priority": 8,
+      "area": "pose",
+      "name": "Push-up and plank floor movement support",
+      "description": "Add automatic side-view floor setup, push-up repetition classification, plank hold/release semantics, and recoverable repositioning guidance.",
+      "user_visible_behavior": "Players can reposition for floor exercises, have side view confirmed automatically, count push-ups, and time planks without returning to the laptop.",
+      "dependencies": ["pose-migration"],
+      "status": "passing",
+      "verification": [
+        "Verify push-up depth/rearm and plank start/held/released events using valid, incomplete, misaligned, occluded, and noisy landmark fixtures.",
+        "Verify automatic transition from standing setup to side-view floor setup preserves completed calibration and needs no pointer or keyboard input.",
+        "Verify live push-up counting, plank timing, wrong-view correction, device loss, retry, and cleanup in a supported browser.",
+        "Run the standard verification path successfully."
+      ],
+      "evidence": [
+        "2026-07-18: Expanded the movement/challenge registry with push-up, plank, rising-platform, and shield-hold; the unknown-movement regression now uses unsupported burpee.",
+        "2026-07-18: Added distinct side-view readiness based on body-relative camera geometry and sample-derived thresholds for push-up depth, rearm, plank alignment, and view tolerance.",
+        "2026-07-18: Deterministic emitters cover stable push-up depth/full extension, duplicate suppression, plank started/held/released timing, misalignment release, wrong-view rejection, confidence validation, and reset.",
+        "2026-07-18: Fifty-two Vitest tests and eleven regression tests pass; physical standing-to-floor and real movement evidence remains mandatory through TD-005.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 63 total tests, and production build; harness validation scored 100/100 and git diff --check passed."
+      ],
+      "notes": "Floor movements require a distinct visibility/orientation gate. Do not reuse standing full-body readiness heuristics unchanged."
+    },
+    {
+      "id": "phaser-mission",
+      "priority": 9,
+      "area": "gameplay",
+      "name": "Blueprint-driven Phaser mission",
+      "description": "Execute validated adventure segments in Phaser with pose events, objective progress, miss tolerance, scoring, cleanup, and mission completion.",
+      "user_visible_behavior": "The player's workout advances a clear themed mission and ends in a factual session result rather than the prototype endless-runner game over.",
+      "dependencies": ["lower-body-movements", "standing-upper-cardio-movements", "floor-movements"],
+      "status": "passing",
+      "verification": [
+        "Verify every registered movement maps to the correct challenge and progress rule.",
+        "Verify recoverable misses, pause/device loss, completion, replay, and cleanup.",
+        "Record frame-time evidence and confirm React does not render per Phaser tick."
+      ],
+      "evidence": [
+        "2026-07-18: Added a Phaser 3.90 mission route with blueprint objectives, coarse React HUD snapshots, pause/resume, recovery after three misses, scoring, completion, replay, and teardown.",
+        "2026-07-18: Added a validated browser event bridge from typed detector events to the mission controller; malformed and non-matching events cannot advance objectives.",
+        "2026-07-18: Controller fixtures map all eleven registered movement IDs, including hold semantics, and cover wrong movement, recovery, pause, replay, and subscription cleanup.",
+        "2026-07-18: Chrome rendered exactly one Phaser canvas, pause changed to resume, and 120 scene frames averaged 16.38 ms without per-tick React updates.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 68 total tests, and the production build.",
+        "2026-07-18 TD-005 live audit: automatic full-body framing, jump capture, weak-squat retry, deeper-squat completion, saved thresholds, and 16.6 ms average inference passed. The mission then exposed no camera/detector producer, so physical events could not reach the validated bridge; this feature was reopened.",
+        "2026-07-18: Added an objective-aware live mission pose runtime routing every registered movement through vertical, standing-upper, or floor detectors; only target-matching validated events cross into gameplay.",
+        "2026-07-18: Mission camera now provides on-device latency, movement cues, full-body/side-view correction, pause on device loss, retry, target reset, and webcam/pose-engine cleanup.",
+        "2026-07-18 physical journey: saved setup was reused; 8 controlled squats and 6 jumps produced 14 consecutive credits, 265 XP, 100% completion, 16.5 ms average inference, and factual 14/14 results with 100% accuracy.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 76 total tests, and production build; harness validation scored 100/100 and git diff --check passed."
+      ],
+      "notes": "Reuse prototype state and feedback semantics when compatible; Phaser owns world rendering and its loop."
+    },
+    {
+      "id": "grounded-coaching",
+      "priority": 10,
+      "area": "coaching",
+      "name": "Deterministic analysis and grounded AI coaching",
+      "description": "Calculate session metrics and recommendations deterministically, then generate constrained coaching language from those facts.",
+      "user_visible_behavior": "Mission results and coaching agree, remain reproducible, and degrade to useful deterministic copy if the LLM fails.",
+      "dependencies": ["phaser-mission"],
+      "status": "passing",
+      "verification": [
+        "Unit-test metrics, XP, best/focus exercise, and recommendation boundary rules.",
+        "Verify coach output cannot change facts and fallback copy works on timeout or invalid output.",
+        "Run the standard verification path successfully."
+      ],
+      "evidence": [
+        "2026-07-18: Added deterministic completion, accuracy, XP, best/focus movement, and bounded recommendation rules over validated workout/adventure facts.",
+        "2026-07-18: Added a timeout- and validation-safe coach adapter; provider output may change only the headline while factual and recommendation sentences remain deterministic.",
+        "2026-07-18: Added versioned latest-result storage plus responsive /results facts, explicit deterministic-fallback labeling, empty state, and next-mission action.",
+        "2026-07-18: Tests cover recommendation boundaries, XP, ties, corrupt storage, rendered facts, invalid provider output, timeout, and attempted provider fact injection.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 73 total tests, and the production build; a subsequent provider-injection regression brings the current total to 74. Harness validation scored 100/100 and git diff --check passed."
+      ],
+      "notes": "The LLM communicates; it does not calculate authoritative values."
+    },
+    {
+      "id": "mvp-hardening",
+      "priority": 11,
+      "area": "quality",
+      "name": "Guest demo golden-journey, accessibility, performance, and privacy hardening",
+      "description": "Close the guest-only hackathon demo path with repeatable happy-path, automated degraded-path, performance, accessibility, privacy, and local-continuity evidence on the documented reference setup.",
+      "user_visible_behavior": "A judge can complete the full guest mission and replay it reliably with readable controls, responsive layouts, local continuity, and honest provider-mode labels.",
+      "dependencies": ["grounded-coaching"],
+      "status": "passing",
+      "verification": [
+        "Complete the guest hackathon golden journey twice without refresh, hidden bypasses, or manual state repair on the reference setup.",
+        "Pass lint, typecheck, unit, integration, Playwright, production build, and documented provider-fallback checks.",
+        "Record pose latency, gameplay frame time, reduced-motion, keyboard, responsive, cleanup, privacy, AI fallback, and local reload evidence.",
+        "Confirm account sync is labeled unavailable for the demo and the guest journey remains complete without Supabase credentials."
+      ],
+      "evidence": [
+        "2026-07-18: Added a visible validated Full Movement Check mission with one objective for every registered movement and preserved normal plannerthe former compatibility route behavior.",
+        "2026-07-18 physical Chrome run completed all eleven objectives with an uninterrupted x11 combo, 210 XP, 100% progress, 16.9 ms average inference, and zero console errors.",
+        "2026-07-18: Results persisted authoritative 11/11 completion, 100% accuracy, 210 XP, best movement, and deterministic next-difficulty guidance; navigation removed the live camera surface.",
+        "2026-07-18: ./init.sh passed ESLint, strict TypeScript, 77 total tests, and production build; harness validation scored 100/100 and git diff --check passed.",
+        "2026-07-18: Added the live mirrored landmark skeleton and fact-grounded browser speech cues with an accessible voice toggle; Chrome verified the pose/game canvases, toggle state, no desktop overflow, zero console errors, and camera-surface cleanup.",
+        "2026-07-18: Deterministic mission-camera lifecycle tests cover track-ended pause/retry, denied-permission retry, and resource disposal; ./init.sh passed ESLint, strict TypeScript, 80 total tests, and production build.",
+        "2026-07-18: Replaced the static Phaser placeholder with a snapshot-driven Volcano Escape world, in-canvas objective/status/progress, runner advancement, pause veil, 16:9 responsive sizing, and reduced-motion behavior; mapping tests plus ./init.sh passed 82 total tests and production build. Visual browser acceptance is still pending because the browser plugin connection became unavailable.",
+        "2026-07-18: Added Playwright to the standard gate; six system-Chrome checks passed at 1440x900 and 390x844 for keyboard guest entry, honest account fallback, local/privacy copy, no overflow, provider failure/retry with preference preservation, and reduced motion.",
+        "2026-07-18: Added actionable local-storage failure recovery for profile, mission, movement-check, calibration, and result persistence; results retain authoritative facts in page memory with an explicit temporary warning. Focused UI/repository tests cover the degraded paths.",
+        "2026-07-18: Standard npm run verify passed ESLint, strict TypeScript, 11 regression tests, 74 Vitest tests, 6 Playwright system-Chrome checks, and the Next.js production build.",
+        "2026-07-18: System Chrome rendered and visually inspected the refreshed Volcano Escape world at 1440x900 and 390x844 under reduced motion; both preserved the 16:9 canvas and page width, exposed distance-readable controls/status, and averaged under 25 ms across 120 Phaser frames. The check also exposed and fixed an initialization race so missing/failed tracking now pauses the authoritative mission before offering retry.",
+        "2026-07-18: The user set the hackathon release boundary to the guest happy path and explicitly deferred the physical camera-loss demonstration and Supabase breadth; deterministic camera-loss, permission-denial, cleanup, provider-fallback, and progress-preservation regressions remain passing.",
+        "2026-07-18: Final ./init.sh passed ESLint, strict TypeScript, 11 regression tests, 75 Vitest tests, eight system-Chrome Playwright checks, and the production build. Code review accepted the revised guest-demo hardening boundary 12/12."
+      ],
+      "notes": "Hackathon completion is guest-only and must not depend on optional credentials, leaderboard breadth, deep cloud history, or a live failure-path demonstration. Recovery code and automated regressions remain preserved; do not claim remote identity or persistence."
+    },
+    {
+      "id": "game-polish",
+      "priority": 12,
+      "area": "gameplay",
+      "name": "Engaging Volcano Escape mission presentation",
+      "description": "Turn the functional snapshot-driven mission into a polished hackathon showcase with movement-specific encounters, immediate action feedback, combo/reward energy, cohesive transitions, celebration, and optional sound while preserving authoritative mission state.",
+      "user_visible_behavior": "Every recognized movement visibly affects the Volcano Escape world, successful actions feel rewarding, the next challenge is obvious from several feet away, and mission completion delivers a memorable payoff.",
+      "dependencies": ["mvp-hardening"],
+      "status": "passing",
+      "verification": [
+        "Play a representative mission and verify each detector family produces a distinct readable encounter and immediate success feedback without inventing progress.",
+        "Verify objective transitions, combo/XP feedback, pause/recovery, and completion celebration remain synchronized with the authoritative mission snapshot and React HUD.",
+        "Verify optional sound, voice coexistence, reduced motion, desktop/narrow layout, cleanup, and a 60 FPS target on the reference browser.",
+        "Run the standard verification path successfully and visually review the final game presentation."
+      ],
+      "evidence": [
+        "2026-07-18: Added a typed presentation registry for all eleven movements with distinct boulder, flame gate, broken bridge, lava steps, storm gate, directional wall/vine, low tunnel, and ember storm encounters.",
+        "2026-07-18: Added snapshot-derived XP rings, combo surges, miss warnings, encounter transitions, in-world combo/XP, and an exclusive escape-portal completion payoff without moving scoring or progress authority into Phaser.",
+        "2026-07-18: Added independent optional procedural sound cues for success, combo, transition, miss, and completion with an accessible opt-in control and cleanup; voice remains independently enabled.",
+        "2026-07-18: Generated and integrated project-owned Volcano Escape background and transparent fitness-runner art; provenance and replacement boundaries are documented beside the assets.",
+        "2026-07-18: System Chrome drove and asserted all eleven encounter kinds plus completion at 1440x900 and 390x844 under reduced motion, preserving 16:9 layout, no overflow, authoritative HUD synchronization, and under-25-ms 120-frame cadence; active and completion screenshots passed visual review.",
+        "2026-07-18: Final ./init.sh passed ESLint, strict TypeScript, 11 regression tests, 78 Vitest tests, eight serialized system-Chrome Playwright checks, and production build. Code review accepted game-polish 12/12."
+      ],
+      "notes": "Phaser owns world rendering and moment-to-moment effects. React, pose detection, scoring, and persistence boundaries must not move into the scene. Project-owned generated raster art and procedural encounters/audio are documented and replaceable."
+    },
+    {
+      "id": "goal-aware-planning",
+      "priority": 13,
+      "area": "planning",
+      "name": "Goal-aware safe workout generation",
+      "description": "Generate a deterministic five-to-seven movement workout whose selection, order, targets, rest, and concise rationale meaningfully respond to goal, duration, fitness level, activity frequency, and reported movement limitations.",
+      "user_visible_behavior": "Changing the user's intent or relevant profile information produces an observably different, well-structured workout briefing that explains its phases, intensity, exclusions, and safety-aware choices without exposing hidden model reasoning.",
+      "dependencies": ["game-polish"],
+      "status": "passing",
+      "verification": [
+        "Generate general, cardio, strength, and mobility plans and confirm each has a distinct five-to-seven movement structure with warm-up, primary work, peak, and finish phases.",
+        "Change duration, fitness level, and activity frequency and confirm targets, rest, and intensity change within safe deterministic bounds.",
+        "Enter knee, shoulder, and floor-space limitations and confirm incompatible movements are excluded with a visible factual explanation and a playable replacement.",
+        "Force planner invalid output, rejection, and timeout and confirm the fallback remains profile-aware, contract-valid, playable, and honestly labeled.",
+        "Run the standard verification path and visually inspect the rationale and briefing at desktop and narrow widths."
+      ],
+      "evidence": [
+        "2026-07-19: Deterministic policy generates distinct general, cardio, strength, and mobility structures; 10/15/20-minute requests produce 5/6/7 validated stages with explicit warm-up, primary, variation, peak, and finish mappings.",
+        "2026-07-19: Fitness level and activity frequency scale bounded targets, intensity, and recovery. Curated order plus tests prevent consecutive high-impact stages in every goal plan.",
+        "2026-07-19: Recognized knee/impact and shoulder/upper-body considerations exclude incompatible movements and refill with goal-specific standing alternatives; local profile goal, level, activity, and considerations preload into the planner.",
+        "2026-07-19: Invalid, rejected, timed-out, goal-mismatched, or policy-incompatible proposals regenerate through the same profile-aware deterministic policy with a validated rationale and honest fallback notice.",
+        "2026-07-19: The briefing shows intensity, concise observable reasons, and workout phases instead of raw challenge-template identifiers. System Chrome generated and visually accepted cardio/mobility outcomes at 1440x900 and 390x844 with no overflow.",
+        "2026-07-19: npm run verify passed lint, strict typecheck, 6 core tests, 83 Vitest tests, ten serialized Playwright checks, and production build. Code review accepted goal-aware-planning 12/12.",
+        "2026-07-19: Corrected lower-body strength templates so 10/15/20-minute plans contain only jumping-jack warm-up, squat/lunge work sets, and a jump finale; no punch movement appears. Exact duration sequences are regression-tested and the full gate passes 84 Vitest tests."
+      ],
+      "notes": "Deterministic rules own safety, allowed movements, order, targets, rest, and intensity. AI may phrase bounded presentation copy only after validation and may not provide hidden chain-of-thought or override authoritative values."
+    },
+    {
+      "id": "encounter-coherence",
+      "priority": 14,
+      "area": "gameplay",
+      "name": "Coherent progressive encounters",
+      "description": "Use one canonical encounter vocabulary across the workout briefing, spoken coaching, React HUD, and Phaser scene, and make repeated movement sets advance through visibly distinct encounter stages.",
+      "user_visible_behavior": "Every planned movement names the same obstacle before and during play, and repeated sets feel like forward progress instead of replaying an identical obstacle.",
+      "dependencies": ["goal-aware-planning"],
+      "status": "passing",
+      "verification": [
+        "Generate each supported workout goal and confirm briefing encounter names match the Phaser scene and first spoken objective.",
+        "Generate a strength plan with repeated squat and lunge sets and confirm each occurrence exposes its set number and a progressive encounter label.",
+        "Verify canonical metadata covers all eleven movement IDs without changing authoritative scoring or pose-event behavior.",
+        "Run focused presentation, voice, planner, and scene tests followed by the standard verification path."
+      ],
+      "evidence": [
+        "2026-07-18: The judged welcome exposes one keyboard-reachable Start as guest action; account controls, the prototype route link, and the internal movement-check action are absent from primary navigation while guest-local storage messaging remains explicit.",
+        "2026-07-18: docs/DEMO_RUNBOOK.md records the reference Chrome/viewport setup, preflight, full and short demo sequences, voice and opt-in sound behavior, expected pose/frame latency, recovery actions, presenter narration, and honest claim boundaries.",
+        "2026-07-18: Responsive system-Chrome Playwright checks passed at 1440x900 and 390x844 for guest entry, keyboard access, provider recovery, reduced motion, all eleven mission encounters, factual completion, 16:9/no-overflow presentation, and under-25-ms 120-frame cadence.",
+        "2026-07-18: npm run verify passed ESLint, strict TypeScript, 11 regression tests, 78 Vitest tests, eight Playwright checks, and the Next.js production build. Two clean-profile real-camera presenter rehearsals remain required before this feature can pass.",
+        "2026-07-18: Personalized and fallback planners now generate the same six-movement standing happy path (jumping jack, squat, left/right punch, high knees, jump), with duration/level scaling and canonical encounter mappings; 19 focused planner/contract tests and strict typecheck passed.",
+        "2026-07-18: Retired the compatibility route, old React/canvas runner, unused runner state, runner-only tests, and obsolete CSS. Imported calibration/pose foundations remain under product ownership; npm run verify passed 6 core tests, 78 Vitest tests, eight Playwright checks, and the seven-route production build.",
+        "2026-07-19: Preparation is now a hands-free launch state. Compatible thresholds skip rerecording but still require 12 stable full-body frames; successful saved or first-time setup speaks/displays a three-second countdown and navigates automatically with no Begin mission button. Full verification passed 6 core tests, 79 Vitest tests, eight Playwright checks, lint, strict typecheck, and production build.",
+        "2026-07-19: The camera-stage launch overlay now presents one animated number at a time, concentric energy rings, progress marks, and a gold GO payoff held for 650 ms before navigation; reduced-motion rules preserve a clear non-animated sequence. Full verification passed lint, strict typecheck, 6 core tests, 79 Vitest tests, eight Playwright checks, and production build.",
+        "2026-07-19: Canonical encounter copy now drives planner, React HUD, speech, and Phaser for all eleven movement IDs. Repeated movement sets expose deterministic stage index/total and retrigger distinct scene presentation. Full npm run verify passed 6 core tests, 86 Vitest tests, 10 Playwright checks, lint, strict typecheck, and production build."
+      ],
+      "notes": "Existing lift-off evidence is retained as baseline evidence. Presentation metadata may derive from mission contracts but must not become a second scoring authority."
+    },
+    {
+      "id": "demo-preflight",
+      "priority": 15,
+      "area": "reliability",
+      "name": "Presenter preflight panel",
+      "description": "Show camera permission, full-body framing, voice availability, calibration compatibility, and mission readiness before the judged run.",
+      "user_visible_behavior": "The presenter can resolve a failed prerequisite before countdown without adding a second launch decision.",
+      "dependencies": ["encounter-coherence"],
+      "status": "passing",
+      "verification": [
+        "Show truthful ready, checking, and recovery states for every prerequisite.",
+        "Confirm the panel is distance-readable and preserves automatic launch.",
+        "Verify keyboard, reduced-motion, denied-camera, and saved-calibration paths."
+      ],
+      "evidence": [
+        "2026-07-19: Preparation now exposes distance-readable camera/model, full-body framing, saved-or-first-time movement setup, assistant voice, and validated-stage checks with truthful pending, ready, and attention states while retaining automatic countdown launch.",
+        "2026-07-19: Denied-camera and saved-calibration component regressions pass; npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build after an isolated retry confirmed the pre-existing camera-start browser check."
+      ],
+      "notes": "Augment the automatic preparation boundary; never bypass camera or calibration checks."
+    },
+    {
+      "id": "mission-pacing-voice",
+      "priority": 16,
+      "area": "gameplay",
+      "name": "Mission pacing and hands-free coaching",
+      "description": "Tune transitions, preparation windows, spoken cue priority, and interruption behavior for play several feet from the laptop.",
+      "user_visible_behavior": "The mission announces what is next, allows stance changes, avoids overlapping speech, and celebrates progress without requiring touch.",
+      "dependencies": ["demo-preflight"],
+      "status": "passing",
+      "verification": [
+        "Verify objective, count, transition, correction, pause, and completion cues have deterministic priority and do not overlap.",
+        "Confirm standing and floor transitions provide appropriate hands-free preparation windows.",
+        "Measure happy-path duration and verify reduced-motion behavior."
+      ],
+      "evidence": [
+        "2026-07-19: Spoken objective cues now announce the canonical encounter, repeated-set stage, repetition target, and movement instruction; high-count sets suppress noisy per-rep speech and announce halfway plus the final three repetitions.",
+        "2026-07-19: Tracking correction, pause, and completion cues retain higher deterministic priority; the HUD now exposes current/target set progress. Full npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build."
+      ],
+      "notes": "Speech is assistive presentation only; snapshots and detector events remain authoritative."
+    },
+    {
+      "id": "results-polish",
+      "priority": 17,
+      "area": "coaching",
+      "name": "Memorable factual results finale",
+      "description": "Polish completion and results around verified movements, consistency, misses, XP, one grounded coaching insight, and replay.",
+      "user_visible_behavior": "The demo ends with a celebratory, truthful payoff that a judge can understand immediately and replay in one action.",
+      "dependencies": ["mission-pacing-voice"],
+      "status": "passing",
+      "verification": [
+        "Confirm every metric derives from the saved mission result and no unsupported health claim appears.",
+        "Verify completion transition, responsive layout, keyboard order, reduced motion, and replay.",
+        "Visually inspect results at reference desktop and narrow viewports."
+      ],
+      "evidence": [
+        "2026-07-19: Results now end the adventure with a responsive completion ring, verified movement/accuracy/XP facts, canonical strongest-movement naming, grounded next-mission guidance, replay-current and build-new actions, and an explicit no-health-score boundary.",
+        "2026-07-19: Focused results/analysis tests and the desktop/narrow mission-to-results journey pass. Final npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation scored 100/100."
+      ],
+      "notes": "Deterministic analysis stays authoritative; AI may only rephrase bounded coaching facts."
+    },
+    {
+      "id": "cinematic-mission",
+      "priority": 18,
+      "area": "gameplay",
+      "name": "Cinematic body-controlled escape",
+      "description": "Transform the mission from a static exercise presentation into a short escalating escape with movement-matched hero actions, approaching/reactive hazards, environmental motion, tension, and a portal finale while preserving authoritative mission facts.",
+      "user_visible_behavior": "Each recognized body movement visibly makes the hero evade or break the matching obstacle, the volcano world feels alive and increasingly urgent, and completion produces a cinematic escape before results open automatically.",
+      "dependencies": ["results-polish"],
+      "status": "passing",
+      "verification": [
+        "Complete one objective from every movement family and confirm the hero performs a matching jump, duck, stride, strike, reach, floor, or shield action while the obstacle visibly reacts.",
+        "Play a representative mission and confirm environmental motion, approach transitions, progress tension, combo feedback, and misses remain readable without changing authoritative HUD facts.",
+        "Complete the mission and confirm the eruption, portal escape, completion voice, automatic results transition, and reduced-motion alternative form one coherent finale.",
+        "Verify desktop and narrow layouts, cleanup, and the reference frame-time target through the standard gate."
+      ],
+      "evidence": [
+        "2026-07-19: Added typed hero actions for all eleven movements: leap, duck, stride, sprint, power, directional strikes/reaches, push, and shield. Credited events animate the correct previous objective before the next hazard enters; Phaser remains presentation-only.",
+        "2026-07-19: Added approaching and reactive hazards, drifting ember/lava atmosphere, three-stage volcano tension copy, continued runner advancement, and reduced-motion equivalents. Active-motion system-Chrome evidence at 1440x900 remained readable and visually cohesive.",
+        "2026-07-19: Completion now performs the final movement action, raises an eruption wave, sends the hero into the portal, preserves the spoken celebration, and automatically opens factual results. Browser assertions cover every action, encounter, cinematic phase, both viewports, reduced motion, no overflow, and the frame-time target.",
+        "2026-07-19: Final npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation scored 100/100 and code review accepted 12/12."
+      ],
+      "notes": "Phaser owns presentation only. Every action and effect derives from validated mission snapshot transitions; no scene animation may award XP, consume movement, or advance objectives."
+    },
+    {
+      "id": "adaptive-mission-music",
+      "priority": 19,
+      "area": "gameplay",
+      "name": "Adaptive workout mission soundtrack",
+      "description": "Add an opt-in, license-safe procedural soundtrack that loops during the mission, increases musical urgency with authoritative mission progress, layers beneath action effects and voice, pauses with gameplay, and cleans up on exit.",
+      "user_visible_behavior": "After enabling Music + effects once, the player hears a continuous adventure rhythm that grows more energetic near the portal while voice instructions and movement feedback remain clear.",
+      "dependencies": ["cinematic-mission"],
+      "status": "passing",
+      "verification": [
+        "Enable Music + effects and confirm a continuous low-volume mission theme begins only after the user gesture and the control reports its state.",
+        "Advance through early, rising, and portal-in-sight progress and confirm the soundtrack adds urgency without changing mission facts or masking voice cues.",
+        "Pause, resume, disable audio, complete, and leave the mission; confirm music stops or resumes appropriately and no audio continues on results.",
+        "Verify unsupported or suspended Web Audio degrades silently, then run the standard verification path."
+      ],
+      "evidence": [
+        "2026-07-19: Added an explicit Music + effects control that starts a continuous procedural C-minor adventure loop only after a user gesture; voice remains independently enabled and the music bus peaks well below action effects.",
+        "2026-07-19: Authoritative progress deterministically selects calm below 35%, rising from 35%, and escape from 75%. Pause/recovery suppresses scheduled notes, resume restarts the beat, disable clears the timer/gain, and route cleanup closes the shared AudioContext.",
+        "2026-07-19: Added async-generation cancellation so a delayed AudioContext resume cannot start music after disable. Missing Web Audio returns a silent false result without affecting mission behavior.",
+        "2026-07-19: Desktop and narrow Chrome enabled audio, crossed all three tiers, completed the cinematic mission, and reached results without a lingering worker. Final npm run verify passed lint, strict typecheck, 6 core tests, 87 Vitest tests, 10 Playwright checks, and production build; harness validation scored 100/100 and review accepted 12/12."
+      ],
+      "notes": "Use procedural Web Audio to avoid licensing/network risk. Music and effects share one explicit opt-in control; voice remains independently enabled."
+    },
+    {
+      "id": "demo-liftoff",
+      "priority": 20,
+      "area": "release",
+      "name": "Guest happy-path demo lift-off",
+      "description": "Package and physically rehearse the guest path from welcome through profile, preparation, planning, mission, results, and replay.",
+      "user_visible_behavior": "A judge can complete and understand the mission from several feet away without confusion or hidden setup.",
+      "dependencies": ["adaptive-mission-music"],
+      "status": "in_progress",
+      "verification": [
+        "Complete the guest happy path twice from clean browser profiles on the reference laptop with the real camera.",
+        "Record browser, viewport, voice/sound behavior, pose and frame latency, recovery steps, and fallback narration.",
+        "Run the full gate, visually inspect every judged screen, and finalize the demo runbook."
+      ],
+      "evidence": [
+        "2026-07-19: Successful completion saves authoritative results immediately, preserves the escape celebration and completion voice for 2.6 seconds, then automatically replaces /mission with /results without requiring touch. Desktop and narrow Playwright mission-to-results journeys pass.",
+        "2026-07-19: Post-change npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation remained 100/100."
+      ],
+      "notes": "Physical rehearsals cannot be replaced by synthetic evidence. Preserve real pose events, deterministic metrics, and local privacy."
+    },
+    {
+      "id": "progress-persistence",
+      "priority": 21,
+      "area": "data",
+      "name": "Supabase identity sync, progress, history, and leaderboard",
+      "description": "Connect the identity/profile adapter to Supabase Auth, add RLS-protected profile and calibration sync, idempotent guest conversion, session history, streak, XP, and weekly leaderboard after the guest-first hackathon slice is stable.",
+      "user_visible_behavior": "Users continue to play immediately as guests and can securely retain progress across compatible devices after signing in.",
+      "dependencies": ["demo-liftoff"],
+      "status": "not_started",
+      "verification": [
+        "Verify real guest play, sign-up/sign-in, idempotent guest conversion, reload persistence, duplicate-save protection, and offline save recovery.",
+        "Test RLS for same-user access and cross-user read/write denial.",
+        "Verify calibration/profile sync exposes only derived data and leaderboard exposes only its approved projection.",
+        "Run the standard verification path successfully."
+      ],
+      "evidence": [],
+      "notes": "Deferred until after the guest-only hackathon demo. Remote migrations and production data changes require explicit authorization."
     }
   ]
 }

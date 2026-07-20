@@ -1,50 +1,50 @@
-# AGENTS.md — Project Context for Codex CLI
+# AGENTS.md
 
-## Project
-
-AI Fitness Escape: a browser-based endless runner controlled by real-time webcam pose detection. Player performs a jump to clear obstacles and a squat to slide under obstacles; a monster chases the player and catches them after repeated misses.
-
-## Scope (MVP — do not expand without discussion)
-
-- **Two exercises only:** jump and squat. Do not add push-up, mountain climber, or climb mechanics to MVP code paths — they are explicitly deferred to the roadmap.
-- **No backend.** All pose detection, game state, and rendering run client-side. Do not introduce a server, database, or auth for the MVP.
-- **Miss tolerance, not instant-fail.** A missed obstacle should reduce a lives/buffer counter, not end the game immediately — this absorbs pose-detection noise.
-- **Calibration is required before gameplay starts.** Every run begins with a short calibration step (one sample jump, one sample squat) that sets per-user detection thresholds. Do not hardcode global thresholds.
-
-## Architecture Reference
-
-Full architecture, data flow, and folder structure are documented in `docs/ARCHITECTURE.md`. Read it before making structural changes.
+This repository is being migrated from the original endless-runner prototype to AI Fitness Escape: a personalized workout-to-adventure product. Keep this file as a routing layer; durable product and engineering detail belongs in `docs/`.
 
 ## Startup Workflow
 
-1. Read `progress.md`, `session-handoff.md`, and `feature_list.json`.
-2. Run `./init.sh` on Bash or `./init.ps1` on PowerShell before changing code.
-3. Select the highest-priority dependency-ready feature. Keep only one feature `in_progress`.
-4. Read `docs/ARCHITECTURE.md` before structural changes, then stay inside the selected feature's scope.
+Before changing code:
 
-## One Feature at a Time
+1. Confirm the repository root with `pwd`.
+2. Read `progress.md`, `session-handoff.md`, and `feature_list.json`.
+3. Read `docs/ARCHITECTURE.md` and the active plan linked from `docs/PLANS.md`.
+4. Read only the product, frontend, data, security, or reliability docs relevant to the active feature.
+5. Run `./init.sh` on Bash or `./init.ps1` on PowerShell. Repair or record a failing baseline before adding scope.
+6. Work on the single dependency-ready feature marked `in_progress`.
 
-Keep exactly one feature `in_progress`. Do not begin a dependent feature until every listed dependency is `passing`, and do not bundle unrelated cleanup into the active feature.
+## Routing Map
 
-## Conventions
+- `docs/PRODUCT.md`: product promise, MVP scope, user journey, acceptance outcomes
+- `docs/ARCHITECTURE.md`: target system map, ownership, dependency rules, migration boundaries
+- `docs/FRONTEND.md`: screens, design system, responsive and accessibility rules
+- `docs/DATA_MODEL.md`: validated contracts, persistence model, privacy boundaries
+- `docs/API.md`: application-owned HTTP boundaries and fallback behavior
+- `docs/PLANS.md`: plan policy and active-plan index
+- `docs/QUALITY_SCORE.md`: current domain health and known gaps
+- `docs/RELIABILITY.md`: bootstrap, verification, runtime targets, golden journeys
+- `docs/SECURITY.md`: secrets, AI input, auth, database, and webcam safety
 
-- Detection logic (pose → action) lives in `src/pose/movementClassifier.js` and must stay decoupled from rendering — the render loop should never block on pose inference.
-- Game state changes flow one direction: pose → action → state → render. Do not let UI components mutate game state directly; go through `src/game/gameState.js`.
-- Prefer plain functions over classes for the pose/classification logic, keep them unit-testable in isolation from the DOM/canvas.
+## Working Contract
 
-## Model Guidance (for this session)
+### One Feature at a Time
 
-- Use **Terra** for general build tasks: UI screens, game loop wiring, obstacle spawning, styling.
-- Use **Sol** for the harder pose-detection math: landmark buffering, jump/squat thresholding, calibration logic.
+- Preserve reusable code, components, utilities, and proven boundaries unless the active plan justifies replacement.
+- Use one active feature. Do not start a dependency until its prerequisites are `passing`.
+- React owns application UI; Phaser owns the game loop and world rendering; MediaPipe inference runs independently from both.
+- Data flows through validated contracts. AI output is untrusted until it passes Zod validation.
+- Objective metrics and recommendations are deterministic. LLMs generate plans, blueprints, and coaching language; they do not calculate authoritative scores.
+- Never put raw pose landmarks or per-frame game state in global React state.
+- Webcam frames and landmarks stay on-device. Do not upload them.
+- UI code must call domain actions rather than mutating game, session, or persistence state directly.
+- Record architectural decisions in the active plan; update `docs/ARCHITECTURE.md` when an accepted boundary changes.
 
-## Out of Scope for MVP
+## Definition of Done
 
-Do not build: accounts/persistence, multiplayer, adaptive difficulty, posture feedback, additional exercises, AI-generated levels. These are post-hackathon roadmap items only.
+A feature is `passing` only when its observable acceptance criteria are met, every listed verification command has run, evidence is recorded in `feature_list.json`, affected docs are current, and the standard verification path succeeds. Placeholders and inspection-only claims are not passing evidence.
 
-## Completion Gate
-
-A feature is `passing` only when all of its `verification` steps have been run, observable evidence is recorded in `feature_list.json`, and the standard verification path succeeds. Do not mark placeholder, mocked, or manually unverified behavior as passing.
+Standard commands: `npm run verify` for the full gate, `npm test` for focused unit regression, `npm run lint`, `npm run typecheck`, and `npm run build`.
 
 ## End of Session
 
-Before stopping, update `feature_list.json`, `progress.md`, and `session-handoff.md` with the actual state, commands run, evidence, blockers, files changed, and one recommended next action. Leave the baseline restartable; if verification fails, record the failure and keep the feature non-passing.
+Before stopping, update the active plan, `feature_list.json`, `progress.md`, and `session-handoff.md` with actual commands, evidence, blockers, files changed, and one recommended next action. Update `docs/QUALITY_SCORE.md` when domain health changes. Leave the repository restartable.

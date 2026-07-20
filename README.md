@@ -1,59 +1,29 @@
 # AI Fitness Escape
 
-An AI-powered fitness game where your body becomes the controller. Perform real exercises (jump, squat) to help your character escape a monster in an endless runner.
+AI Fitness Escape turns a personalized workout into a browser-based adventure. An AI planner creates a structured workout, a level compiler maps it to game challenges, MediaPipe recognizes movement locally, Phaser runs the mission, and a deterministic analysis pipeline feeds an AI-written coaching recap.
 
-Built for people who work out alone at home and lose motivation to repetitive routines — this turns reps into game input, so you exercise to survive instead of to finish a set.
+The target is a hackathon MVP: one complete, privacy-preserving vertical slice on a documented Chromium reference setup, with deterministic/local fallbacks keeping the demo playable when AI or Supabase credentials are unavailable.
 
-## Status
+Presenter flow: [`docs/DEMO_RUNBOOK.md`](docs/DEMO_RUNBOOK.md)
 
-Hackathon MVP in progress. See [`docs/AI_Fitness_Escape_Final_Summary.md`](docs/AI_Fitness_Escape_Final_Summary.md) for the full pitch and [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) for the technical design.
+The movement library includes squat, jump, lunge, jumping jack, high knees, push-up, plank, left/right punches, and left/right side reaches. Proven squat/jump calibration and classification behavior is integrated behind the extensible movement registry rather than maintained as a separate application.
 
-## Category
-
-Apps for your life (consumer health).
-
-## Tech Stack
-
-- Pose detection: MediaPipe Pose (client-side, in-browser)
-- Rendering: HTML5 Canvas
-- Framework: React + Vite
-- Hosting: static (Vercel/Netlify/GitHub Pages)
-
-## Getting Started
+## Start Here
 
 ```bash
-npm install
+./init.sh
 npm run dev
 ```
 
-Open the local dev URL, allow camera access, and follow the on-screen calibration prompts (one jump, one squat) before the run starts.
+Read [AGENTS.md](AGENTS.md) for the agent workflow and [docs/PRODUCT.md](docs/PRODUCT.md) for the target MVP. The active migration sequence is indexed in [docs/PLANS.md](docs/PLANS.md).
 
-## Project Structure
+## Current Baseline
 
-```
-src/
-├── pose/           # webcam capture, pose engine, movement classifier
-├── calibration/     # calibration flow
-├── game/             # game state, obstacles, collision, render engine
-├── ui/                # React screens (calibration, game, game over)
-└── assets/          # sprites, sounds
-```
+- Runtime: Next.js 15 App Router, React 19, TypeScript 5.9
+- Product routes: guest onboarding, planning, automatic preparation, Phaser mission, and factual results
+- Implemented boundaries: executable Zod contracts, deterministic goal/profile-aware 5–7 stage planning with validated rationale, responsive briefing, typed pose/calibration adapters, and Vitest coverage
+- Implemented runtime: polished Phaser 3 Volcano Escape missions, eleven on-device MediaPipe movements, deterministic coaching, procedural action sound, and Playwright desktop/narrow hardening checks
+- Demo boundary: complete guest-local happy path; Supabase account/progress sync is deferred until after the hackathon walkthrough
+- Standard verification: `npm run verify`
 
-See `docs/ARCHITECTURE.md` for the full data-flow diagram and component breakdown.
-
-## Exercises Supported (MVP)
-
-| Exercise | Action |
-|---|---|
-| Jump | Jump over obstacle |
-| Squat | Slide under obstacle |
-
-Push-ups and additional exercises are planned post-hackathon (see roadmap in `docs/AI_Fitness_Escape_Final_Summary.md`).
-
-## Build Tooling
-
-This project is developed using Codex CLI (GPT-5.6) per hackathon rules.
-
-## License
-
-TBD
+The routed Next.js product and its current feature boundaries are authoritative.
