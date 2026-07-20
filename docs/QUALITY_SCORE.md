@@ -7,12 +7,12 @@ Grades describe verified current state, not target intent: `A` verified/stable, 
 | Domain | Grade | Current evidence | Key gap | Updated |
 | --- | --- | --- | --- | --- |
 | Pose and calibration | A | automatic all-family setup, versioned thresholds, all-eleven physical movement check, mirrored landmark overlay, camera recovery tests, and 16.9 ms inference | physical device-loss retry observation remains TD-005 | 2026-07-18 |
-| Gameplay | A | canonical encounters, eleven movement-matched hero actions, reactive hazards, animated volcano tension, portal cinematic, adaptive procedural music/effects, voice, physical x11 completion, and sub-25-ms cadence | replace procedural art/audio with a licensed production pack after the hackathon if desired | 2026-07-19 |
-| Workout planning | A | four goal-aware structures, 5/6/7 stage policy, profile-derived scaling/limitations, goal-specific replacements, validated rationale, profile-aware fallback, and desktop/narrow browser evidence | live provider phrasing remains optional | 2026-07-19 |
+| Gameplay | A | canonical encounters, eleven movement-matched hero actions, authoritative Ash Titan strike/dodge/block battle, animated volcano tension, portal cinematic, adaptive music/effects, voice, physical x11 completion, and sub-25-ms cadence | confirm boss readability from the physical standing mark during final rehearsal | 2026-07-20 |
+| Workout planning | A | four goal-aware 5/6/7-stage structures, warm-up/build/surge/peak load curve, validated unscored cooldown, profile-derived scaling/limitations, goal-specific replacements, and fallback | live provider phrasing remains optional | 2026-07-20 |
 | Level compilation | A | validated all-movement blueprint contracts, referential checks, deterministic fixtures, and Phaser objective mapping | broaden themes after the MVP | 2026-07-18 |
 | Coaching | A | deterministic metrics/recommendations, fact-preserving provider boundary, timeout/invalid fallback, result persistence/UI, and focused tests | live configured provider evidence remains optional for the guest-first MVP | 2026-07-18 |
 | Auth and progress | - | design only | Supabase setup, RLS, guest migration, persistence tests | 2026-07-17 |
-| Product UI | A | responsive onboarding/planner, automatic preparation with truthful preflight, live pose overlay/voice, polished factual results/replay, and browser accessibility/responsive hardening | two clean-profile physical rehearsals remain the release gate | 2026-07-19 |
+| Product UI | A | explicit Plan → AI to Action → Briefing flow, recurring Scout, visible four-chip rationale scan, Ash Titan/right-edge Storm Gate route, adventure icon, best-effort faded mission audio, one CTA, live pose/voice, guided cooldown, factual results, and responsive hardening | two clean-profile physical rehearsals remain the release gate | 2026-07-21 |
 
 ## Harness and Layers
 

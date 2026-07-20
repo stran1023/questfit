@@ -6,6 +6,7 @@ import "../styles.css";
 export const metadata: Metadata = {
   title: "AI Fitness Escape",
   description: "Turn a personalized workout into an interactive adventure.",
+  applicationName: "AI Fitness Escape",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {

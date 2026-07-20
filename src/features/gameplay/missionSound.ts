@@ -67,11 +67,12 @@ export async function startMissionMusic() {
   const audio = audioContext();
   if (!audio) return false;
   const startGeneration = musicGeneration;
-  await unlockMissionSound();
-  if (startGeneration !== musicGeneration) return false;
+  const unlocked = await unlockMissionSound();
+  if (startGeneration !== musicGeneration || !unlocked) return false;
   if (!musicGain) {
     musicGain = audio.createGain();
-    musicGain.gain.setValueAtTime(0.045, audio.currentTime);
+    musicGain.gain.setValueAtTime(0.0001, audio.currentTime);
+    musicGain.gain.linearRampToValueAtTime(0.045, audio.currentTime + 0.8);
     musicGain.connect(audio.destination);
   }
   if (!musicTimer) {
@@ -96,13 +97,21 @@ export function stopMissionMusic() {
   musicTimer = null;
   musicStep = 0;
   musicPaused = false;
-  musicGain?.disconnect();
+  const fadingGain = musicGain;
+  if (fadingGain && context?.state === "running") {
+    const now = context.currentTime;
+    fadingGain.gain.cancelScheduledValues(now);
+    fadingGain.gain.setValueAtTime(Math.max(0.0001, fadingGain.gain.value), now);
+    fadingGain.gain.linearRampToValueAtTime(0.0001, now + 0.32);
+    setTimeout(() => fadingGain.disconnect(), 340);
+  } else fadingGain?.disconnect();
   musicGain = null;
 }
 
 export async function unlockMissionSound() {
   const audio = audioContext();
   if (audio?.state === "suspended") await audio.resume().catch(() => undefined);
+  return audio?.state === "running";
 }
 
 export function playMissionSound(cue: MissionSoundCue) {

@@ -34,10 +34,12 @@ AI Fitness Escape turns a personalized guest workout into a body-controlled Volc
 | 3. Plan | Continue, choose goal/time/level, and generate the adventure | Preferences compile into a validated Volcano Escape briefing; provider mode remains honest. |
 | 4. Prepare | Select **Prepare for mission**, step back, and follow automatic spoken/visible setup | No lock-framing or capture button is required; saved calibration skips recording but still confirms live full-body readiness. |
 | 5. Launch | Stay in position through the spoken full-screen `3 · 2 · 1 · GO!`; the mission opens automatically | Energy rings and the gold `GO!` create the transition; there is no second launch button. Voice starts enabled and action sound remains an optional in-mission control. |
-| 6. Play | Follow the spoken encounter, target, and final-count cues; return to neutral after each action | The hero mirrors each movement family, the active hazard recoils before the next approaches, embers/lava and tension copy escalate, and verified actions produce XP, combo energy, and portal progress. |
-| 7. Escape | Complete the final objective | Transient hazards clear and the mission shows the exclusive **Volcano escaped** payoff. |
-| 8. Results | Keep presenting while the completion celebration automatically opens results after 2.6 seconds | The completion ring, accuracy, XP, strongest movement, and next-mission guidance are factual; replay and new-plan actions are obvious. |
-| 9. Replay | Select the next-adventure action and continue through preparation | Compatible saved calibration is reused; replay does not require new recording. |
+| 6. Build | Follow the warm-up, build, and surge cues; return to neutral after each action | Targets rise toward the peak while the hero mirrors each movement and verified actions produce XP, combo energy, and progress. |
+| 7. Battle | At **THE ASH TITAN AWAKENS**, follow **STRIKE NOW**, **DODGE THE ATTACK**, or **BLOCK THE IMPACT** | The generated guardian reacts directly to credited body actions; its health is a presentation of authoritative mission progress, not a second score. |
+| 8. Escape | Complete the peak objective | The Ash Titan reaches zero health, transient hazards clear, and the mission shows the exclusive **Volcano escaped** payoff. |
+| 9. Recover | Follow the guided march, shoulder release, and calm-breath sequence, or select **Finish cooldown** | Camera scoring and music are paused; cooldown is unscored and cannot change XP or accuracy. |
+| 10. Results | Continue from cooldown into results | The completion ring, accuracy, XP, strongest movement, and next-mission guidance are factual; replay and new-plan actions are obvious. |
+| 11. Replay | Select the next-adventure action and continue through preparation | Compatible saved calibration is reused; replay does not require new recording. |
 
 ## Short Saved-Setup Walkthrough — 2–3 Minutes
 
@@ -46,14 +48,16 @@ Use this version when judging time is limited. It is normal returning-guest beha
 1. Open the application with the previously saved guest profile and compatible calibration.
 2. Select **Continue adventure** and generate the mission.
 3. Show the briefing, then continue through preparation; point out that saved movement setup avoids rerecording while the camera still verifies readiness.
-4. Stay in frame for the automatic three-second launch, optionally enable sound once inside the mission, and complete the six standing objectives without repositioning the laptop.
-5. Show the escape celebration and factual results.
+4. Stay in frame for the automatic three-second launch, optionally enable sound once inside the mission, and complete the standing warm-up/build/peak arc without repositioning the laptop.
+5. Show direct strike/dodge reactions against the Ash Titan, finish the guided cooldown, then show factual results.
 
 ## Suggested Narration
 
 - “Your body is the controller; raw camera frames never leave this laptop.”
 - “The planner proposes the workout, but validated contracts and deterministic rules decide what is playable.”
 - “Each recognized move changes the game immediately—watch the encounter, combo, XP, and runner progress.”
+- “At the workout peak, those same verified movements become attacks and dodges against the Ash Titan; the game never invents a rep or a score.”
+- “Recovery is deliberate too: tracking pauses for a short unscored cooldown before the factual results.”
 - “The AI coach can phrase the recap, but it cannot rewrite the measured session facts.”
 - “For the hackathon we chose a reliable guest-local journey; accounts and cloud history are deliberately outside this demo claim.”
 
@@ -67,4 +71,4 @@ Use this version when judging time is limited. It is normal returning-guest beha
 
 ## Evidence Boundary
 
-The all-eleven movement mission, factual 11/11 results, 16.9 ms inference, cleanup, desktop/narrow layout, reduced motion, all encounter transitions, and completion presentation have recorded evidence. A live physical camera-disconnect walkthrough and Supabase behavior remain deferred and must not be claimed during judging.
+The all-eleven movement mission, factual results, 16.9 ms inference, cleanup, desktop/narrow layout, reduced motion, Ash Titan strike/dodge/block transitions, cooldown, and completion presentation have automated or recorded evidence. Two redesigned clean-profile physical rehearsals, a live physical camera-disconnect walkthrough, and Supabase behavior remain unverified and must not be claimed during judging.

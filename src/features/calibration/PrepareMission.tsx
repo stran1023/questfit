@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
+import { TrailGuide } from "@/features/guide/TrailGuide";
 import { startWebcam, stopWebcam } from "@/pose/captureWebcam.js";
 import { closePoseEngine, detectPose, initPoseEngine } from "@/pose/poseEngine.js";
 import {
@@ -237,6 +238,7 @@ export default function PrepareMission() {
       </section>
 
       <aside className="instruction-panel">
+        <TrailGuide compact message={step === "ready" ? "Trail is clear. Hold position!" : "I’ll launch when your full body is in frame."} mood={step === "ready" ? "cheering" : "pointing"} />
         <section className="preflight-card" aria-labelledby="preflight-title">
           <div className="preflight-heading">
             <div><p className="eyebrow">Presenter preflight</p><h2 id="preflight-title">{step === "ready" ? "All systems ready" : "Launch checks"}</h2></div>

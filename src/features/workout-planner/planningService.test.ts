@@ -42,7 +42,8 @@ describe("planning service", () => {
     const signatures = plans.map((plan) => plan.workout.exercises.map((exercise) => exercise.movement).join(","));
     expect(new Set(signatures).size).toBe(4);
     expect(plans.every((plan) => plan.workout.exercises.length === 6)).toBe(true);
-    expect(plans.every((plan) => plan.rationale.phases.at(0)?.phase === "warm-up" && plan.rationale.phases.at(-1)?.phase === "finish")).toBe(true);
+    expect(plans.every((plan) => plan.rationale.phases.at(0)?.phase === "warm-up" && plan.rationale.phases.at(-1)?.phase === "peak")).toBe(true);
+    expect(plans.every((plan) => plan.rationale.cooldown.steps.length === 3)).toBe(true);
     const highImpact = new Set(["jump", "jumping-jack", "high-knees"]);
     expect(plans.every((plan) => plan.workout.exercises.every((exercise, index, exercises) => index === 0 || !highImpact.has(exercise.movement) || !highImpact.has(exercises[index - 1].movement)))).toBe(true);
   });

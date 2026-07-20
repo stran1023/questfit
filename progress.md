@@ -2,15 +2,72 @@
 
 ## Current Verified State
 
-- Last updated: 2026-07-19
+- Last updated: 2026-07-21
 - Objective: migrate the verified endless-runner prototype to the workout-to-adventure product
 - Active feature: `demo-liftoff`
 - Canonical plan: `docs/exec-plans/active/product-transformation.md`
-- Baseline: `npm run verify` passes lint, strict typecheck, 6 core pose/calibration tests, 86 Vitest tests, ten system-Chrome Playwright checks, and Next.js production builds for all current application routes
+- Baseline: `npm run verify` passes lint, strict typecheck, 6 core pose/calibration tests, 94 Vitest tests, ten system-Chrome Playwright checks, and Next.js production builds for all current application routes
 - Known baseline issue: npm audit reports two moderate vulnerabilities
-- Next action: complete the real-camera guest journey twice using `docs/DEMO_RUNBOOK.md`, then record the observed rehearsal evidence
+- Next action: run the redesigned real-camera guest journey twice from clean Chrome profiles and record physical readability, recognition, autoplay/silent-mode behavior, voice/music balance, and recovery evidence
 
 ## Session Log
+
+### 2026-07-21 — Adventure immersion pass
+
+- Replaced the nested text rationale with an always-visible four-chip/four-card explanation derived from validated plan/profile data; limitation-aware safety reasoning is prioritized in the scan.
+- Rebuilt the route as Trailhead → Lava Steps → Ash Titan → rightmost Storm Gate, and kept the Titan visible as a distant Phaser threat before the direct battle.
+- Mission audio now attempts a smooth automatic fade-in, falls back honestly to Play music when policy blocks it, preserves mute/pause/cleanup, and fades on disable/exit.
+- Generated and wired a project-owned mountain-route/portal app icon, visually accepted at 64px. Desktop and 390px briefing checks have no overflow; `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build. Review accepted 12/12.
+
+### 2026-07-21 — Scout recurring adventure guide
+
+- Added Scout as one shared, accessible AI trail guide across onboarding, planning, AI to Action, briefing, camera preparation, live mission/cooldown, and results.
+- Generated and documented a project-owned four-pose transparent character sheet; CSS selects waving, route-checking, pointing, and cheering poses without changing any domain state.
+- Added lightweight route/terrain motifs, character motion, button-press feedback, and reduced-motion fallbacks.
+- Desktop browser inspection confirmed the recurring character artwork and hierarchy. `./init.sh` passed lint, strict typecheck, 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build; review accepted 12/12.
+
+### 2026-07-21 — Scannable action-first Adventure Briefing
+
+- Compressed the initial briefing into mission identity, five stat cards, four visual checkpoints, a horizontal movement route, Ash Titan art, and one Start Adventure CTA.
+- Moved the AI pipeline, full objective instructions, rationale, fallback notice, and safety context behind one native Mission details disclosure.
+- Kept every value derived from validated plan/blueprint data and intentionally avoided fictional distance/weather for the indoor mission.
+- Component and desktop/narrow browser checks pass. `./init.sh` passed lint, strict typecheck, 6 core tests, 93 Vitest tests, 10 Playwright checks, and production build; review accepted 12/12.
+
+### 2026-07-21 — Guided AI-to-Action planning journey
+
+- Replaced inline planner results with the explicit `/plan` → `/ai-to-action` → `/briefing` journey; the animated middle screen owns the real generation call, honest retry state, validation, and automatic handoff.
+- Added fail-closed, schema-validated request/result session storage so corrupt or mismatched route data cannot become a mission and selected choices survive retry/edit recovery.
+- Rebuilt briefing as a full-width sport/fantasy experience with cinematic hierarchy, responsive objective cards, the visible AI-to-game pipeline, story arc, and guided cooldown handoff.
+- Desktop and narrow Playwright passed ordered navigation, provider failure recovery, goal-aware exclusions, reduced motion, and overflow checks. `./init.sh` passed lint, strict typecheck, 6 core tests, 92 Vitest tests, 10 Playwright checks, and production build; review accepted 12/12.
+
+### 2026-07-20 — Sport-first redesign and visible AI-to-game pipeline
+
+- User explicitly moved demo rehearsal behind a hybrid redesign and approved modern fitness UI outside missions, cinematic fantasy inside, direct movement combat, and a guided unscored cooldown.
+- Split the work into `sport-ui-pipeline`, `phased-workout-arc`, `boss-story-gameplay`, then `demo-liftoff`; persistence remains deferred.
+- Reworked welcome, profile, planner, briefing, and results with shorter copy, sport typography, angular actions, stronger stage hierarchy, and existing project-owned volcano art.
+- Added a responsive six-stage Profile → Policy → AI plan → Game map → Body input → Score pipeline with truthful input/load, movement/encounter, and target/XP mappings.
+- Chrome accepted desktop 1440×900 and narrow 390×844 layouts; narrow document and scroll widths both measured 375px with a readable two-column pipeline.
+- Verification passed lint, strict typecheck, 6 core tests, 87 Vitest tests, 10 Playwright checks, git diff checking, JSON parsing, and production build. `phased-workout-arc` is active.
+
+### 2026-07-20 — Phased workout arc and guided cooldown
+
+- Replaced flat phase labels with a deterministic warm-up → build → surge → peak curve and stage-specific target scaling.
+- Added validated duration-aware recovery metadata and carried it through the mission session with a backward-compatible safe default.
+- Mission completion saves authoritative results, pauses scoring and music, then presents a timed three-step cooldown with an explicit finish action; recovery cannot change XP or accuracy.
+- `./init.sh` passed lint, strict typecheck, 6 core tests, 88 Vitest tests, 10 Playwright checks, and production build. Review accepted 12/12; `boss-story-gameplay` is active.
+
+### 2026-07-20 — Direct-movement Ash Titan battle
+
+- Added an Enter → Awaken → Battle → Recover story preview and a cinematic Ash Titan encounter with strike, dodge, and block telegraphs.
+- Boss health/state/reactions derive only from mission snapshots and credited movements; Phaser remains unable to score or advance gameplay.
+- Generated and validated the original `public/game/volcanic-guardian.png` RGBA asset using the built-in image tool and local chroma removal; documented prompt intent and provenance in `public/game/README.md`.
+- Active battle imagery was visually accepted at 1440×900; `./init.sh` passed lint, strict typecheck, 6 core tests, 91 Vitest tests, 10 Playwright checks, and production build. Review accepted 12/12; `demo-liftoff` is active.
+
+### 2026-07-20 — Redesigned demo packaging
+
+- Updated the presenter runbook for warm-up/build/surge/peak pacing, Ash Titan strike/dodge/block combat, guided cooldown, and current evidence boundaries.
+- `CAPTURE_VISUAL_EVIDENCE=1 npm run test:e2e` passed all 10 desktop/narrow checks and recorded responsive plan, boss, cooldown-to-results, and results imagery. The narrow 390×844 boss battle remains readable without overflow.
+- Automated release work is complete on the passing 91-test baseline. `demo-liftoff` remains active because its two clean-profile real-camera rehearsals require a person in frame and cannot be replaced by synthetic movement events.
 
 ### 2026-07-19 — Ordered hackathon demo polish
 

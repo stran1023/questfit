@@ -1,17 +1,17 @@
 # Evaluator Rubric
 
-Feature reviewed: `adaptive-mission-music`
+Feature reviewed: `adventure-immersion-pass`
 
-Review date: 2026-07-19
+Review date: 2026-07-21
 
 | Category | Score (0–2) | Evidence |
 | --- | --- | --- |
-| Correctness | 2 | The explicit Music + effects control starts continuous procedural audio after a gesture; progress selects calm/rising/escape layers, pause suppresses notes, resume restarts, and completion retains music through the portal before results cleanup. |
-| Verification | 2 | Unit tests cover exact tier boundaries and existing cue priority. Desktop and narrow Chrome enable audio, verify all tier transitions, complete every encounter, and navigate to results; full verification passes. |
-| Scope discipline | 2 | Music reads only authoritative progress/status and cannot publish events, score, or advance objectives. Voice remains a separate control and the procedural implementation adds no network or licensed asset dependency. |
-| Reliability | 2 | Late async unlock is generation-cancelled after disable, unsupported Web Audio degrades silently, scheduler/gain/context cleanup is explicit, and `npm run verify` plus the 100/100 harness audit pass. |
-| Maintainability | 2 | Pure tier selection, one audio adapter, documented gain/gesture/cleanup boundaries, and stable public start/pause/stop functions keep the subsystem understandable and replaceable. |
-| Handoff readiness | 2 | Feature evidence and canonical architecture/frontend/reliability/runbook/quality docs are current; `demo-liftoff` is the sole active successor and calls out physical music/voice balance. |
+| Correctness | 2 | The rationale is a visible four-chip/four-card scan; Ash Titan and the rightmost Storm Gate are explicit map destinations; music attempts autoplay with honest recovery/fades; the new icon is wired through App Router metadata. |
+| Verification | 2 | Focused component/sound/scene checks, desktop and 390px visual inspection, 64px icon inspection, responsive browser journeys, and the full standard gate pass. |
+| Scope discipline | 2 | Planning values remain validated data, Phaser remains presentation-only, audio cannot affect mission state, and icon/art changes are isolated presentation assets. |
+| Reliability | 2 | `./init.sh` passes lint, strict typecheck, 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build. Blocked autoplay degrades to an explicit control. |
+| Maintainability | 2 | Architecture/frontend/reliability docs record ownership and policy constraints; generated asset provenance and feature evidence are durable. |
+| Handoff readiness | 2 | Tracker, active plan, progress, quality score, and session handoff return physical demo rehearsal to the sole active slice. |
 | **Total** | **12/12** | |
 
 ## Verdict
@@ -20,5 +20,4 @@ Review date: 2026-07-19
 
 ## Follow-up
 
-- During the two real-camera rehearsals, enable Music + effects immediately after mission start and confirm the laptop speaker level supports voice comprehension from the standing mark.
-- Keep music opt-in unless the product adds a prior user gesture that can legally and reliably unlock Web Audio before mission launch.
+- Rehearsal must verify actual laptop silent-mode behavior and whether automatic audio is allowed by the judge browser profile.

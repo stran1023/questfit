@@ -31,8 +31,15 @@ It does not include roadmap-only social, multiplayer, seasonal, wearable, medica
 17. Polish the factual results finale and replay/new-plan actions.
 18. Add a cinematic body-controlled mission pass with movement-matched hero actions, reactive hazards, environmental motion, escalation, and portal finale.
 19. Add an opt-in procedural soundtrack that escalates with mission progress and cleans up safely.
-20. Physically rehearse the guest happy path twice with a clean judged navigation surface and presenter runbook.
-21. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
+20. Refresh the non-mission journey with a compact sport-first interface and a truthful visual AI-to-game pipeline.
+21. Restructure every plan into warm-up, build, peak, and a guided non-scored cooldown.
+22. Add a cinematic monster confrontation where validated movement events directly attack or dodge and Phaser remains presentation-only.
+23. Split generation into Plan → AI to Action → Adventure Briefing with validated route handoff, animated progress, failure recovery, and a premium responsive briefing.
+24. Compress the Adventure Briefing into a ten-second visual scan with optional detail and one primary mission action.
+25. Add a recurring project-owned Trail Guide, curated motivational moments, outdoor route motifs, and reduced-motion-safe micro-interactions across the judged journey.
+26. Redesign plan rationale, expose Ash Titan and the right-side Storm Gate on the route, add best-effort auto-start music with fades, and replace the app icon.
+27. Physically rehearse the redesigned guest happy path twice with a clean judged navigation surface and presenter runbook.
+28. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
 
 ## Verification
 
@@ -61,6 +68,10 @@ Every feature owns observable steps in `feature_list.json`. The standard gate wi
 - 2026-07-18: corrected the feature graph so optional Supabase/leaderboard breadth no longer blocks guest-first hackathon completion; the onboarding slice no longer implies fake remote sign-in success.
 - 2026-07-18: narrowed the judged hackathon walkthrough to the guest happy path and prioritized a dedicated Phaser-polish slice before all Supabase work.
 - 2026-07-18: preserved mission-controller authority; Phaser effects, encounters, and sound may derive from snapshots but cannot calculate or mutate gameplay facts.
+- 2026-07-20: user explicitly replaced demo rehearsal as the active slice with a hybrid redesign: modern sport UI outside missions, cinematic fantasy inside, a visible AI-to-game pipeline, phased exercise programming, a direct body-controlled monster battle, and a guided unscored cooldown. Demo rehearsal now follows those slices.
+- 2026-07-21: the planning journey uses three explicit React routes. The plan route validates and stores the request, AI to Action owns the one server generation call and honest progress/retry states, and the briefing validates the stored result before it can save a mission. Route animation is presentation only and reduced-motion safe.
+- 2026-07-21: the briefing uses progressive disclosure. Validated mission identity, workload, route beats, and reward stay visible; AI pipeline, instructions, rationale, fallback context, and cooldown detail remain in one accessible disclosure. Indoor missions do not fabricate outdoor distance or weather.
+- 2026-07-21: one React-owned Trail Guide carries curated welcome, thinking, pointing, motivating, and celebration moments across routes. Character art and decorative outdoor motifs are presentation-only and cannot become a second coaching, scoring, safety, or gameplay authority.
 
 ## Progress
 
@@ -104,4 +115,4 @@ Every feature owns observable steps in `feature_list.json`. The standard gate wi
 
 ## Next Action
 
-Run the exact real-camera guest sequence twice from clean Chrome profiles, record observed latency/cue behavior in the demo runbook, then commit and push the release candidate.
+Complete two clean-profile physical `demo-liftoff` rehearsals, including audio-policy and standing-distance map/boss observations.

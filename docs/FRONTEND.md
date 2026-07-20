@@ -7,6 +7,7 @@
 - Movement first: instructions and feedback must be readable from several feet away.
 - Minimal gameplay HUD: show only the current objective, progress, combo/XP, and danger or recovery state.
 - Reward progress without obscuring exercise safety or incoming challenges.
+- Use one recurring Trail Guide with brief context-aware dialogue; the guide adds personality but never duplicates long instructions or authoritative facts.
 
 ## Canonical Screens
 
@@ -15,8 +16,9 @@
 | Home | guest/sign-in entry, level/XP/streak for returning users, generate-adventure CTA |
 | Welcome and authentication | product promise, sign up, sign in, guest continuation, authentication error/retry |
 | Profile onboarding | height, weight, activity frequency, goal, fitness level, optional movement limitations, validation and privacy explanation |
-| Workout generator | goal, time, fitness level, activity frequency, movement considerations; validating, profile-aware fallback, retry, rationale, phased success briefing |
-| Adventure briefing | theme, duration, difficulty, exercise objectives, rewards, begin CTA |
+| Workout generator | goal, time, fitness level, activity frequency, movement considerations; validated handoff to generation |
+| AI to Action | animated build progress, changing status, provider/fallback honesty, error/retry, automatic briefing transition |
+| Adventure briefing | ten-second scan of title, duration, difficulty, movement count, checkpoints, reward, compact route, optional technical/exercise detail, one Start Adventure CTA |
 | Movement setup | camera permission, automatic standing/floor readiness, safety notice, distance-readable prompts, audiovisual countdown, automatic per-family sampling, correction/retry, completion |
 | Gameplay | mirrored pose panel with live landmark skeleton, Phaser mission, current objective and progress, spoken/visible coaching, tracking recovery |
 | Mission complete | completion, accuracy, XP, rewards, continue |
@@ -36,13 +38,15 @@ The Volcano Escape world uses a project-owned illustrated volcanic valley, lava 
 
 For the judged guest route, the briefing presents six standing objectives in a stable order: jumping jack, squat, left punch, right punch, high knees, and jump. This keeps the camera setup consistent while alternating cardio, lower-body, and directional actions.
 
-The briefing labels each exercise by workout phase—warm-up, primary work, variation, peak, or finale—and includes a compact **Why this plan** panel with intensity and observable policy reasons. Do not show raw blueprint template IDs as user-facing encounter promises. Goal-aware plans remain five to seven stages and use goal-specific replacements when a recognized limitation excludes an exercise.
+The briefing labels each scored exercise by an increasing workout phase—warm-up, build, surge, or peak—and includes a compact **Why this plan** panel with intensity and observable policy reasons. After peak completion, show a short validated three-step guided cooldown with camera scoring paused and an honest finish-early action. Do not show raw blueprint template IDs as user-facing encounter promises. Goal-aware plans remain five to seven stages and use goal-specific replacements when a recognized limitation excludes an exercise.
 
 Successful movement events produce immediate XP/ring feedback; every third combo produces a larger surge. Misses show a short recovery warning. Objective changes replace the encounter without changing mission authority, and completion clears transient hazards before revealing the escape portal and results-ready celebration. In-world objective, mission state, runner position, combo, XP, and progress still mirror the authoritative React snapshot.
 
 The cinematic layer makes body input visibly control the hero. Jumps leap, squats duck, lunges stride, high knees sprint, jumping jacks power up, punches strike directionally, reaches lean directionally, push-ups drive low, and planks raise a shield. Credited actions recoil the current hazard before the next one approaches. Ember drift, lava glow, and the `VOLCANO STIRS` → `ERUPTION RISING` → `PORTAL IN SIGHT` arc add urgency; reduced motion replaces travel and shake with direct opacity feedback. The finale performs the last action, raises the eruption, and pulls the hero through the portal before automatic results navigation.
 
-The **Music + effects** control is off initially because browsers require a user gesture for Web Audio. Enabling it starts a continuous low-volume procedural adventure theme and action feedback. The theme moves through calm, rising, and escape arrangements at the same progress boundaries as the visible tension arc, pauses with the mission, and stops on results. Voice remains independently enabled and louder/clearer than the music bus.
+The final third introduces the Ash Titan. The briefing previews Enter → Awaken → Battle → Recover; the scene maps punch/cardio moves to direct strikes and jump/squat/lunge/reach/plank moves to dodge or block telegraphs. Boss health is derived from authoritative mission progress, reaches zero only after mission completion, and cannot affect scoring.
+
+The mission attempts to start **Music + effects** automatically with a short fade-in. If browser or device policy keeps audio suspended, the control says **Play music** and remains the explicit recovery gesture. The theme moves through calm, rising, and escape arrangements at the same progress boundaries as the visible tension arc, pauses with the mission, and fades out on disable/results. Voice remains independently enabled and louder/clearer than the music bus.
 
 Preparation includes a presenter preflight card for camera/model startup, full-body framing, movement setup compatibility, assistant voice availability, and validated mission stages. It reports truthful checking, ready, and attention states but adds no launch button: stable tracking still starts the countdown automatically. During play, voice announces the encounter, set stage, target, and movement instruction; larger sets suppress low-value per-repetition chatter and emphasize halfway plus the final three repetitions.
 

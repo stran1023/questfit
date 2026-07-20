@@ -42,8 +42,12 @@ type PlanRationale = {
   reasons: string[]
   phases: Array<{
     exerciseId: string
-    phase: 'warm-up' | 'primary' | 'variation' | 'peak' | 'finish'
+    phase: 'warm-up' | 'build' | 'surge' | 'peak'
   }>
+  cooldown: {
+    durationSeconds: number
+    steps: [string, string, string]
+  }
 }
 
 type MovementEvent = {
@@ -90,6 +94,7 @@ type CoachSummary = {
 - Each movement registry entry declares mode, detector family, calibration requirements, minimum landmark visibility, neutral/rearm rules, confidence policy, and compatible gameplay templates.
 - Generated workout or blueprint validation failures return deterministic safe fallback content plus retryable, path-specific issues.
 - Plan rationale is bounded presentation metadata linked by validated exercise IDs. It explains observable inputs and policy outcomes; it never stores or exposes model chain-of-thought.
+- Cooldown metadata is validated guidance transported with the mission session. It is unscored and cannot create movement events, XP, or accuracy changes.
 
 ## Persistence Model
 

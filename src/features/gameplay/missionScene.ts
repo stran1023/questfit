@@ -8,6 +8,7 @@ import {
   type EncounterKind,
   type RunnerAction,
 } from "./missionPresentation";
+import { bossBattleView, bossMoveFor } from "./bossBattle";
 
 export const missionSceneUpdateEvent = "ai-fitness-escape:scene-update";
 
@@ -73,6 +74,11 @@ export function createMissionScene(
     private lavaGlow!: PhaserType.GameObjects.Rectangle;
     private embers: Array<{ node: PhaserType.GameObjects.Arc; speed: number }> = [];
     private completionLayer?: PhaserType.GameObjects.Container;
+    private boss!: PhaserType.GameObjects.Container;
+    private bossSprite!: PhaserType.GameObjects.Image;
+    private bossHealthFill!: PhaserType.GameObjects.Rectangle;
+    private bossStory!: PhaserType.GameObjects.Text;
+    private bossTelegraph!: PhaserType.GameObjects.Text;
     private previousUpdate?: MissionSceneUpdate;
     private currentEncounter?: string;
     private updateListener?: EventListener;
@@ -81,6 +87,7 @@ export function createMissionScene(
     preload() {
       this.load.image("volcano-escape-background", "/game/volcano-escape-bg.png");
       this.load.image("fitness-runner", "/game/runner.png");
+      this.load.image("volcanic-guardian", "/game/volcanic-guardian.png");
     }
 
     create() {
@@ -90,6 +97,7 @@ export function createMissionScene(
       this.add.image(480, 270, "volcano-escape-background").setDisplaySize(960, 540).setFlipX(true);
       this.add.rectangle(480, 270, 960, 540, 0x020617, 0.18);
       this.createAtmosphere();
+      this.createBoss();
       this.add.rectangle(20, 18, 370, 154, 0x020617, 0.7).setOrigin(0).setStrokeStyle(1, 0x94a3b8, 0.18);
       this.add.rectangle(760, 20, 180, 70, 0x020617, 0.62).setOrigin(0).setStrokeStyle(1, 0x94a3b8, 0.14);
       this.add.rectangle(480, 501, 890, 38, 0x020617, 0.68);
@@ -138,6 +146,44 @@ export function createMissionScene(
       const runner = this.add.container(118, 365, [shadow, glow, sprite]).setDepth(10);
       if (!this.reducedMotion) this.tweens.add({ targets: glow, scale: 1.18, alpha: 0.04, yoyo: true, repeat: -1, duration: 620, ease: "Sine.easeInOut" });
       return runner;
+    }
+
+    private createBoss() {
+      const aura = this.add.circle(0, 18, 112, 0xf97316, 0.12).setStrokeStyle(4, 0xfb923c, 0.3);
+      this.bossSprite = this.add.image(0, 0, "volcanic-guardian").setDisplaySize(250, 300);
+      const healthBack = this.add.rectangle(-112, -174, 224, 12, 0x1e293b, 0.95).setOrigin(0, 0.5).setStrokeStyle(2, 0xf8fafc, 0.25);
+      this.bossHealthFill = this.add.rectangle(-112, -174, 224, 12, 0xef4444, 1).setOrigin(0, 0.5);
+      this.bossStory = this.add.text(0, -210, "", { fontFamily: "system-ui", fontSize: "15px", color: "#fed7aa", fontStyle: "bold", stroke: "#431407", strokeThickness: 4 }).setOrigin(0.5).setLetterSpacing(1.6);
+      this.bossTelegraph = this.add.text(0, 170, "", { fontFamily: "system-ui", fontSize: "17px", color: "#fef3c7", fontStyle: "bold", stroke: "#7c2d12", strokeThickness: 5 }).setOrigin(0.5).setLetterSpacing(1.2);
+      this.boss = this.add.container(745, 287, [aura, this.bossSprite, healthBack, this.bossHealthFill, this.bossStory, this.bossTelegraph]).setDepth(7).setVisible(false);
+      if (!this.reducedMotion) this.tweens.add({ targets: aura, scale: 1.12, alpha: 0.04, yoyo: true, repeat: -1, duration: 680 });
+    }
+
+    private renderBoss(update: MissionSceneUpdate, credited: boolean, creditedTarget = update.target) {
+      const view = bossBattleView(update.snapshot, update.target);
+      const creditedMove = bossMoveFor(creditedTarget);
+      host.dataset.bossState = view.state;
+      host.dataset.bossMapPosition = view.state === "approach" ? "distant-center" : "battle-right";
+      host.dataset.bossHealth = String(view.health);
+      host.dataset.bossMove = view.move;
+      this.boss.setVisible(true);
+      if (view.state === "approach") this.boss.setPosition(586, 255).setScale(0.52).setAlpha(0.48);
+      else this.boss.setPosition(745, 287).setScale(1).setAlpha(view.state === "defeated" ? 0.22 : 1);
+      this.encounter?.setVisible(view.state === "approach");
+      this.bossHealthFill.width = 224 * (view.health / 100);
+      this.bossStory.setText(view.story);
+      this.bossTelegraph.setText(view.telegraph);
+      if (view.state === "defeated") this.boss.setAngle(7); else this.boss.setAngle(0);
+      if (!credited || view.state === "approach" || view.state === "defeated") return;
+      host.dataset.bossAction = creditedMove;
+      if (this.reducedMotion) {
+        this.bossSprite.setTint(creditedMove === "attack" ? 0xffffff : 0x67e8f9);
+        this.time.delayedCall(150, () => this.bossSprite.clearTint());
+      } else if (creditedMove === "attack") {
+        this.tweens.add({ targets: this.boss, x: "+=26", angle: 4, duration: 110, yoyo: true, ease: "Quad.easeOut" });
+      } else {
+        this.tweens.add({ targets: this.boss, scale: 1.06, duration: 120, yoyo: true, ease: "Sine.easeInOut" });
+      }
     }
 
     private createAtmosphere() {
@@ -218,10 +264,12 @@ export function createMissionScene(
       host.dataset.encounter = presentation.kind;
       const title = this.add.text(0, -88, encounterStageTitle(target, progress).toUpperCase(), { fontFamily: "system-ui", fontSize: "15px", color: "#f8fafc", fontStyle: "bold" }).setOrigin(0.5).setLetterSpacing(1.4);
       const instruction = this.add.text(0, -64, presentation.instruction, { fontFamily: "system-ui", fontSize: "18px", color: `#${presentation.accent.toString(16).padStart(6, "0")}`, fontStyle: "bold" }).setOrigin(0.5);
-      this.encounter = this.add.container(704, 340, [this.drawEncounter(presentation.kind, presentation.color, presentation.accent), title, instruction]).setDepth(8);
+      const destinationX = presentation.kind === "storm-gate" ? 824 : 704;
+      host.dataset.encounterX = String(destinationX);
+      this.encounter = this.add.container(destinationX, 340, [this.drawEncounter(presentation.kind, presentation.color, presentation.accent), title, instruction]).setDepth(8);
       if (!this.reducedMotion) {
-        this.encounter.setX(846).setScale(0.72).setAlpha(0);
-        this.tweens.add({ targets: this.encounter, x: 704, scale: 1, alpha: 1, duration: 520, ease: "Back.easeOut" });
+        this.encounter.setX(900).setScale(0.72).setAlpha(0);
+        this.tweens.add({ targets: this.encounter, x: destinationX, scale: 1, alpha: 1, duration: 520, ease: "Back.easeOut" });
       }
     }
 
@@ -325,6 +373,7 @@ export function createMissionScene(
         else this.showEncounter(update.target, update.encounter ?? { index: 1, total: 1 });
         if (feedback?.missAdded) this.showMissFeedback();
       }
+      this.renderBoss(update, Boolean(feedback?.xpGained), feedback?.objectiveChanged ? this.previousUpdate?.target ?? update.target : update.target);
       if (this.reducedMotion) this.player.x = view.playerX;
       else this.tweens.add({ targets: this.player, x: view.playerX, duration: 280, ease: "Cubic.easeOut" });
       this.previousUpdate = update;

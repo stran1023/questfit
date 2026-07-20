@@ -90,9 +90,14 @@ function excludedMovements(request: WorkoutRequest) {
 }
 
 function phaseSequence(count: number): PlanRationale["phases"][number]["phase"][] {
-  if (count === 5) return ["warm-up", "primary", "variation", "peak", "finish"];
-  if (count === 6) return ["warm-up", "primary", "primary", "variation", "peak", "finish"];
-  return ["warm-up", "warm-up", "primary", "primary", "variation", "peak", "finish"];
+  if (count === 5) return ["warm-up", "build", "build", "surge", "peak"];
+  if (count === 6) return ["warm-up", "build", "build", "surge", "peak", "peak"];
+  return ["warm-up", "warm-up", "build", "build", "surge", "peak", "peak"];
+}
+
+export function stageLoadMultiplier(index: number, count: number) {
+  const phase = phaseSequence(count)[index];
+  return { "warm-up": 0.72, build: 0.9, surge: 1, peak: 1.12 }[phase];
 }
 
 function intensityFor(request: WorkoutRequest): PlanRationale["intensity"] {
@@ -146,7 +151,13 @@ export function createPlanRationale(request: WorkoutRequest, workout: WorkoutPla
   if (flags.shoulder) reasons.push("Reported upper-body concerns remove overhead, punching, reaching, and floor-loading movements.");
   if (flags.floor) reasons.push("Reported floor or space constraints are respected by keeping the mission standing.");
   const phases = phaseSequence(workout.exercises.length).map((phase, index) => ({ exerciseId: workout.exercises[index].id, phase }));
-  return planRationaleSchema.parse({ summary: goalSummary[request.goal], intensity, reasons: reasons.slice(0, 6), phases });
+  return planRationaleSchema.parse({
+    summary: goalSummary[request.goal], intensity, reasons: reasons.slice(0, 6), phases,
+    cooldown: {
+      durationSeconds: request.durationMinutes === 10 ? 15 : request.durationMinutes === 15 ? 20 : 25,
+      steps: ["Slow march and settle your breathing", "Release shoulders and shake out your arms", "Stand tall for three calm breaths"],
+    },
+  });
 }
 
 export function isWorkoutPolicyCompliant(request: WorkoutRequest, workout: WorkoutPlan) {

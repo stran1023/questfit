@@ -6,7 +6,7 @@ import {
   type WorkoutPlan,
 } from "@/contracts";
 import type { PlanRationale, WorkoutRequest } from "./planningSchemas";
-import { createPlanRationale, isWorkoutPolicyCompliant, restSecondsFor, selectPlannedMovements, targetMultiplier } from "./planningPolicy";
+import { createPlanRationale, isWorkoutPolicyCompliant, restSecondsFor, selectPlannedMovements, stageLoadMultiplier, targetMultiplier } from "./planningPolicy";
 
 export type PlanningResult = {
   source: "personalized" | "fallback";
@@ -33,7 +33,7 @@ export const deterministicWorkoutPlanner: WorkoutPlannerAdapter = async (request
       id: `${workoutId}-${index + 1}-${exercise.movement}`,
       movement: exercise.movement,
       mode: "reps" as const,
-      target: Math.max(1, Math.round(exercise.baseTarget * multiplier)),
+      target: Math.max(1, Math.round(exercise.baseTarget * multiplier * stageLoadMultiplier(index, selected.length))),
       restSeconds: restSecondsFor(request, exercise.movement),
     })),
   } satisfies WorkoutPlan;

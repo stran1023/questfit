@@ -6,6 +6,7 @@ import {
   type WorkoutPlan,
 } from "@/contracts";
 import { calibrationThresholdsSchema, type CalibrationThresholds } from "./calibrationDomain";
+import { cooldownPlanSchema, type CooldownPlan } from "@/features/workout-planner/planningSchemas";
 
 const missionKey = "ai-fitness-escape:mission-v1";
 export const thresholdsKey = "ai-fitness-escape:calibration-profile:v1";
@@ -14,13 +15,20 @@ const poseModelVersion = "mediapipe-pose-landmarker-lite-f16-v1";
 export type MissionSession = {
   workout: WorkoutPlan;
   adventure: AdventureBlueprint;
+  cooldown: CooldownPlan;
 };
 
-export function saveMissionSession(session: MissionSession) {
+const defaultCooldown: CooldownPlan = {
+  durationSeconds: 15,
+  steps: ["Slow march and settle your breathing", "Release shoulders and shake out your arms", "Stand tall for three calm breaths"],
+};
+
+export function saveMissionSession(session: Omit<MissionSession, "cooldown"> & { cooldown?: CooldownPlan }) {
   const workout = workoutPlanSchema.parse(session.workout);
   const adventure = validateAdventureForWorkout(session.adventure, workout);
   if (!adventure.success) throw new Error("Mission data is not playable.");
-  sessionStorage.setItem(missionKey, JSON.stringify({ workout, adventure: adventure.data }));
+  const cooldown = cooldownPlanSchema.parse(session.cooldown ?? defaultCooldown);
+  sessionStorage.setItem(missionKey, JSON.stringify({ workout, adventure: adventure.data, cooldown }));
 }
 
 export function loadMissionSession(): MissionSession | null {
@@ -28,12 +36,12 @@ export function loadMissionSession(): MissionSession | null {
   if (!serialized) return null;
 
   try {
-    const raw = JSON.parse(serialized) as { workout?: unknown; adventure?: unknown };
+    const raw = JSON.parse(serialized) as { workout?: unknown; adventure?: unknown; cooldown?: unknown };
     const workout = workoutPlanSchema.parse(raw.workout);
     const adventure = adventureBlueprintSchema.parse(raw.adventure);
     const validated = validateAdventureForWorkout(adventure, workout);
     if (!validated.success) return null;
-    return { workout, adventure: validated.data };
+    return { workout, adventure: validated.data, cooldown: cooldownPlanSchema.parse(raw.cooldown ?? defaultCooldown) };
   } catch {
     return null;
   }

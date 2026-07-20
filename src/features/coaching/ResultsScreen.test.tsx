@@ -22,7 +22,7 @@ describe("session results", () => {
     expect(screen.getByText(`${result.metrics.completedTargets}/${result.metrics.plannedTargets}`)).toBeInTheDocument();
     expect(screen.getByText(`${result.metrics.accuracy}%`)).toBeInTheDocument();
     expect(screen.getByLabelText(`${result.metrics.completionRate}% mission completion`)).toBeVisible();
-    expect(screen.getByText("Assistant recap · grounded in session facts")).toBeInTheDocument();
+    expect(screen.getByText("AI recap · facts locked")).toBeInTheDocument();
     expect(screen.getByRole("link", { name: "Replay this adventure" })).toHaveAttribute("href", "/prepare");
     expect(screen.getByRole("link", { name: "Build a new plan" })).toHaveAttribute("href", "/plan");
     expect(screen.getByText(/No medical or health score/)).toBeVisible();

@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useState, type CSSProperties } from "react";
 import { encounterCopyByMovement } from "@/contracts";
+import { TrailGuide } from "@/features/guide/TrailGuide";
 import { loadSessionResult, type SessionResult } from "./sessionResultRepository";
 
 const difficultyCopy = {
@@ -26,14 +27,16 @@ export default function ResultsScreen() {
     <main className="results-shell">
       <section className="results-hero">
         <div>
-          <p className="identity-kicker">Volcano escaped · Mission debrief</p>
+          <p className="identity-kicker">Mission cleared</p>
           <h1>{result.coach.headline}</h1>
-          <p className="results-lead">Your movement events were verified on-device. Here is the adventure you actually completed.</p>
+          <p className="results-lead">On-device moves. Deterministic score. No guesswork.</p>
         </div>
         <div className="completion-ring" style={ringStyle} aria-label={`${result.metrics.completionRate}% mission completion`}>
           <div><strong>{result.metrics.completionRate}%</strong><span>escaped</span></div>
         </div>
       </section>
+
+      <TrailGuide message={`You cleared the route and banked ${result.metrics.xpEarned} XP. Strong finish!`} mood="cheering" />
 
       {result.persistence === "memory" && <p className="results-warning" role="status">Browser storage is unavailable. These results last only until this page is closed.</p>}
 
@@ -45,7 +48,7 @@ export default function ResultsScreen() {
       </section>
 
       <section className="coach-card">
-        <p className="identity-kicker">Assistant recap · grounded in session facts</p>
+        <p className="identity-kicker">AI recap · facts locked</p>
         <h2>{result.coach.summary}</h2>
         <p>{result.coach.recommendation}</p>
         <div className="next-challenge"><span>Recommended next mission</span><strong>{difficultyCopy[result.recommendation.difficulty]}</strong>{focusMovement && <small>Focus movement: {focusMovement}</small>}</div>

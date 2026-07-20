@@ -3,16 +3,16 @@ import { createMovementCheckMission } from "../../src/features/gameplay/movement
 
 test("guest entry is keyboard reachable, honest, private, and responsive", async ({ page }) => {
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: "Escape the ordinary workout." })).toBeVisible();
-  await expect(page.getByText(/Hackathon guest demo/)).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Train. Fight. Escape." })).toBeVisible();
+  await expect(page.getByText(/Guest mode · No account/)).toBeVisible();
   await expect(page.getByRole("button", { name: "Sign in" })).toHaveCount(0);
   await expect(page.getByRole("button", { name: "Create account" })).toHaveCount(0);
 
   await page.keyboard.press("Tab");
   await expect(page.getByRole("button", { name: "Start as guest" })).toBeFocused();
   await page.keyboard.press("Enter");
-  await expect(page.getByRole("heading", { name: "Tell us how you move." })).toBeVisible();
-  await expect(page.getByText("They stay on this device in guest mode")).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Tune your mission." })).toBeVisible();
+  await expect(page.getByText(/Saved locally\. Not medical advice/)).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
 
@@ -30,11 +30,14 @@ test("planning failure recovers without losing the selected preference", async (
   await page.goto("/plan");
   await page.getByLabel("Goal").selectOption("cardio");
   await page.getByRole("button", { name: "Generate my adventure" }).click();
+  await expect(page).toHaveURL(/\/ai-to-action/);
   await expect(page.locator(".planner-error")).toContainText("Planner temporarily unavailable");
   await page.getByRole("button", { name: "Retry planning" }).click();
+  await expect(page).toHaveURL(/\/briefing/, { timeout: 10_000 });
   await expect(page.getByRole("heading", { name: "Race the Eruption" })).toBeVisible();
+  await page.getByRole("link", { name: "AI Fitness Escape" }).click();
   await expect(page.getByLabel("Goal")).toHaveValue("cardio");
-  await expect(page.getByText("Camera processing stays on this device.")).toBeVisible();
+  await expect(page.getByText("Camera processing stays on this device. No video is uploaded.")).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
 });
 
@@ -44,22 +47,35 @@ test("goal-aware planning changes structure and explains safety-aware choices", 
   await page.getByLabel("Activity frequency").selectOption("weekly");
   await page.getByRole("button", { name: "Generate my adventure" }).click();
 
+  await expect(page.getByRole("heading", { name: /goals are becoming gameplay/i })).toBeVisible();
+  await expect(page).toHaveURL(/\/briefing/, { timeout: 10_000 });
   await expect(page.getByRole("heading", { name: "Race the Eruption" })).toBeVisible();
-  await expect(page.getByRole("heading", { name: "Built for today's intent" })).toBeVisible();
+  await expect(page.locator(".briefing-stat-grid article")).toHaveCount(5);
+  await expect(page.locator(".briefing-stat-grid")).toContainText("Duration");
+  await expect(page.locator(".briefing-stat-grid")).toContainText("Difficulty");
+  await expect(page.locator(".briefing-stat-grid")).toContainText("Reward");
+  await expect(page.getByRole("button", { name: "Start Adventure" })).toHaveCount(1);
+  await expect(page.getByRole("heading", { name: "How your mission was built" })).toBeHidden();
+  await page.getByText("Mission details", { exact: true }).click();
+  await expect(page.getByRole("heading", { name: "How your mission was built" })).toBeVisible();
+  await expect(page.getByText("Validated plan")).toBeVisible();
   await expect(page.locator(".objectives li")).toHaveCount(5);
   await expect(page.getByText(/faster-paced standing circuit/i)).toBeVisible();
 
+  await page.getByRole("link", { name: "AI Fitness Escape" }).click();
   await page.getByLabel("Goal").selectOption("mobility");
   await page.getByText("20 min", { exact: true }).click();
   await page.getByLabel("Activity frequency").selectOption("rarely");
   await page.getByLabel(/Movement considerations/).fill("Knee sensitivity; low impact and no jumping");
   await page.getByRole("button", { name: "Generate my adventure" }).click();
 
+  await expect(page).toHaveURL(/\/briefing/, { timeout: 10_000 });
   await expect(page.getByRole("heading", { name: "Flow Through the Fire" })).toBeVisible();
   await expect(page.locator(".objectives li")).toHaveCount(7);
   await expect(page.locator(".objectives")).not.toContainText("Jumps ×");
   await expect(page.locator(".objectives")).not.toContainText("Jumping jacks ×");
   await expect(page.locator(".objectives")).not.toContainText("Lunges ×");
+  await page.locator(".briefing-details").evaluate((details) => { (details as HTMLDetailsElement).open = true; });
   await expect(page.getByText(/remove jumps, jumping jacks, and lunges/i)).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
   if (process.env.CAPTURE_VISUAL_EVIDENCE === "1") {
@@ -101,11 +117,12 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
   await expect(canvas).toBeVisible();
   await expect(page.getByRole("heading", { name: "Mission in progress" })).toBeVisible();
   await expect(page.getByRole("button", { name: "Voice on" })).toBeVisible();
-  await expect(page.getByRole("button", { name: "Music + effects off" })).toBeVisible();
+  const musicControl = page.locator(".mission-controls button").filter({ hasText: /Music|Play music/ });
+  await expect(musicControl).toBeVisible();
   await expect(page.getByRole("button", { name: "Resume" })).toBeVisible();
   await page.getByRole("button", { name: "Resume" }).click();
   await expect(page.getByRole("button", { name: "Pause" })).toBeVisible();
-  await page.getByRole("button", { name: "Music + effects off" }).click();
+  if ((await musicControl.getAttribute("aria-pressed")) === "false") await musicControl.click();
   await expect(page.getByRole("button", { name: "Music + effects on" })).toBeVisible();
   await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-state", "on");
   await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-tier", "calm");
@@ -134,6 +151,7 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
   const encounters = ["boulder", "fire-gate", "broken-bridge", "lava-steps", "storm-gate", "left-wall", "right-wall", "left-vines", "right-vines", "low-tunnel", "ember-storm"] as const;
   const actions = ["leap", "duck", "stride", "sprint", "power", "strike-left", "strike-right", "reach-left", "reach-right", "push", "shield"] as const;
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-encounter", encounters[0]);
+  await expect(page.locator(".game-canvas")).toHaveAttribute("data-boss-map-position", "distant-center");
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-world-motion", capturesActiveMotion ? "active" : "reduced");
   for (const [index, movement] of movements.entries()) {
     await page.evaluate(({ movement, index }) => {
@@ -145,6 +163,14 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
       } }));
     }, { movement, index });
     await expect(page.locator(".game-canvas")).toHaveAttribute("data-runner-action", actions[index]);
+    if (movement === "high-knees") await expect(page.locator(".game-canvas")).toHaveAttribute("data-encounter-x", "824");
+    if (index === 4) await expect(page.locator(".game-canvas")).toHaveAttribute("data-boss-state", "awakened");
+    if (index === 7) {
+      await expect(page.locator(".game-canvas")).toHaveAttribute("data-boss-state", "battle");
+      await expect(page.locator(".game-canvas")).toHaveAttribute("data-boss-action", "dodge");
+      if (process.env.CAPTURE_VISUAL_EVIDENCE === "1") await page.locator(".game-canvas").screenshot({ path: testInfo.outputPath("boss-battle.png") });
+    }
+    if (index === 9) await expect(page.locator(".game-canvas")).toHaveAttribute("data-boss-action", "attack");
     if (index === 3) await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-tier", "rising");
     if (index === 8) await expect(page.locator(".mission-shell")).toHaveAttribute("data-music-tier", "escape");
     if (index < movements.length - 1) {
@@ -152,12 +178,16 @@ test("mission world is distance-readable, responsive, and frame-stable", async (
       await expect(page.locator(".game-canvas")).toHaveAttribute("data-encounter", encounters[index + 1]);
     }
   }
-  await expect(page.getByRole("heading", { name: "Mission complete" })).toBeVisible();
-  await expect(page.getByText("Opening results…")).toBeVisible();
   await expect(page.locator(".objective-hud progress")).toHaveAttribute("value", "100");
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-last-feedback", "complete");
   await expect(page.locator(".game-canvas")).toHaveAttribute("data-cinematic-phase", "portal-escape");
-  await expect(page.getByText("Assistant recap · grounded in session facts")).toBeVisible();
+  await expect(page.locator(".game-canvas")).toHaveAttribute("data-boss-state", "defeated");
+  await expect(page.locator(".game-canvas")).toHaveAttribute("data-boss-health", "0");
+  await expect(page.getByRole("heading", { name: "Recovery" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Cool down. Mission secured." })).toBeVisible();
+  await expect(page.getByText("Camera tracking is paused. Recovery does not change XP or accuracy.")).toBeVisible();
+  await page.getByRole("button", { name: "Finish cooldown" }).click();
+  await expect(page.getByText("AI recap · facts locked")).toBeVisible();
   await expect(page.getByRole("link", { name: "Replay this adventure" })).toBeVisible();
   await expect(page.getByRole("link", { name: "Build a new plan" })).toBeVisible();
   await page.evaluate(() => window.scrollTo(0, 0));

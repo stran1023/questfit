@@ -2,6 +2,7 @@
 
 import { useEffect, useState, type FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { TrailGuide } from "@/features/guide/TrailGuide";
 import {
   defaultFitnessProfileInput,
   fitnessProfileSchema,
@@ -67,11 +68,12 @@ export default function IdentityOnboarding() {
   if (view === "returning" && profile) {
     return (
       <main className="identity-shell identity-returning">
-        <p className="identity-kicker">Welcome back, explorer</p>
-        <h1>Your next adventure is ready.</h1>
+        <p className="identity-kicker">Player profile ready</p>
+        <h1>Ready for the next run?</h1>
         <p className="identity-summary">
           Guest profile · {profile.heightCm} cm · {profile.activityFrequency} activity · {profile.fitnessLevel}
         </p>
+        <TrailGuide compact message="Profile locked. Let’s choose your next trail." mood="cheering" />
         {message && <p className="identity-message" role="status">{message}</p>}
         <div className="identity-actions">
           <button className="identity-primary" onClick={() => router.push("/plan")} type="button">
@@ -97,11 +99,10 @@ export default function IdentityOnboarding() {
         </header>
         <section className="profile-layout" aria-labelledby="profile-title">
           <div>
-            <p className="identity-kicker">Personalize your mission</p>
-            <h1 id="profile-title">Tell us how you move.</h1>
-            <p className="identity-summary">
-              These details tune workout difficulty. They stay on this device in guest mode and are not medical advice.
-            </p>
+            <p className="identity-kicker">Player setup</p>
+            <h1 id="profile-title">Tune your mission.</h1>
+            <p className="identity-summary">Your stats set the pace. Saved locally. Not medical advice.</p>
+            <TrailGuide compact message="Three quick choices help me set your pace." mood="pointing" />
             {message && <p className="identity-message" role="status">{message}</p>}
           </div>
           <form className="profile-form" onSubmit={saveProfile} noValidate>
@@ -181,25 +182,23 @@ export default function IdentityOnboarding() {
   return (
     <main className="identity-shell welcome-layout">
       <section>
-        <p className="identity-kicker">Your body. Your controller.</p>
-        <h1>Escape the ordinary workout.</h1>
-        <p className="identity-summary">
-          Build a personalized workout, turn it into an adventure, and control every challenge with your movement.
-        </p>
+        <p className="identity-kicker">Your body is the controller</p>
+        <h1>Train. Fight. Escape.</h1>
+        <p className="identity-summary">A personal workout becomes a live fantasy mission.</p>
+        <TrailGuide message="I’m Scout. Let’s turn your workout into a trail worth conquering." mood="welcome" />
         <div className="identity-actions">
           <button className="identity-primary" onClick={() => setView("profile")} type="button">Start as guest</button>
         </div>
-        <p className="identity-privacy">Hackathon guest demo · Progress stays in this browser. No account or cloud setup is required.</p>
+        <p className="identity-privacy">Guest mode · No account · Local progress · No camera upload</p>
       </section>
       <aside className="welcome-card" aria-label="Adventure preview">
         <span>Mission preview</span>
         <strong>Volcano Escape</strong>
-        <p>Move through challenges powered by your personalized workout.</p>
+        <p>Every verified rep moves the story.</p>
         <ul>
-          <li>Private on-device pose tracking</li>
-          <li>Hands-free movement setup</li>
-          <li>Safe deterministic fallback</li>
-          <li>Polished Volcano Escape mission</li>
+          <li>On-device body tracking</li>
+          <li>Personalized mission plan</li>
+          <li>Live movement combat</li>
         </ul>
       </aside>
     </main>

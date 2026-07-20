@@ -54,7 +54,7 @@ The demo may use a documented reference device, but it may not rely on manually 
 - Guest storage failures keep validated form/mission state recoverable and display an actionable message. Completed results fall back to page-lifetime memory with an explicit temporary-results warning rather than discarding authoritative metrics.
 - The launch preflight reflects existing camera, model, framing, calibration, voice, and mission state; it cannot override readiness or create a synthetic demo-ready state.
 - Speech cues are derived from coarse mission snapshots and canonical encounter copy. New cues cancel stale speech, corrections and pause/completion take priority, and nonessential high-count repetition announcements are suppressed.
-- Procedural music starts only after the explicit audio gesture, degrades silently when Web Audio is unavailable, guards late async unlock after disable, pauses during mission pause/recovery, and clears its scheduler/gain/context on exit.
+- Procedural music attempts a low-volume fade-in on mission entry, exposes an explicit Play music recovery when browser/device policy blocks autoplay, guards late async unlock after disable, pauses during mission pause/recovery, fades on disable/exit, and clears its scheduler/gain/context.
 
 ## Baseline Policy
 

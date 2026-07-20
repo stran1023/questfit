@@ -24,6 +24,7 @@ describe("mission session boundary", () => {
     expect(loadMissionSession()).toEqual({
       workout: validWorkoutPlanFixture,
       adventure: validAdventureBlueprintFixture,
+      cooldown: { durationSeconds: 15, steps: ["Slow march and settle your breathing", "Release shoulders and shake out your arms", "Stand tall for three calm breaths"] },
     });
   });
 

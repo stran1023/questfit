@@ -11,7 +11,12 @@ export const workoutRequestSchema = z.strictObject({
 
 export type WorkoutRequest = z.infer<typeof workoutRequestSchema>;
 
-export const workoutPhaseSchema = z.enum(["warm-up", "primary", "variation", "peak", "finish"]);
+export const workoutPhaseSchema = z.enum(["warm-up", "build", "surge", "peak"]);
+
+export const cooldownPlanSchema = z.strictObject({
+  durationSeconds: z.number().int().min(10).max(90),
+  steps: z.array(z.string().trim().min(1).max(80)).length(3),
+});
 
 export const planRationaleSchema = z.strictObject({
   summary: z.string().trim().min(1).max(240),
@@ -21,6 +26,8 @@ export const planRationaleSchema = z.strictObject({
     exerciseId: z.string().trim().min(1).max(80),
     phase: workoutPhaseSchema,
   })).min(5).max(7),
+  cooldown: cooldownPlanSchema,
 });
 
 export type PlanRationale = z.infer<typeof planRationaleSchema>;
+export type CooldownPlan = z.infer<typeof cooldownPlanSchema>;

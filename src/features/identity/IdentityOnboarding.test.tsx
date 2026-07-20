@@ -22,7 +22,7 @@ describe("IdentityOnboarding", () => {
     expect(screen.getByRole("button", { name: "Start as guest" })).toBeVisible();
     expect(screen.queryByRole("button", { name: "Sign in" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Create account" })).not.toBeInTheDocument();
-    expect(screen.getByText(/No account or cloud setup is required/)).toBeVisible();
+    expect(screen.getByText(/No account · Local progress/)).toBeVisible();
   });
 
   it("validates, saves, reloads, and edits a local guest profile", async () => {
@@ -38,7 +38,7 @@ describe("IdentityOnboarding", () => {
     await user.type(height, "181");
     await user.selectOptions(screen.getByRole("combobox", { name: "Activity frequency" }), "regular");
     await user.click(screen.getByRole("button", { name: "Save and continue" }));
-    expect(await screen.findByRole("heading", { name: "Your next adventure is ready." })).toBeVisible();
+    expect(await screen.findByRole("heading", { name: "Ready for the next run?" })).toBeVisible();
     expect(window.localStorage.getItem(FITNESS_PROFILE_STORAGE_KEY)).toContain('"heightCm":181');
 
     view.unmount();
@@ -67,6 +67,6 @@ describe("IdentityOnboarding", () => {
     await user.click(screen.getByRole("button", { name: "Start as guest" }));
     await user.click(screen.getByRole("button", { name: "Save and continue" }));
     expect(await screen.findByRole("status")).toHaveTextContent("could not save your profile");
-    expect(screen.getByRole("heading", { name: "Tell us how you move." })).toBeVisible();
+    expect(screen.getByRole("heading", { name: "Tune your mission." })).toBeVisible();
   });
 });

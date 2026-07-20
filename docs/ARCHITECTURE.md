@@ -33,7 +33,7 @@ Root configuration owns only repository-wide build, type, lint, and agent toolin
 - Hackathon deployment shape: one Next.js web application, browser-local MediaPipe inference, optional server-side AI adapter, and optional Supabase account sync; guest fallback keeps the judged journey runnable without external credentials
 
 ```text
-Welcome/Auth -> FitnessProfile -> Workout Planner -> validated WorkoutPlan
+Welcome/Auth -> FitnessProfile -> Workout Planner -> AI to Action -> Adventure Briefing
                                             |
                                             v
                                    Level Compiler -> AdventureBlueprint
@@ -116,7 +116,7 @@ For the hackathon theme, project-owned generated raster art, code-native Phaser 
 
 The cinematic mission layer derives a movement-matched runner action, hazard reaction, environmental pressure, and finale exclusively from successive `MissionSceneUpdate` snapshots. These animations are disposable views: they never publish movement events, mutate the mission controller, calculate XP, or delay authoritative progress. Automatic results navigation remains React-owned after result persistence, so Phaser teardown cannot block the route transition.
 
-Mission music is a license-safe procedural Web Audio presentation adapter. It derives only a calm, rising, or escape tier from authoritative mission progress; it cannot affect timing, scoring, pose detection, or objective transitions. Music and action effects require one explicit browser gesture, use a low-volume music bus beneath independent voice coaching, pause with mission state, and close on route cleanup.
+Mission music is a license-safe procedural Web Audio presentation adapter. It derives only a calm, rising, or escape tier from authoritative mission progress; it cannot affect timing, scoring, pose detection, or objective transitions. The mission attempts a low-volume fade-in on entry, reports browser-policy blocking honestly, exposes a direct mute/play control, pauses with mission state, fades out on completion/disable, and closes on route cleanup. Device and browser audio policy remains authoritative.
 
 ## Movement Detection Architecture
 
@@ -145,6 +145,13 @@ Canonical encounter copy is contract-adjacent presentation metadata keyed by the
 8. Workout goal, duration, level, activity, and recognized limitation rules deterministically own plan structure; AI cannot override exercise eligibility or authoritative targets.
 
 ## Decisions
+
+- 2026-07-21: The recurring Trail Guide is a shared React presentation component with curated route-owned messages and project-owned mood art. It may explain coarse states already owned by each screen, but cannot generate safety facts, score, pose events, recommendations, or gameplay progress. Reduced motion disables guide bob/celebration effects without removing dialogue.
+- 2026-07-21: Adventure rationale cards and route destinations are React projections of validated planning data; the Phaser Ash Titan and Storm Gate remain disposable snapshot-driven views. Best-effort music autoplay may fail under browser/device policy and must fall back to an explicit control without delaying the mission.
+- 2026-07-21: Planning is an explicit three-route journey. Browser session storage carries schema-validated request/result envelopes between `/plan`, `/ai-to-action`, and `/briefing`; AI to Action alone calls the server planner, and the briefing alone persists a validated mission. Missing or corrupt handoffs fail closed with a route back to planning.
+- 2026-07-20: The redesign is split across presentation, planning, and gameplay boundaries. React owns the sport-first shell and pipeline explanation; planning policy owns the ordered workout intensity arc; Phaser presents story and boss reactions derived from authoritative mission snapshots. A guided cooldown is explicitly non-scored and cannot emit fabricated movement events.
+- 2026-07-20: The workout arc is executable as warm-up/build/surge/peak metadata plus stage load scaling. A validated cooldown travels in the mission session, begins only after authoritative completion facts are saved, pauses camera scoring, and remains outside workout/blueprint target calculations.
+- 2026-07-20: Boss combat is a Phaser projection: `bossBattleView` maps authoritative progress and the current/credited movement into story, telegraph, reaction, and health presentation. Boss visuals cannot publish movement events, change controller state, or calculate rewards.
 
 | Date | Decision | Reason |
 | --- | --- | --- |

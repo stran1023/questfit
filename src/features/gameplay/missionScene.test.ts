@@ -1,5 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { missionSceneView } from "./missionScene";
+import { bossBattleView } from "./bossBattle";
 
 const snapshot = {
   status: "playing" as const,
@@ -33,5 +34,10 @@ describe("missionSceneView", () => {
 
   it("makes repeated encounters visibly progressive", () => {
     expect(missionSceneView({ snapshot: { ...snapshot, segmentIndex: 3 }, target: "squat", encounter: { index: 2, total: 3 } }).objective).toBe("Squat · Set 2/3");
+  });
+
+  it("exposes a direct final-battle instruction without owning combat facts", () => {
+    expect(bossBattleView({ ...snapshot, missionProgress: 72 }, "punch-right")).toMatchObject({ state: "battle", move: "attack", telegraph: "STRIKE NOW" });
+    expect(bossBattleView({ ...snapshot, missionProgress: 72 }, "squat")).toMatchObject({ state: "battle", move: "dodge", telegraph: "DODGE THE ATTACK" });
   });
 });

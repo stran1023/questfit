@@ -1,5 +1,48 @@
 # Session Handoff
 
+## 2026-07-21 — Adventure immersion pass complete
+
+- `adventure-immersion-pass` is passing 12/12; `demo-liftoff` is the sole active feature.
+- Why this plan is now a visible validated four-chip/four-card scan. The adventure map flows left-to-right through a prominent Ash Titan to the rightmost Storm Gate without desktop/narrow overflow.
+- Phaser shows Ash Titan as a distant environmental threat before battle and positions the Storm Gate encounter at x=824; both remain snapshot-derived presentation.
+- Procedural music attempts entry autoplay with an 800 ms fade. Browser/device blocking produces Play music; disable/exit fades for 320 ms and retains cleanup. Silent-mode behavior still requires physical rehearsal.
+- `src/app/icon.png` is the new project-owned mountain-route/portal icon and remains legible at 64px. Full verification passes 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+- Next action: run two clean-profile real-camera rehearsals and record autoplay/silent-mode behavior plus standing-distance boss/map readability.
+
+## 2026-07-21 — Scout adventure theme complete
+
+- `trail-guide-adventure-theme` is passing 12/12; `demo-liftoff` is the sole active feature.
+- Scout is the recurring presentation-only AI trail guide across welcome/profile, planner, AI to Action, briefing, preparation, mission/cooldown, and results. Curated dialogue cannot modify plans, safety, pose input, scoring, or recommendations.
+- Project-owned source/transparent four-pose sheets live in `public/game/`; provenance and prompt intent are documented in `public/game/README.md`.
+- The full gate passes 6 core tests, 94 Vitest tests, 10 desktop/narrow Playwright checks, and production build. Browser inspection confirmed the character sheet renders correctly on returning welcome and planner screens.
+- Next action: run two clean-profile real-camera rehearsals and include Scout readability/non-interference from the standing mark in the recorded evidence.
+
+## 2026-07-21 — Scannable briefing complete
+
+- `scannable-adventure-briefing` is passing; `demo-liftoff` is active again.
+- The briefing's default view is intentionally short: hero, five stats, four checkpoints, movement chips, and one Start Adventure CTA. Pipeline, instructions, rationale, fallback notice, and safety detail are under Mission details.
+- Project-owned `volcanic-guardian.png` now illustrates the briefing hero; distance/weather remain omitted because the validated indoor-mission contracts do not own them.
+- Full verification passes 6 core tests, 93 Vitest tests, 10 desktop/narrow Playwright checks, and production build.
+- Next action: run two clean-profile real-camera rehearsals and include a ten-second briefing comprehension/readability observation.
+
+## 2026-07-21 — Planning journey redesign complete
+
+- `guided-planning-journey` is passing; `demo-liftoff` is active again.
+- The judged flow is now `/plan` → `/ai-to-action` → `/briefing` → `/prepare`. Request/result handoff is schema-validated in `src/features/workout-planner/planningJourney.ts` and remains browser-session local.
+- AI to Action performs the actual generation call and automatically advances after its five-stage animation. Failure stays on that route with Retry planning and Edit choices.
+- The full gate passes 6 core tests, 92 Vitest tests, 10 desktop/narrow Playwright checks, and production builds for all routes.
+- Next action: run two clean-profile real-camera rehearsals and observe loading duration, briefing scanability, standing-distance preparation, pose recognition, audio balance, cooldown, and recovery.
+
+## 2026-07-20 Redesign handoff
+
+- Active feature: `demo-liftoff`.
+- `sport-ui-pipeline` is passing with responsive Chrome evidence and the standard automated gates.
+- User-approved direction: modern sport UI outside missions, cinematic fantasy in Phaser, direct verified attack/dodge boss combat, and guided unscored cooldown.
+- `phased-workout-arc` passed 12/12 with warm-up/build/surge/peak load scaling and validated non-scored cooldown.
+- `boss-story-gameplay` passed 12/12 with a locally generated Ash Titan, direct strike/dodge/block reactions, authoritative health projection, and responsive browser evidence.
+- Automated `demo-liftoff` packaging and visual capture pass at desktop/narrow sizes; the runbook reflects the redesigned flow.
+- Next action: complete two real-camera clean-profile rehearsals and record physical recognition, standing-distance boss readability, voice/music balance, cooldown clarity, browser/version, and latency. This evidence cannot be synthesized by browser events.
+
 ## Verified Now
 
 - Next.js 15 is the only product runtime; routes cover guest onboarding, planning, preparation, Phaser mission, results, and the planning API.

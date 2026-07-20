@@ -485,13 +485,175 @@
       "notes": "Use procedural Web Audio to avoid licensing/network risk. Music and effects share one explicit opt-in control; voice remains independently enabled."
     },
     {
-      "id": "demo-liftoff",
+      "id": "sport-ui-pipeline",
       "priority": 20,
+      "area": "product-ui",
+      "name": "Sport-first UI and visible AI-to-game pipeline",
+      "description": "Refresh the non-mission journey as a compact modern sports product and explain personalization, validation, blueprint compilation, local pose control, and deterministic scoring visually.",
+      "user_visible_behavior": "A judge can scan the welcome, planner, briefing, and results quickly, understand the primary action, and see how profile choices become safe game objectives and factual results.",
+      "dependencies": ["adaptive-mission-music"],
+      "status": "passing",
+      "verification": [
+        "Complete welcome, profile, planning, briefing, and results using keyboard at desktop and narrow widths with no overflow.",
+        "Generate plans with and without movement considerations and confirm the pipeline shows truthful, concise input-to-mission mappings.",
+        "Confirm copy reduction preserves privacy, fallback, non-medical, and recovery disclosures.",
+        "Run the standard verification path and visually inspect every redesigned non-mission screen."
+      ],
+      "evidence": [
+        "2026-07-20: Reframed welcome, profile, planner, briefing, and results as a compact hybrid sport interface with high-energy typography, angular primary actions, real project art, reduced copy, and preserved privacy/non-medical/fallback disclosures.",
+        "2026-07-20: Added a responsive six-step Profile → Policy → AI plan → Game map → Body input → Score explanation plus concrete goal, limitation/load, encounter, and target-to-XP mappings derived only from validated response data.",
+        "2026-07-20: Chrome visual inspection passed at 1440x900 and 390x844; the narrow document and scroll width both measured 375px and the pipeline rendered as a readable two-column grid.",
+        "2026-07-20: Verification passed lint, strict typecheck, 6 core tests, 87 Vitest tests, 10 desktop/narrow Playwright checks, git diff checking, JSON parsing, and the Next.js production build."
+      ],
+      "notes": "Use modern fitness styling outside the mission. The pipeline visualizes validated facts only and must never expose chain-of-thought or imply a live provider when fallback mode is active."
+    },
+    {
+      "id": "phased-workout-arc",
+      "priority": 21,
+      "area": "planning",
+      "name": "Warm-up, build, peak, and guided cooldown workout arc",
+      "description": "Make every generated workout follow an explicit intensity curve with movement-appropriate targets, recovery, and a non-scored guided cooldown.",
+      "user_visible_behavior": "Every mission starts under control, builds intensity, reaches a clear peak, and ends with a short guided recovery instead of stopping at maximum effort.",
+      "dependencies": ["sport-ui-pipeline"],
+      "status": "passing",
+      "verification": [
+        "Generate every goal and duration combination and confirm warm-up, build, peak, and cooldown appear in order with bounded targets and recovery.",
+        "Verify recognized movement considerations still exclude incompatible movements and refill the playable arc.",
+        "Complete a mission and confirm the cooldown is guided, unscored, skippable, and does not fabricate pose recognition.",
+        "Run the standard verification path successfully."
+      ],
+      "evidence": [
+        "2026-07-20: Replaced primary/variation/finale labels with an ordered warm-up → build → surge → peak curve and deterministic stage load multipliers that reduce warm-up targets and increase peak targets.",
+        "2026-07-20: Added a validated duration-aware three-step cooldown carried through mission storage. Completion saves authoritative facts first, pauses camera scoring/music, and shows timed recovery with an explicit Finish cooldown action that cannot change XP or accuracy.",
+        "2026-07-20: Added unit coverage for the phased policy, session round-trip, and cooldown interaction; desktop/narrow Playwright completes every movement, observes recovery, finishes cooldown, and reaches factual results.",
+        "2026-07-20: ./init.sh passed lint, strict typecheck, 6 core tests, 88 Vitest tests, 10 Playwright checks, and production build. Code review accepted 12/12."
+      ],
+      "notes": "Authoritative rep stages remain validated workout exercises. Cooldown guidance is presentation metadata, not a newly claimed detector family."
+    },
+    {
+      "id": "boss-story-gameplay",
+      "priority": 22,
+      "area": "gameplay",
+      "name": "Cinematic monster battle and narrative mission arc",
+      "description": "Turn the phased workout into a readable story with approach, escalation, direct body-controlled attacks and dodges, a peak boss battle, recovery, and escape using project-owned assets.",
+      "user_visible_behavior": "The player reaches a monster, damages it through verified attack movements, dodges its telegraphed attacks through verified movements, defeats it at the workout peak, and exits into guided recovery and factual results.",
+      "dependencies": ["phased-workout-arc"],
+      "status": "passing",
+      "verification": [
+        "Complete attack and dodge objectives and confirm only authoritative matching pose events damage the boss or avoid its attacks.",
+        "Verify story beats, health presentation, telegraphs, asset loading, reduced motion, voice, and narrow/desktop readability without changing workout facts.",
+        "Complete, miss, pause, lose camera, resume, and replay the boss encounter while preserving mission progress and cleanup.",
+        "Run the standard verification path and record reference frame-time evidence."
+      ],
+      "evidence": [
+        "2026-07-20: Added a four-beat Enter → Awaken → Battle → Recover story preview and an Ash Titan boss that appears, telegraphs the next movement as strike/dodge/block, and reacts directly to credited actions.",
+        "2026-07-20: Boss state and health are pure projections of authoritative mission status/progress; objective transitions correctly attribute the credited prior movement, and Phaser cannot award reps, XP, damage, or completion.",
+        "2026-07-20: Generated an original volcanic guardian with the built-in image tool, converted the flat chroma source to a validated 768×512 RGBA project asset, recorded provenance, and visually accepted the active battle composition at 1440×900.",
+        "2026-07-20: ./init.sh passed lint, strict typecheck, 6 core tests, 91 Vitest tests, 10 desktop/narrow Playwright checks including boss/cooldown/results, and production build. Code review accepted 12/12."
+      ],
+      "notes": "Phaser presents boss health and reactions derived from mission progress. It cannot award reps, XP, or completion independently. Generated raster assets must be project-owned and documented."
+    },
+    {
+      "id": "guided-planning-journey",
+      "priority": 23,
+      "area": "product-ui",
+      "name": "Guided AI-to-Action planning journey",
+      "description": "Split adventure creation into a focused planner, an animated generation route, and a premium full-width briefing while preserving validated planning, fallback, and mission-save boundaries.",
+      "user_visible_behavior": "Generate My Adventure opens an energetic AI-to-Action progress experience, advances through understandable build stages, and automatically reveals a mobile-readable Adventure Briefing before mission preparation.",
+      "dependencies": ["boss-story-gameplay"],
+      "status": "passing",
+      "verification": [
+        "Generate a plan and confirm Plan → AI to Action → Adventure Briefing occurs in order with no extra click.",
+        "Force planning failure, retry on AI to Action, and confirm selected preferences remain intact.",
+        "Review personalized and fallback briefings at desktop and narrow widths for hierarchy, readability, keyboard access, reduced motion, and no overflow.",
+        "Prepare the mission from the briefing and run the standard verification path successfully."
+      ],
+      "evidence": [
+        "2026-07-21: Replaced inline generation/briefing with explicit /plan → /ai-to-action → /briefing routes. The middle route performs the real API call, shows five changing stages and accessible progress, validates the response, and automatically replaces itself with the briefing.",
+        "2026-07-21: Added schema-validated session handoff for the request and result. Missing, corrupt, cross-matched, storage-failed, and API-failed states fail closed with back, edit, or retry actions; selected preferences survive recovery.",
+        "2026-07-21: Rebuilt Adventure Briefing as a full-width responsive experience with mission metrics, cinematic Ash Titan visual, six-stage AI-to-game pipeline, story arc, phase cards, cooldown and mission CTA. Reduced-motion removes nonessential transitions.",
+        "2026-07-21: Desktop and narrow Playwright verified the route sequence, failure recovery, goal-aware exclusions, readable briefing and no overflow. ./init.sh passed lint, strict typecheck, 6 core tests, 92 Vitest tests, 10 Playwright checks, and production builds for all routes. Review accepted 12/12."
+      ],
+      "notes": "Browser session storage carries only schema-validated request and generation result between routes. The API remains the only generation boundary; animations never imply unvalidated progress or block failure recovery."
+    },
+    {
+      "id": "scannable-adventure-briefing",
+      "priority": 24,
+      "area": "product-ui",
+      "name": "Scannable action-first Adventure Briefing",
+      "description": "Reduce the briefing's initial reading load and reorganize validated mission facts into visual stats, route checkpoints, compact movement cards, optional detail, and one primary mission action.",
+      "user_visible_behavior": "A judge can identify the mission, duration, difficulty, route, movement count, reward, and next action within ten seconds without reading dense paragraphs.",
+      "dependencies": ["guided-planning-journey"],
+      "status": "passing",
+      "verification": [
+        "Generate a mission and identify the title, duration, difficulty, checkpoints, movement count, reward, and Start Adventure action without expanding details.",
+        "Expand Mission details and confirm AI-to-game mappings, exercise instructions, rationale, fallback notice, and cooldown facts remain available and accurate.",
+        "Verify the briefing has one primary CTA, keyboard-accessible disclosure, reduced-motion support, and no overflow at desktop and narrow widths.",
+        "Start the adventure and run the standard verification path successfully."
+      ],
+      "evidence": [
+        "2026-07-21: Replaced the briefing's always-visible pipeline, six large objective cards, rationale, cooldown copy, and secondary edit action with five stat cards, a four-checkpoint visual route, compact movement chips, and one Start Adventure CTA.",
+        "2026-07-21: Moved validated provider mode, AI-to-game mappings, exercise instructions, limitation reasons, and fallback notice into one keyboard-native Mission details disclosure; no facts or safety context were removed.",
+        "2026-07-21: Reused the project-owned Ash Titan artwork in the hero and deliberately omitted distance/weather rather than fabricating outdoor facts for an indoor camera mission.",
+        "2026-07-21: A new component test verifies the scannable overview, single primary CTA, initially hidden detail, and disclosure. Desktop/narrow Playwright verifies stat hierarchy, disclosure, goal-aware facts, reduced motion, and no overflow. ./init.sh passed lint, strict typecheck, 6 core tests, 93 Vitest tests, 10 Playwright checks, and production build; review accepted 12/12."
+      ],
+      "notes": "Do not invent outdoor distance or weather for an indoor camera mission. Use only validated workout, blueprint, rationale, and device-boundary facts."
+    },
+    {
+      "id": "trail-guide-adventure-theme",
+      "priority": 25,
+      "area": "product-ui",
+      "name": "Recurring Trail Guide and outdoor adventure language",
+      "description": "Introduce one friendly AI trail companion, recurring short guidance, project-owned expressive art, route motifs, terrain texture, micro-interactions, and celebratory presentation across the judged journey.",
+      "user_visible_behavior": "Users feel guided through one coherent adventure by a recognizable companion who welcomes, explains, motivates, and celebrates without adding reading load or obscuring mission facts.",
+      "dependencies": ["scannable-adventure-briefing"],
+      "status": "passing",
+      "verification": [
+        "Complete welcome, profile, planner, AI to Action, briefing, preparation, mission, and results and confirm the same named guide appears with short context-appropriate dialogue.",
+        "Confirm guide poses, trail lines, terrain/mountain motifs, badges, and micro-interactions remain decorative and do not alter validated facts, safety copy, pose input, mission progress, or scores.",
+        "Verify keyboard use, reduced motion, screen-reader labeling, desktop/narrow readability, and no overflow across the judged routes.",
+        "Verify project-owned asset provenance, run the standard verification path, and visually inspect the recurring character at desktop and narrow widths."
+      ],
+      "evidence": [
+        "Scout appears as the same accessible guide component across onboarding, profile return, planner, AI to Action, briefing, preparation, mission, cooldown, and results with concise state-aware copy.",
+        "Project-owned four-pose Scout art is documented in public/game/README.md; trail motifs and CSS motion remain presentation-only and reduced-motion safe.",
+        "Browser inspection confirmed the recurring guide and art on the returning welcome and planner screens; the standard desktop/narrow Playwright journeys pass without overflow regressions.",
+        "./init.sh passed ESLint, strict TypeScript, 6 core tests, 94 Vitest tests, 10 Playwright checks, and the production build on 2026-07-21."
+      ],
+      "notes": "Trail Guide copy is curated presentation, not provider output or authoritative coaching. React owns the guide shell; Phaser may show a presentation-only guide badge but cannot receive control authority."
+    },
+    {
+      "id": "adventure-immersion-pass",
+      "priority": 26,
+      "area": "product-ui",
+      "name": "Adventure rationale, world map, audio, and app icon",
+      "description": "Turn plan rationale into a ten-second visual explanation, make Ash Titan and the right-side Storm Gate explicit map destinations, attempt mission music automatically with honest controls and fades, and ship a recognizable adventure app icon.",
+      "user_visible_behavior": "Users can scan why the plan fits them, see the boss and escape destination before play, hear a smoothly introduced mission score when device policy permits, and recognize the app from its mountain-trail icon.",
+      "dependencies": ["trail-guide-adventure-theme"],
+      "status": "passing",
+      "verification": [
+        "Open Why this plan and confirm intensity, duration, stages, level, and concise rationale cards are understandable within ten seconds.",
+        "Inspect the mission route and live world at desktop and narrow widths; confirm Ash Titan is a prominent destination, Storm Gate is on the right, and labels do not overlap.",
+        "Start, pause, mute, resume, complete, and leave a mission; confirm best-effort autoplay, blocked-audio fallback, smooth fades, control state, and cleanup.",
+        "Confirm the new project-owned app icon is legible at small size, reduced motion remains respected, and the full standard verification path passes."
+      ],
+      "evidence": [
+        "Why this plan is now an always-visible four-chip, four-card scan using validated intensity, duration, stage count, level, rationale, and limitation data; component and desktop/narrow journeys verify it.",
+        "The briefing map presents a left-to-right Trailhead, Lava Steps, prominent Ash Titan, and rightmost Storm Gate. Phaser keeps the Titan visible as a distant threat and places the Storm Gate encounter at x=824 with dataset-backed browser assertions.",
+        "Mission music attempts entry autoplay, reports blocked policy as Play music, retains an accessible toggle, fades in over 800 ms, fades out over 320 ms, pauses with mission state, and cleans up on exit.",
+        "The built-in image generator produced src/app/icon.png; its mountain-route/portal silhouette was visually inspected at 64x64 and provenance is documented.",
+        "Desktop and 390px browser inspection showed clear non-overlapping map/rationale layout with 375px document and viewport widths. ./init.sh passed lint, strict typecheck, 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build on 2026-07-21."
+      ],
+      "notes": "Autoplay is best-effort because browsers and device silent policies are authoritative. Audio remains presentation-only and must never block mission progress."
+    },
+    {
+      "id": "demo-liftoff",
+      "priority": 27,
       "area": "release",
       "name": "Guest happy-path demo lift-off",
-      "description": "Package and physically rehearse the guest path from welcome through profile, preparation, planning, mission, results, and replay.",
+      "description": "Package and physically rehearse the redesigned guest path from welcome through profile, preparation, phased mission, boss battle, cooldown, results, and replay.",
       "user_visible_behavior": "A judge can complete and understand the mission from several feet away without confusion or hidden setup.",
-      "dependencies": ["adaptive-mission-music"],
+      "dependencies": ["adventure-immersion-pass"],
       "status": "in_progress",
       "verification": [
         "Complete the guest happy path twice from clean browser profiles on the reference laptop with the real camera.",
@@ -500,13 +662,16 @@
       ],
       "evidence": [
         "2026-07-19: Successful completion saves authoritative results immediately, preserves the escape celebration and completion voice for 2.6 seconds, then automatically replaces /mission with /results without requiring touch. Desktop and narrow Playwright mission-to-results journeys pass.",
-        "2026-07-19: Post-change npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation remained 100/100."
+        "2026-07-19: Post-change npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation remained 100/100.",
+        "2026-07-20: Updated the full and short presenter journeys for phased load, direct Ash Titan strike/dodge/block combat, guided unscored cooldown, and revised claim boundaries.",
+        "2026-07-20: CAPTURE_VISUAL_EVIDENCE=1 npm run test:e2e passed all 10 desktop/narrow journeys and captured planning, active boss, cooldown-to-results, and final result evidence; the narrow 390x844 boss frame is readable without overflow.",
+        "2026-07-20: Automated release packaging is complete on a canonical ./init.sh baseline of 6 core tests, 91 Vitest tests, 10 Playwright checks, and production build. Two clean-profile real-camera rehearsals remain physically unobserved, so this feature correctly stays in progress."
       ],
       "notes": "Physical rehearsals cannot be replaced by synthetic evidence. Preserve real pose events, deterministic metrics, and local privacy."
     },
     {
       "id": "progress-persistence",
-      "priority": 21,
+      "priority": 28,
       "area": "data",
       "name": "Supabase identity sync, progress, history, and leaderboard",
       "description": "Connect the identity/profile adapter to Supabase Auth, add RLS-protected profile and calibration sync, idempotent guest conversion, session history, streak, XP, and weekly leaderboard after the guest-first hackathon slice is stable.",
