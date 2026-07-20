@@ -19,6 +19,8 @@ afterEach(() => { cleanup(); vi.restoreAllMocks(); });
 describe("IdentityOnboarding", () => {
   it("presents one obvious guest entry without unfinished account actions", () => {
     render(<IdentityOnboarding />);
+    expect(screen.getByText("QuestFit")).toBeVisible();
+    expect(screen.getByText("Your body. Your adventure.")).toBeVisible();
     expect(screen.getByRole("button", { name: "Start as guest" })).toBeVisible();
     expect(screen.queryByRole("button", { name: "Sign in" })).not.toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Create account" })).not.toBeInTheDocument();

@@ -2,7 +2,7 @@
 
 ## Demo Claim
 
-AI Fitness Escape turns a personalized guest workout into a body-controlled Volcano Escape mission. Camera processing and derived movement thresholds remain local. The demo does not claim live accounts, cloud synchronization, or leaderboard support.
+QuestFit — **Your body. Your adventure.** — turns a personalized guest workout into a body-controlled Volcano Escape mission. Camera processing and derived movement thresholds remain local. The demo does not claim live accounts, cloud synchronization, or leaderboard support.
 
 ## Reference Setup
 
@@ -53,7 +53,7 @@ Use this version when judging time is limited. It is normal returning-guest beha
 
 ## Suggested Narration
 
-- “Your body is the controller; raw camera frames never leave this laptop.”
+- “QuestFit: Your body. Your adventure. Raw camera frames never leave this laptop.”
 - “The planner proposes the workout, but validated contracts and deterministic rules decide what is playable.”
 - “Each recognized move changes the game immediately—watch the encounter, combo, XP, and runner progress.”
 - “At the workout peak, those same verified movements become attacks and dodges against the Ash Titan; the game never invents a rep or a score.”

@@ -38,8 +38,9 @@ It does not include roadmap-only social, multiplayer, seasonal, wearable, medica
 24. Compress the Adventure Briefing into a ten-second visual scan with optional detail and one primary mission action.
 25. Add a recurring project-owned Trail Guide, curated motivational moments, outdoor route motifs, and reduced-motion-safe micro-interactions across the judged journey.
 26. Redesign plan rationale, expose Ash Titan and the right-side Storm Gate on the route, add best-effort auto-start music with fades, and replace the app icon.
-27. Physically rehearse the redesigned guest happy path twice with a clean judged navigation surface and presenter runbook.
-28. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
+27. Roll out QuestFit — Your body. Your adventure. across visible product identity while preserving compatibility namespaces.
+28. Physically rehearse the redesigned guest happy path twice with a clean judged navigation surface and presenter runbook.
+29. Add Supabase account sync, RLS, guest conversion, session persistence, history, and leaderboard after the guest-only hackathon demo.
 
 ## Verification
 
@@ -115,4 +116,4 @@ Every feature owns observable steps in `feature_list.json`. The standard gate wi
 
 ## Next Action
 
-Complete two clean-profile physical `demo-liftoff` rehearsals, including audio-policy and standing-distance map/boss observations.
+Complete two clean-profile QuestFit physical `demo-liftoff` rehearsals and record the runbook evidence.

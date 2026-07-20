@@ -182,7 +182,8 @@ export default function IdentityOnboarding() {
   return (
     <main className="identity-shell welcome-layout">
       <section>
-        <p className="identity-kicker">Your body is the controller</p>
+        <p className="identity-brand">QuestFit</p>
+        <p className="identity-kicker">Your body. Your adventure.</p>
         <h1>Train. Fight. Escape.</h1>
         <p className="identity-summary">A personal workout becomes a live fantasy mission.</p>
         <TrailGuide message="I’m Scout. Let’s turn your workout into a trail worth conquering." mood="welcome" />

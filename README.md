@@ -1,6 +1,8 @@
-# AI Fitness Escape
+# QuestFit
 
-AI Fitness Escape turns a personalized workout into a browser-based adventure. An AI planner creates a structured workout, a level compiler maps it to game challenges, MediaPipe recognizes movement locally, Phaser runs the mission, and a deterministic analysis pipeline feeds an AI-written coaching recap.
+**Your body. Your adventure.**
+
+QuestFit turns a personalized workout into a browser-based adventure. An AI planner creates a structured workout, a level compiler maps it to game challenges, MediaPipe recognizes movement locally, Phaser runs the mission, and a deterministic analysis pipeline feeds an AI-written coaching recap.
 
 The target is a hackathon MVP: one complete, privacy-preserving vertical slice on a documented Chromium reference setup, with deterministic/local fallbacks keeping the demo playable when AI or Supabase credentials are unavailable.
 

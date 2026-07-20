@@ -3,7 +3,7 @@
 ## Current Verified State
 
 - Last updated: 2026-07-21
-- Objective: migrate the verified endless-runner prototype to the workout-to-adventure product
+- Objective: ship QuestFit — Your body. Your adventure. — as the verified workout-to-adventure product
 - Active feature: `demo-liftoff`
 - Canonical plan: `docs/exec-plans/active/product-transformation.md`
 - Baseline: `npm run verify` passes lint, strict typecheck, 6 core pose/calibration tests, 94 Vitest tests, ten system-Chrome Playwright checks, and Next.js production builds for all current application routes
@@ -11,6 +11,13 @@
 - Next action: run the redesigned real-camera guest journey twice from clean Chrome profiles and record physical readability, recognition, autoplay/silent-mode behavior, voice/music balance, and recovery evidence
 
 ## Session Log
+
+### 2026-07-21 — QuestFit brand rollout
+
+- Renamed the visible product to QuestFit and added the exact “Your body. Your adventure.” tagline to the welcome and browser metadata.
+- Updated planner/loading/briefing navigation, canonical product documentation, demo narration, tests, tracker, and project summary while retaining Volcano Escape as the mission name.
+- Preserved the existing `ai-fitness-escape:*` storage keys and event channels so saved guest data and runtime integrations do not break.
+- Browser inspection confirmed the title, welcome, tagline, mission distinction, and planner header. `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build; review accepted 12/12.
 
 ### 2026-07-21 — Adventure immersion pass
 

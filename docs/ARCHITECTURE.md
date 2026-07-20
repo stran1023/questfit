@@ -1,6 +1,6 @@
 # Architecture
 
-This is the canonical system map for AI Fitness Escape.
+This is the canonical system map for QuestFit.
 
 ## Tech Stack
 
@@ -146,6 +146,7 @@ Canonical encounter copy is contract-adjacent presentation metadata keyed by the
 
 ## Decisions
 
+- 2026-07-21: QuestFit is the user-facing product brand and “Your body. Your adventure.” is its tagline. Existing `ai-fitness-escape:*` storage keys and event channels remain stable compatibility identifiers until an explicit versioned migration prevents guest-data loss.
 - 2026-07-21: The recurring Trail Guide is a shared React presentation component with curated route-owned messages and project-owned mood art. It may explain coarse states already owned by each screen, but cannot generate safety facts, score, pose events, recommendations, or gameplay progress. Reduced motion disables guide bob/celebration effects without removing dialogue.
 - 2026-07-21: Adventure rationale cards and route destinations are React projections of validated planning data; the Phaser Ash Titan and Storm Gate remain disposable snapshot-driven views. Best-effort music autoplay may fail under browser/device policy and must fall back to an explicit control without delaying the mission.
 - 2026-07-21: Planning is an explicit three-route journey. Browser session storage carries schema-validated request/result envelopes between `/plan`, `/ai-to-action`, and `/briefing`; AI to Action alone calls the server planner, and the briefing alone persists a validated mission. Missing or corrupt handoffs fail closed with a route back to planning.

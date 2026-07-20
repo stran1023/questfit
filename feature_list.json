@@ -1,5 +1,5 @@
 {
-  "project": "AI Fitness Escape — Workout-to-Adventure Transformation",
+  "project": "QuestFit — Your body. Your adventure.",
   "last_updated": "2026-07-18",
   "rules": {
     "single_active_feature": true,
@@ -88,7 +88,7 @@
         "2026-07-17: Final automated gate passed 11 prototype plus 22 TypeScript tests, lint, strict typecheck, production build, harness validation 100/100, and git diff --check."
         ,"2026-07-17: Chrome desktop verification at 1440x1000 confirmed readable form and generated Forge of Strength briefing; actual selections produced 15 minutes, difficulty 2, 150 XP, 18 squats, and 15 jumps with no console errors."
         ,"2026-07-17: Chrome narrow verification at 390x844 confirmed stacked form and briefing, 375px document width without horizontal overflow, single-column computed grids, and readable controls/content."
-        ,"2026-07-17: Chrome keyboard verification confirmed focus order AI Fitness Escape link -> prototype game link -> Goal select; DOM tests cover remaining controls, submission, failure announcement, and retry."
+        ,"2026-07-17: Chrome keyboard verification confirmed focus order product-brand link -> prototype game link -> Goal select; DOM tests cover remaining controls, submission, failure announcement, and retry."
         ,"2026-07-17: code-reviewer accepted planning-experience with 12/12 and no required fixes."
       ],
       "notes": "Provider adapters remain server-side and UI consumes validated results only. Deterministic personalization is production-functional; an external paid AI provider requires an explicit provider/credential decision."
@@ -647,13 +647,36 @@
       "notes": "Autoplay is best-effort because browsers and device silent policies are authoritative. Audio remains presentation-only and must never block mission progress."
     },
     {
-      "id": "demo-liftoff",
+      "id": "questfit-brand-rollout",
       "priority": 27,
+      "area": "product-ui",
+      "name": "QuestFit product brand rollout",
+      "description": "Replace the former user-facing product name with QuestFit and the tagline Your body. Your adventure. while preserving stable storage and event namespaces for guest continuity.",
+      "user_visible_behavior": "Users see one consistent QuestFit identity in browser metadata, entry, planning, loading, briefing, tests, and product documentation while Volcano Escape remains the mission name.",
+      "dependencies": ["adventure-immersion-pass"],
+      "status": "passing",
+      "verification": [
+        "Open the welcome, planner, AI to Action, and briefing screens and confirm QuestFit is the only product brand and the tagline appears on entry.",
+        "Confirm the browser title and application metadata use QuestFit while Volcano Escape remains the current mission name.",
+        "Reload with existing guest data and confirm legacy storage/event namespaces preserve profile, planning, calibration, mission, and result continuity.",
+        "Search user-facing source and documentation for the former brand, then run the standard verification path successfully."
+      ],
+      "evidence": [
+        "QuestFit replaces the former visible product name in metadata, welcome, planner, AI to Action, briefing, tests, README, product documentation, architecture, and demo narration; the exact tagline appears on entry and in browser title metadata.",
+        "Browser inspection confirmed title 'QuestFit — Your body. Your adventure.', visible entry brand/tagline, Volcano Escape retained as the mission preview, and QuestFit planner navigation.",
+        "Stable ai-fitness-escape:* storage keys and event channels remain unchanged, preserving existing guest profile, calibration, planning, mission, and results continuity.",
+        "./init.sh passed ESLint, strict TypeScript, 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build on 2026-07-21."
+      ],
+      "notes": "Do not rename stable ai-fitness-escape storage keys or DOM event channels without an explicit versioned migration. Repository path and package identity may remain technical compatibility names."
+    },
+    {
+      "id": "demo-liftoff",
+      "priority": 28,
       "area": "release",
       "name": "Guest happy-path demo lift-off",
       "description": "Package and physically rehearse the redesigned guest path from welcome through profile, preparation, phased mission, boss battle, cooldown, results, and replay.",
       "user_visible_behavior": "A judge can complete and understand the mission from several feet away without confusion or hidden setup.",
-      "dependencies": ["adventure-immersion-pass"],
+      "dependencies": ["questfit-brand-rollout"],
       "status": "in_progress",
       "verification": [
         "Complete the guest happy path twice from clean browser profiles on the reference laptop with the real camera.",
@@ -671,7 +694,7 @@
     },
     {
       "id": "progress-persistence",
-      "priority": 28,
+      "priority": 29,
       "area": "data",
       "name": "Supabase identity sync, progress, history, and leaderboard",
       "description": "Connect the identity/profile adapter to Supabase Auth, add RLS-protected profile and calibration sync, idempotent guest conversion, session history, streak, XP, and weekly leaderboard after the guest-first hackathon slice is stable.",

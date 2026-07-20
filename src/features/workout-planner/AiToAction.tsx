@@ -59,7 +59,7 @@ export default function AiToAction() {
 
   const progress = error ? Math.max(12, (stage / stages.length) * 100) : ((stage + 1) / stages.length) * 100;
   return <main className="journey-shell route-enter">
-    <header className="journey-header"><span className="planner-brand">AI Fitness Escape</span><span className="demo-mode">AI → Action</span></header>
+    <header className="journey-header"><span className="planner-brand">QuestFit</span><span className="demo-mode">AI → Action</span></header>
     <section className="action-builder" aria-labelledby="action-title">
       <div className="action-orbit" aria-hidden="true"><span/><span/><span/><strong>{error ? "!" : `${Math.round(progress)}%`}</strong></div>
       <div className="action-copy"><p className="planner-kicker">Building your mission</p><h1 id="action-title">Your goals are becoming <span>gameplay.</span></h1><p className="action-status" aria-live="polite">{error ? "Build paused" : stages[stage]}</p><TrailGuide compact message={error ? "Trail signal dropped. Your choices are safe—let’s retry." : guideMessages[stage]} mood="thinking" />

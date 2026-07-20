@@ -43,7 +43,7 @@ describe("WorkoutPlanner", () => {
     render(<WorkoutPlanner />);
 
     await user.tab();
-    expect(screen.getByRole("link", { name: "AI Fitness Escape" })).toHaveFocus();
+    expect(screen.getByRole("link", { name: "QuestFit" })).toHaveFocus();
     await user.tab();
     expect(screen.getByRole("combobox", { name: "Goal" })).toHaveFocus();
     await user.tab();

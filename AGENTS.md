@@ -1,6 +1,6 @@
 # AGENTS.md
 
-This repository is being migrated from the original endless-runner prototype to AI Fitness Escape: a personalized workout-to-adventure product. Keep this file as a routing layer; durable product and engineering detail belongs in `docs/`.
+This repository contains QuestFit: a personalized workout-to-adventure product. Keep this file as a routing layer; durable product and engineering detail belongs in `docs/`.
 
 ## Startup Workflow
 

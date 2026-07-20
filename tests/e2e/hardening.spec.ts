@@ -35,7 +35,7 @@ test("planning failure recovers without losing the selected preference", async (
   await page.getByRole("button", { name: "Retry planning" }).click();
   await expect(page).toHaveURL(/\/briefing/, { timeout: 10_000 });
   await expect(page.getByRole("heading", { name: "Race the Eruption" })).toBeVisible();
-  await page.getByRole("link", { name: "AI Fitness Escape" }).click();
+  await page.getByRole("link", { name: "QuestFit" }).click();
   await expect(page.getByLabel("Goal")).toHaveValue("cardio");
   await expect(page.getByText("Camera processing stays on this device. No video is uploaded.")).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= document.documentElement.clientWidth)).toBe(true);
@@ -62,7 +62,7 @@ test("goal-aware planning changes structure and explains safety-aware choices", 
   await expect(page.locator(".objectives li")).toHaveCount(5);
   await expect(page.getByText(/faster-paced standing circuit/i)).toBeVisible();
 
-  await page.getByRole("link", { name: "AI Fitness Escape" }).click();
+  await page.getByRole("link", { name: "QuestFit" }).click();
   await page.getByLabel("Goal").selectOption("mobility");
   await page.getByText("20 min", { exact: true }).click();
   await page.getByLabel("Activity frequency").selectOption("rarely");

@@ -36,7 +36,7 @@ export default function WorkoutPlanner() {
   }
 
   return <main className="planner-shell route-enter">
-    <header className="planner-header"><a className="planner-brand" href="#planner">AI Fitness Escape</a><span className="demo-mode">Guest demo · Local progress</span></header>
+    <header className="planner-header"><a className="planner-brand" href="#planner">QuestFit</a><span className="demo-mode">Guest demo · Local progress</span></header>
     <section className="planner-hero" aria-labelledby="planner-title">
       <div className="planner-pitch"><p className="planner-kicker">Build your run</p><h1 id="planner-title">Train hard. <span>Play harder.</span></h1><p className="planner-summary">Choose your goal. We&apos;ll turn it into a body-controlled adventure.</p><TrailGuide compact message="Choose the goal. I’ll map the challenge." mood="pointing" /><div className="sport-stats" aria-label="Adventure features"><span><b>01</b> Personalized</span><span><b>02</b> Movement-safe</span><span><b>03</b> Game-ready</span></div></div>
       <form className="planner-form" id="planner" onSubmit={generate}>

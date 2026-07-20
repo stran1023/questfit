@@ -12,7 +12,7 @@ Grades describe verified current state, not target intent: `A` verified/stable, 
 | Level compilation | A | validated all-movement blueprint contracts, referential checks, deterministic fixtures, and Phaser objective mapping | broaden themes after the MVP | 2026-07-18 |
 | Coaching | A | deterministic metrics/recommendations, fact-preserving provider boundary, timeout/invalid fallback, result persistence/UI, and focused tests | live configured provider evidence remains optional for the guest-first MVP | 2026-07-18 |
 | Auth and progress | - | design only | Supabase setup, RLS, guest migration, persistence tests | 2026-07-17 |
-| Product UI | A | explicit Plan → AI to Action → Briefing flow, recurring Scout, visible four-chip rationale scan, Ash Titan/right-edge Storm Gate route, adventure icon, best-effort faded mission audio, one CTA, live pose/voice, guided cooldown, factual results, and responsive hardening | two clean-profile physical rehearsals remain the release gate | 2026-07-21 |
+| Product UI | A | consistent QuestFit brand/tagline, explicit Plan → AI to Action → Briefing flow, recurring Scout, visible four-chip rationale scan, Ash Titan/right-edge Storm Gate route, adventure icon, best-effort faded mission audio, one CTA, live pose/voice, guided cooldown, factual results, and responsive hardening | two clean-profile physical rehearsals remain the release gate | 2026-07-21 |
 
 ## Harness and Layers
 

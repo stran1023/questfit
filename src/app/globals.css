@@ -560,6 +560,7 @@ button:active { transform: translateY(1px) scale(0.985); }
 .identity-shell,.planner-shell,.results-shell{position:relative}
 .identity-shell::before,.planner-shell::before,.results-shell::before{content:"";position:fixed;z-index:-1;inset:0;background:radial-gradient(circle at 82% 8%,rgb(34 211 238 / 13%),transparent 25%),radial-gradient(circle at 12% 80%,rgb(249 115 22 / 10%),transparent 28%);pointer-events:none}
 .identity-kicker,.planner-kicker{color:#67e8f9;letter-spacing:.18em}
+.identity-brand{margin:0 0 8px;color:#f8fafc;font-size:clamp(18px,2.5vw,26px);font-style:italic;font-weight:950;letter-spacing:-.03em;text-transform:uppercase}
 .welcome-layout h1,.profile-layout h1,.identity-returning h1,.planner-hero h1,.results-hero h1{font-style:italic;font-weight:950;letter-spacing:-.055em;text-transform:uppercase}
 .identity-primary,.planner-submit,.begin-button,.results-primary{border:0;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);border-radius:4px;background:linear-gradient(110deg,#22d3ee,#3b82f6 58%,#7c3aed);color:#031525;box-shadow:0 12px 34px rgb(34 211 238 / 22%)}
 .welcome-card,.mission-art{position:relative;background-image:linear-gradient(180deg,transparent 20%,rgb(8 12 28 / 94%)),url('/game/volcano-escape-bg.png');background-position:center;background-size:cover}

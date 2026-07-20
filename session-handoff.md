@@ -1,5 +1,13 @@
 # Session Handoff
 
+## 2026-07-21 — QuestFit branding complete
+
+- `questfit-brand-rollout` is passing 12/12; `demo-liftoff` is the sole active feature.
+- The canonical visible identity is **QuestFit — Your body. Your adventure.** Browser metadata, welcome, planning/loading/briefing navigation, README, product docs, and demo narration are synchronized.
+- **Volcano Escape** remains the current mission name. Stable `ai-fitness-escape:*` storage keys and DOM event channels intentionally remain compatibility identifiers so existing guest state survives the rename.
+- Browser inspection confirmed the QuestFit title, entry brand/tagline, Volcano Escape preview, and planner link. Full verification passes 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+- Next action: rehearse the full QuestFit real-camera path twice from clean profiles and record the existing runbook evidence.
+
 ## 2026-07-21 — Adventure immersion pass complete
 
 - `adventure-immersion-pass` is passing 12/12; `demo-liftoff` is the sole active feature.

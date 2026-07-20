@@ -2,7 +2,7 @@
 
 ## Promise
 
-AI Fitness Escape makes a home workout feel like an adventure: AI creates a personalized routine, converts it into a mission, and uses the player's body as the controller.
+QuestFit — **Your body. Your adventure.** — makes a home workout feel like an adventure: AI creates a personalized routine, converts it into a mission, and uses the player's body as the controller.
 
 ## Primary Users and Job
 
