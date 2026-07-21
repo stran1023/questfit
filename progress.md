@@ -12,6 +12,13 @@
 
 ## Session Log
 
+### 2026-07-21 — README screenshot gallery
+
+- Ran the existing camera-free desktop Playwright capture for goal-aware planning and the mission world; both checks passed without a webcam.
+- Promoted and visually accepted a route/plan screenshot, active Ash Titan battle frame, and deterministic mission-results capture under `docs/screenshots/`.
+- Replaced all three README screenshot TODOs with linked thumbnails and recorded how to regenerate them. The future real-camera video remains explicitly separate.
+- Screenshot/documentation links and image metadata validate; post-change `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+
 ### 2026-07-21 — QuestFit production deployment
 
 - Created and Git-connected the Vercel project, then assigned the `questfit-adventure` slug so its permanent production domain matches the product without colliding with an unrelated `questfit.vercel.app` deployment.

@@ -692,7 +692,8 @@
         "2026-07-21: Rebuilt README.md as an accurate onboarding and project overview covering the shipped guest journey, architecture, setup, configuration, usage, AI boundaries, roadmap, limitations, and explicit screenshot/license/contribution TODOs. Post-edit ./init.sh passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.",
         "2026-07-21: Added an evidence-based AI Development Workflow documenting how GPT-5.6 supported product/UX/architecture decisions, how Codex accelerated repository implementation/debugging/testing, why eight key trade-offs were chosen, and where human review retained final authority.",
         "2026-07-21: Replaced README governance TODOs with an MIT License, contribution guide, project-specific code of conduct, maintained contributor list, bug/feature issue forms, and a pull-request template.",
-        "2026-07-21: Deployed the production Next.js application to the Git-connected Vercel project questfit-adventure and verified https://questfit-adventure.vercel.app, /plan, and POST /api/workout/generate return successful responses."
+        "2026-07-21: Deployed the production Next.js application to the Git-connected Vercel project questfit-adventure and verified https://questfit-adventure.vercel.app, /plan, and POST /api/workout/generate return successful responses.",
+        "2026-07-21: Camera-free desktop Playwright capture produced and visually accepted the validated route briefing, active Ash Titan battle, and deterministic results screenshots; README now embeds the project-owned assets while retaining real-camera video as a separate TODO."
       ],
       "notes": "Physical rehearsals cannot be replaced by synthetic evidence. Preserve real pose events, deterministic metrics, and local privacy."
     },

@@ -34,14 +34,14 @@ The development team collaborated with **GPT-5.6** for product exploration and t
 
 | Plan your route | Battle the Ash Titan | Review your run |
 | --- | --- | --- |
-| _TODO: Add planner screenshot_ | _TODO: Add mission screenshot_ | _TODO: Add results screenshot_ |
+| [<img src="docs/screenshots/plan-your-route.png" alt="QuestFit adventure route and plan rationale" width="320">](docs/screenshots/plan-your-route.png) | [<img src="docs/screenshots/ash-titan-battle.png" alt="QuestFit Ash Titan boss battle" width="320">](docs/screenshots/ash-titan-battle.png) | [<img src="docs/screenshots/mission-results.png" alt="QuestFit deterministic mission results" width="320">](docs/screenshots/mission-results.png) |
 
 **[Launch the live QuestFit demo](https://questfit-adventure.vercel.app)**
 
 For the complete presenter sequence, expected behavior, recovery paths, and claim boundaries, see the [demo runbook](docs/DEMO_RUNBOOK.md).
 
 > [!NOTE]
-> The live demo uses HTTPS so supported browsers can request webcam access. A permanent screenshot gallery has not been published yet.
+> The live demo uses HTTPS so supported browsers can request webcam access. Screenshots were captured from the camera-free automated journey; a real-camera video demo will be added later.
 
 ## Technology stack
 
@@ -275,7 +275,7 @@ The current server route uses deterministic planning. External model-backed plan
 - Add Supabase authentication, guest conversion, synchronized progress, history, and leaderboard with tested row-level security.
 - Expand adventure themes, mission environments, and movement-aware encounters.
 - Broaden device/browser performance testing and physical camera-loss recovery evidence.
-- Publish permanent screenshots and expand release automation.
+- Add the real-camera video walkthrough and expand release automation.
 - Continue using GPT-5.6 for evaluated product experiments and Codex for test-backed implementation, while retaining human approval for architecture, safety, and release decisions.
 
 ## Known limitations

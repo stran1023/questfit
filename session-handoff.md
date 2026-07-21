@@ -1,5 +1,12 @@
 # Session Handoff
 
+## 2026-07-21 — Camera-free README gallery complete
+
+- README embeds three real application screenshots: validated route planning, an active Ash Titan dodge, and factual mission results.
+- Captures came from the desktop Playwright journey with camera denial plus validated mission/movement boundaries; provenance and the regeneration command live in `docs/screenshots/README.md`.
+- Visual inspection accepted all three assets. A real-camera video remains intentionally deferred for the user to record later.
+- Screenshot/documentation links and image metadata validate; post-change `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+
 ## 2026-07-21 — Production deployment live
 
 - QuestFit is deployed at `https://questfit-adventure.vercel.app` under Vercel project `sonchans-projects/questfit-adventure`, connected to `https://github.com/stran1023/questfit`.
