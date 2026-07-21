@@ -688,7 +688,8 @@
         "2026-07-19: Post-change npm run verify passed lint, strict typecheck, 6 core tests, 86 Vitest tests, 10 Playwright checks, and production build; harness validation remained 100/100.",
         "2026-07-20: Updated the full and short presenter journeys for phased load, direct Ash Titan strike/dodge/block combat, guided unscored cooldown, and revised claim boundaries.",
         "2026-07-20: CAPTURE_VISUAL_EVIDENCE=1 npm run test:e2e passed all 10 desktop/narrow journeys and captured planning, active boss, cooldown-to-results, and final result evidence; the narrow 390x844 boss frame is readable without overflow.",
-        "2026-07-20: Automated release packaging is complete on a canonical ./init.sh baseline of 6 core tests, 91 Vitest tests, 10 Playwright checks, and production build. Two clean-profile real-camera rehearsals remain physically unobserved, so this feature correctly stays in progress."
+        "2026-07-20: Automated release packaging is complete on a canonical ./init.sh baseline of 6 core tests, 91 Vitest tests, 10 Playwright checks, and production build. Two clean-profile real-camera rehearsals remain physically unobserved, so this feature correctly stays in progress.",
+        "2026-07-21: Rebuilt README.md as an accurate onboarding and project overview covering the shipped guest journey, architecture, setup, configuration, usage, AI boundaries, roadmap, limitations, and explicit screenshot/license/contribution TODOs. Post-edit ./init.sh passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build."
       ],
       "notes": "Physical rehearsals cannot be replaced by synthetic evidence. Preserve real pose events, deterministic metrics, and local privacy."
     },

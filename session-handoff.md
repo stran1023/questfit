@@ -1,5 +1,12 @@
 # Session Handoff
 
+## 2026-07-21 — Public README synchronized
+
+- Replaced the short project summary with a complete, public-facing QuestFit README grounded in current source, scripts, canonical docs, and the renamed GitHub remote.
+- It now documents the guest journey, 11-movement scope, privacy and deterministic authority boundaries, installation and verification commands, optional visual-evidence flag, architecture, roadmap, and known limitations.
+- Missing hosted demo/screenshots, license, and contribution governance remain explicit TODOs. `docs-gap.md` reports no undocumented passing features.
+- README local links, feature JSON, and whitespace checks pass. Post-edit `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build; `demo-liftoff` remains active and still requires two physical rehearsals.
+
 ## 2026-07-21 — QuestFit branding complete
 
 - `questfit-brand-rollout` is passing 12/12; `demo-liftoff` is the sole active feature.

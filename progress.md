@@ -12,6 +12,12 @@
 
 ## Session Log
 
+### 2026-07-21 — Public README refresh
+
+- Rebuilt the root README into a GitHub-ready overview with project value, shipped features, demo placeholders, stack, architecture, setup, configuration, usage, AI boundaries, roadmap, limitations, contributors, and license status.
+- Verified every operational claim against current source and canonical docs; no runtime environment variables are required, external AI and Supabase remain explicitly deferred, and missing screenshots/license/contribution files are labeled TODO rather than invented.
+- README local links, feature JSON, and whitespace checks pass. Post-edit `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build. `demo-liftoff` remains active for its two physical real-camera rehearsals.
+
 ### 2026-07-21 — QuestFit brand rollout
 
 - Renamed the visible product to QuestFit and added the exact “Your body. Your adventure.” tagline to the welcome and browser metadata.
