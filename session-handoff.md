@@ -1,5 +1,19 @@
 # Session Handoff
 
+## 2026-07-22 — Published video demo linked
+
+- README now links directly to the public QuestFit video demo at `https://youtu.be/Fw6up4e3uP8` beside the live application.
+- The previous “video will be added later” note and roadmap item are removed.
+- Baseline `./init.ps1` passed the full gate before the documentation edit. `demo-liftoff` remains active pending its separately defined physical rehearsal evidence.
+- Post-edit verification exposed a pre-existing fixture gap: both mission Playwright variants stop before canvas creation because no saved calibration thresholds are seeded. See `debug-log.md`; no runtime change was made in this documentation-only task.
+
+## 2026-07-22 — Solo-developer README narrative complete
+
+- README now consistently presents QuestFit as designed and implemented by one developer; no “we,” “our,” or team-based ownership language remains.
+- The AI development workflow preserves concrete GPT-5.6 and Codex contributions while assigning final architecture, product, safety, implementation, evidence, and release decisions to the developer.
+- Technical claims, setup instructions, architecture, limitations, and the verified guest journey are unchanged.
+- Post-edit `./init.ps1` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, lint, strict typecheck, and production build. `demo-liftoff` remains active; next action is still two clean-profile real-camera rehearsals.
+
 ## 2026-07-21 — Camera-free README gallery complete
 
 - README embeds three real application screenshots: validated route planning, an active Ash Titan dodge, and factual mission results.

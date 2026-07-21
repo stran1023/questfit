@@ -13,7 +13,7 @@ QuestFit turns a home workout into a body-controlled fantasy adventure. It build
 
 The current hackathon experience is a complete guest journey through **Volcano Escape**: prepare with Scout, follow a warm-up-to-peak workout, attack and dodge the Ash Titan, escape through the Storm Gate, cool down, and review the session—all in the browser.
 
-The development team collaborated with **GPT-5.6** for product exploration and technical decision support, and used **Codex** as a repository-aware engineering accelerator. The team retained ownership of the product direction, architecture, safety boundaries, acceptance criteria, and every final implementation decision.
+QuestFit was built by a solo developer using **GPT-5.6** for product exploration and technical decision support and **Codex** as a repository-aware engineering accelerator. GPT-5.6 and Codex accelerated the work, while the developer retained ownership of product direction, architecture, safety boundaries, acceptance criteria, implementation, and every final decision.
 
 > [!IMPORTANT]
 > Webcam video and raw pose landmarks stay on the device. QuestFit stores only derived calibration thresholds and session data required for local continuity.
@@ -38,10 +38,12 @@ The development team collaborated with **GPT-5.6** for product exploration and t
 
 **[Launch the live QuestFit demo](https://questfit-adventure.vercel.app)**
 
+**[Watch the QuestFit video demo on YouTube](https://youtu.be/Fw6up4e3uP8)**
+
 For the complete presenter sequence, expected behavior, recovery paths, and claim boundaries, see the [demo runbook](docs/DEMO_RUNBOOK.md).
 
 > [!NOTE]
-> The live demo uses HTTPS so supported browsers can request webcam access. Screenshots were captured from the camera-free automated journey; a real-camera video demo will be added later.
+> The live demo uses HTTPS so supported browsers can request webcam access. Screenshots were captured from the camera-free automated journey; the YouTube walkthrough shows the published product demonstration.
 
 ## Technology stack
 
@@ -79,13 +81,13 @@ Webcam → MediaPipe → Movement events ──────────┤
 
 Read [the architecture guide](docs/ARCHITECTURE.md) for domain ownership, invariants, and design decisions.
 
-## AI Development Workflow
+## AI development workflow
 
-QuestFit was developed through a deliberate collaboration between the development team, GPT-5.6, and Codex. AI shortened the distance between an idea and a testable implementation, but it did not replace engineering judgment or make unsupervised product decisions.
+QuestFit was designed and implemented by one developer with support from GPT-5.6 and Codex. The tools shortened the path from an idea to a tested implementation, but they did not replace engineering judgment or make unsupervised product decisions.
 
 ### From inspiration to a focused concept
 
-We used **GPT-5.6** as a product and design thought partner while evolving the original endless-runner prototype into QuestFit. It helped us:
+**GPT-5.6** served as a product and design thought partner while the original endless-runner prototype evolved into QuestFit. It accelerated product development by helping to:
 
 - Compare possible hackathon directions and focus on a personalized workout-to-adventure experience.
 - Refine the core pitch from “pose detection attached to a game” into a visible **profile → policy → validated plan → game blueprint → pose events → deterministic results** pipeline.
@@ -95,11 +97,11 @@ We used **GPT-5.6** as a product and design thought partner while evolving the o
 - Reduce the Adventure Briefing into a ten-second visual scan and introduce Scout as a recurring guide.
 - Review trade-offs, challenge assumptions, improve submission language, and keep the value proposition understandable to non-technical judges.
 
-These conversations produced options and critiques. The team selected the final concept, decided what fit the hackathon scope, and rejected ideas that weakened reliability, privacy, or demo clarity.
+These conversations produced options and critiques. The developer selected the final concept, defined the hackathon scope, and rejected ideas that weakened reliability, privacy, or demo clarity.
 
 ### Where Codex accelerated implementation
 
-We used **Codex** as a repository-aware coding collaborator throughout implementation. It inspected the existing code and architecture, proposed scoped changes, edited the project, ran verification, and iterated on failures. Concrete contributions included:
+**Codex** served as a repository-aware coding collaborator throughout implementation. It inspected the existing code and architecture, proposed scoped changes, generated and edited code, ran verification, and iterated on failures. Concrete contributions included:
 
 - Migrating the prototype into a typed Next.js App Router application while preserving proven calibration and movement logic.
 - Generating route and component boilerplate for onboarding, planning, AI to Action, briefing, preparation, mission, cooldown, and results.
@@ -111,11 +113,11 @@ We used **Codex** as a repository-aware coding collaborator throughout implement
 - Refactoring repeated encounter language into shared contracts so the planner, briefing, voice assistant, React HUD, and Phaser scene remain consistent.
 - Synchronizing product, architecture, safety, runbook, handoff, and public documentation with verified behavior.
 
-Codex made iteration faster because it could move from repository inspection to implementation and verification in one workflow. For example, the team could evaluate a scannable briefing concept, implement its responsive cards and progressive disclosure, add focused tests, run the full browser journey, and refine the result within the same development cycle.
+Codex made iteration faster by moving from repository inspection to implementation and verification in one workflow. For example, a scannable briefing concept could be evaluated, implemented with responsive cards and progressive disclosure, covered by focused tests, exercised through the full browser journey, and refined within the same development cycle. The developer reviewed the result and decided which changes were accepted.
 
-### Key decisions and why we made them
+### Key engineering decisions
 
-| Decision | Alternative considered | Why the team chose it |
+| Decision | Alternative considered | Why it was selected |
 | --- | --- | --- |
 | Deterministic workout policy with validated AI boundaries | Let an LLM freely select exercises, targets, and intensity | Exercise eligibility, progression, limitations, and recovery need predictable and testable rules. AI can assist with generation and language but cannot override safety policy. |
 | On-device MediaPipe inference | Upload webcam frames for server-side analysis | Local processing improves responsiveness and keeps video frames and raw landmarks off the network. |
@@ -126,11 +128,11 @@ Codex made iteration faster because it could move from repository inspection to 
 | Deterministic metrics and recommendations | Ask an LLM to calculate accuracy, XP, or fitness conclusions | Scores must be repeatable and grounded in verified movement events; generated wording cannot alter authoritative facts. |
 | Procedural Web Audio with an honest fallback control | Depend on a streamed soundtrack or assume autoplay | Procedural audio avoids network and licensing risk, while the play/mute control respects browser and device policy. |
 
-GPT-5.6 helped us examine these alternatives and articulate their trade-offs. Codex helped encode the selected decisions into contracts, tests, components, and documentation. **The development team made and approved each decision.**
+GPT-5.6 helped examine these alternatives and articulate their trade-offs. Codex helped encode the selected decisions into contracts, tests, components, and documentation. **The solo developer made and approved every engineering, architecture, product, and implementation decision.**
 
 ### Human ownership, review, and safety
 
-AI served as an accelerator—not an autonomous developer. The team remained responsible for:
+AI served as an accelerator—not an autonomous developer. The developer remained responsible for:
 
 - Defining product goals and deciding which ideas entered the judged experience.
 - Approving architecture, dependency boundaries, and data ownership.
@@ -141,7 +143,7 @@ AI served as an accelerator—not an autonomous developer. The team remained res
 - Keeping unsupported AI, authentication, persistence, or device claims out of the demo.
 - Running the complete verification gate before accepting changes.
 
-This workflow taught us that AI development is most effective when suggestions are constrained by explicit architecture, observable acceptance criteria, and automated checks. GPT-5.6 increased the breadth and speed of exploration; Codex increased implementation and testing velocity; human review kept the result coherent, safe, and honest.
+The project demonstrated that AI-assisted development is most effective when suggestions are constrained by explicit architecture, observable acceptance criteria, and automated checks. GPT-5.6 increased the breadth and speed of brainstorming, UX exploration, storytelling, documentation, and trade-off review. Codex accelerated code generation, debugging, refactoring, testing, documentation, and implementation iteration. Final developer review kept the result coherent, safe, and honest.
 
 ## Installation
 
@@ -275,7 +277,7 @@ The current server route uses deterministic planning. External model-backed plan
 - Add Supabase authentication, guest conversion, synchronized progress, history, and leaderboard with tested row-level security.
 - Expand adventure themes, mission environments, and movement-aware encounters.
 - Broaden device/browser performance testing and physical camera-loss recovery evidence.
-- Add the real-camera video walkthrough and expand release automation.
+- Expand release automation and published demo evidence.
 - Continue using GPT-5.6 for evaluated product experiments and Codex for test-backed implementation, while retaining human approval for architecture, safety, and release decisions.
 
 ## Known limitations

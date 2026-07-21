@@ -693,7 +693,9 @@
         "2026-07-21: Added an evidence-based AI Development Workflow documenting how GPT-5.6 supported product/UX/architecture decisions, how Codex accelerated repository implementation/debugging/testing, why eight key trade-offs were chosen, and where human review retained final authority.",
         "2026-07-21: Replaced README governance TODOs with an MIT License, contribution guide, project-specific code of conduct, maintained contributor list, bug/feature issue forms, and a pull-request template.",
         "2026-07-21: Deployed the production Next.js application to the Git-connected Vercel project questfit-adventure and verified https://questfit-adventure.vercel.app, /plan, and POST /api/workout/generate return successful responses.",
-        "2026-07-21: Camera-free desktop Playwright capture produced and visually accepted the validated route briefing, active Ash Titan battle, and deterministic results screenshots; README now embeds the project-owned assets while retaining real-camera video as a separate TODO."
+        "2026-07-21: Camera-free desktop Playwright capture produced and visually accepted the validated route briefing, active Ash Titan battle, and deterministic results screenshots; README now embeds the project-owned assets while retaining real-camera video as a separate TODO.",
+        "2026-07-22: README now presents QuestFit as a solo-developer project and distinguishes AI acceleration from final developer authority; post-edit ./init.ps1 passed the full gate.",
+        "2026-07-22: README now links the published QuestFit YouTube demo and no longer describes the video walkthrough as future work."
       ],
       "notes": "Physical rehearsals cannot be replaced by synthetic evidence. Preserve real pose events, deterministic metrics, and local privacy."
     },

@@ -2,7 +2,7 @@
 
 ## Current Verified State
 
-- Last updated: 2026-07-21
+- Last updated: 2026-07-22
 - Objective: ship QuestFit — Your body. Your adventure. — as the verified workout-to-adventure product
 - Active feature: `demo-liftoff`
 - Canonical plan: `docs/exec-plans/active/product-transformation.md`
@@ -11,6 +11,20 @@
 - Next action: run the redesigned real-camera guest journey twice from clean Chrome profiles and record physical readability, recognition, autoplay/silent-mode behavior, voice/music balance, and recovery evidence
 
 ## Session Log
+
+### 2026-07-22 — Published video demo linked
+
+- Added the public QuestFit YouTube walkthrough to the README beside the live application link.
+- Removed stale wording that described the video as future work and updated the roadmap accordingly.
+- Baseline `./init.ps1` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, lint, strict typecheck, and production build before the documentation edit.
+- Post-edit lint, typecheck, core tests, and 94 Vitest tests passed, but the Playwright mission check failed twice because its fixture does not seed the saved calibration state now required before Phaser canvas creation. The documentation-only change does not touch runtime code; evidence is recorded in `debug-log.md`.
+
+### 2026-07-22 — Solo-developer README narrative
+
+- Revised the public README to identify QuestFit accurately as a solo-developer project and removed plural developer-ownership language.
+- Preserved the verified product, architecture, privacy, implementation, setup, and limitation details while standardizing project-first wording.
+- Clarified that GPT-5.6 accelerated brainstorming, UX, storytelling, documentation, and trade-off review; Codex accelerated code generation, debugging, refactoring, testing, documentation, and implementation; the developer retained every final product and engineering decision.
+- Post-edit `./init.ps1` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, lint, strict typecheck, and the production build. `demo-liftoff` remains active for two physical real-camera rehearsals.
 
 ### 2026-07-21 — README screenshot gallery
 

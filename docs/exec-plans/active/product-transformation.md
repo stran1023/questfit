@@ -76,6 +76,8 @@ Every feature owns observable steps in `feature_list.json`. The standard gate wi
 
 ## Progress
 
+- 2026-07-22: Added the published QuestFit YouTube demo to the public README and removed outdated future-video language from the demo note and roadmap.
+- 2026-07-22: Revised the public README into a consistent solo-developer narrative, preserved verified technical detail, and clarified that GPT-5.6 and Codex accelerated development while the developer retained every final product, architecture, engineering, and implementation decision.
 - 2026-07-21: Captured and documented three project-owned README screenshots from the camera-free desktop Playwright journey: validated route planning, active Ash Titan combat, and deterministic results. Real-camera video remains separate release evidence.
 - 2026-07-21: Deployed the verified production build to the Git-connected Vercel project `questfit-adventure`; the public homepage, planning route, and workout-generation API passed live HTTP checks at `https://questfit-adventure.vercel.app`.
 - 2026-07-21: Replaced public governance placeholders with the MIT License, contribution and conduct policies, contributor recognition, structured issue forms, and a verification/safety-aware pull-request template.
