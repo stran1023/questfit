@@ -1,5 +1,19 @@
 # Session Handoff
 
+## 2026-07-21 — Open-source governance ready
+
+- README now links to a root MIT License, contribution guide, code of conduct, contributor list, and structured issue forms; the previous governance TODOs are removed.
+- Bug, feature, and pull-request templates protect webcam/health data and require observable verification and architecture-aware changes.
+- The initial maintained contributor list reflects repository history: `stran1023` is the creator and maintainer.
+- Governance links and issue-form YAML validate, whitespace checks pass, and post-change `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+
+## 2026-07-21 — AI collaboration narrative added
+
+- README now contains a dedicated AI Development Workflow describing the distinct roles of GPT-5.6, Codex, and the development team.
+- Concrete examples cover ideation, UX/story refinement, migration, contracts, implementation, refactoring, race-condition debugging, test creation, responsive verification, and documentation.
+- An eight-decision comparison table explains chosen alternatives; human responsibility for architecture, privacy, safety, validation, evidence, and release approval is explicit.
+- README links, feature JSON, and whitespace checks pass; post-edit `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+
 ## 2026-07-21 — Public README synchronized
 
 - Replaced the short project summary with a complete, public-facing QuestFit README grounded in current source, scripts, canonical docs, and the renamed GitHub remote.

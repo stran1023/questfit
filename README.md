@@ -7,11 +7,13 @@
 [![React](https://img.shields.io/badge/React-19.2-149eca?logo=react)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178c6?logo=typescript)](https://www.typescriptlang.org/)
 [![Tests](https://img.shields.io/badge/tests-110%20passing-31c48d)](#quality-and-verification)
-[![License](https://img.shields.io/badge/license-TODO-lightgrey)](#license)
+[![License](https://img.shields.io/badge/license-MIT-22c55e)](LICENSE)
 
 QuestFit turns a home workout into a body-controlled fantasy adventure. It builds a goal-aware exercise plan, compiles each movement into a game challenge, recognizes completed movements locally through the webcam, and rewards the player with deterministic results and coaching.
 
 The current hackathon experience is a complete guest journey through **Volcano Escape**: prepare with Scout, follow a warm-up-to-peak workout, attack and dodge the Ash Titan, escape through the Storm Gate, cool down, and review the session—all in the browser.
+
+The development team collaborated with **GPT-5.6** for product exploration and technical decision support, and used **Codex** as a repository-aware engineering accelerator. The team retained ownership of the product direction, architecture, safety boundaries, acceptance criteria, and every final implementation decision.
 
 > [!IMPORTANT]
 > Webcam video and raw pose landmarks stay on the device. QuestFit stores only derived calibration thresholds and session data required for local continuity.
@@ -74,6 +76,70 @@ Webcam → MediaPipe → Movement events ──────────┤
 - **Zod contracts** validate data crossing route, planning, blueprint, mission, and result boundaries.
 
 Read [the architecture guide](docs/ARCHITECTURE.md) for domain ownership, invariants, and design decisions.
+
+## AI Development Workflow
+
+QuestFit was developed through a deliberate collaboration between the development team, GPT-5.6, and Codex. AI shortened the distance between an idea and a testable implementation, but it did not replace engineering judgment or make unsupervised product decisions.
+
+### From inspiration to a focused concept
+
+We used **GPT-5.6** as a product and design thought partner while evolving the original endless-runner prototype into QuestFit. It helped us:
+
+- Compare possible hackathon directions and focus on a personalized workout-to-adventure experience.
+- Refine the core pitch from “pose detection attached to a game” into a visible **profile → policy → validated plan → game blueprint → pose events → deterministic results** pipeline.
+- Explore the hybrid visual direction: a modern fitness interface outside missions and a cinematic fantasy world during play.
+- Design the warm-up, build, surge, peak, and cooldown journey instead of presenting a flat list of exercises.
+- Turn exercise counting into direct story actions, including attacking, blocking, and dodging the Ash Titan.
+- Reduce the Adventure Briefing into a ten-second visual scan and introduce Scout as a recurring guide.
+- Review trade-offs, challenge assumptions, improve submission language, and keep the value proposition understandable to non-technical judges.
+
+These conversations produced options and critiques. The team selected the final concept, decided what fit the hackathon scope, and rejected ideas that weakened reliability, privacy, or demo clarity.
+
+### Where Codex accelerated implementation
+
+We used **Codex** as a repository-aware coding collaborator throughout implementation. It inspected the existing code and architecture, proposed scoped changes, edited the project, ran verification, and iterated on failures. Concrete contributions included:
+
+- Migrating the prototype into a typed Next.js App Router application while preserving proven calibration and movement logic.
+- Generating route and component boilerplate for onboarding, planning, AI to Action, briefing, preparation, mission, cooldown, and results.
+- Building Zod contracts and validation paths for workout plans, adventure blueprints, route handoffs, movement events, sessions, and coaching summaries.
+- Refactoring the planning experience from an inline result into the explicit `/plan` → `/ai-to-action` → `/briefing` flow with retry and fail-closed session handoff.
+- Implementing and refining movement detectors, the mission controller, Phaser presentation adapters, Scout, the Ash Titan encounter, procedural audio, and responsive UI states.
+- Creating regression tests and expanding the verification gate to cover core pose logic, unit and component behavior, desktop/narrow Playwright journeys, strict type checking, linting, and production builds.
+- Diagnosing integration defects, including early camera-loss event ordering, in-flight MediaPipe initialization cleanup, stale voice cues, mission-to-results teardown, and encounter transition ordering.
+- Refactoring repeated encounter language into shared contracts so the planner, briefing, voice assistant, React HUD, and Phaser scene remain consistent.
+- Synchronizing product, architecture, safety, runbook, handoff, and public documentation with verified behavior.
+
+Codex made iteration faster because it could move from repository inspection to implementation and verification in one workflow. For example, the team could evaluate a scannable briefing concept, implement its responsive cards and progressive disclosure, add focused tests, run the full browser journey, and refine the result within the same development cycle.
+
+### Key decisions and why we made them
+
+| Decision | Alternative considered | Why the team chose it |
+| --- | --- | --- |
+| Deterministic workout policy with validated AI boundaries | Let an LLM freely select exercises, targets, and intensity | Exercise eligibility, progression, limitations, and recovery need predictable and testable rules. AI can assist with generation and language but cannot override safety policy. |
+| On-device MediaPipe inference | Upload webcam frames for server-side analysis | Local processing improves responsiveness and keeps video frames and raw landmarks off the network. |
+| Independent React, MediaPipe, mission-controller, and Phaser responsibilities | Put pose input, rendering, and scoring into one game loop | Separation prevents presentation code from awarding repetitions, keeps React out of per-frame updates, and makes gameplay facts reproducible. |
+| Zod validation at every AI and route boundary | Trust generated JSON or browser storage | Model output and stored session data are untrusted until their shape and compatibility are verified. |
+| Guest-local hackathon journey | Rush unfinished authentication and cloud persistence into the demo | A reliable complete mission offered more value than partially working breadth. Supabase remains a post-demo feature requiring tested row-level security. |
+| Explicit Plan → AI to Action → Briefing routes | Generate and display everything on one crowded page | The separated flow makes AI work visible, improves error recovery, and lets users scan the final mission before camera preparation. |
+| Deterministic metrics and recommendations | Ask an LLM to calculate accuracy, XP, or fitness conclusions | Scores must be repeatable and grounded in verified movement events; generated wording cannot alter authoritative facts. |
+| Procedural Web Audio with an honest fallback control | Depend on a streamed soundtrack or assume autoplay | Procedural audio avoids network and licensing risk, while the play/mute control respects browser and device policy. |
+
+GPT-5.6 helped us examine these alternatives and articulate their trade-offs. Codex helped encode the selected decisions into contracts, tests, components, and documentation. **The development team made and approved each decision.**
+
+### Human ownership, review, and safety
+
+AI served as an accelerator—not an autonomous developer. The team remained responsible for:
+
+- Defining product goals and deciding which ideas entered the judged experience.
+- Approving architecture, dependency boundaries, and data ownership.
+- Protecting webcam privacy and rejecting raw-frame or landmark uploads.
+- Defining deterministic scoring, safety rules, and non-medical claim boundaries.
+- Reviewing generated changes and resolving implementation trade-offs.
+- Testing real movement behavior and deciding whether evidence was sufficient.
+- Keeping unsupported AI, authentication, persistence, or device claims out of the demo.
+- Running the complete verification gate before accepting changes.
+
+This workflow taught us that AI development is most effective when suggestions are constrained by explicit architecture, observable acceptance criteria, and automated checks. GPT-5.6 increased the breadth and speed of exploration; Codex increased implementation and testing velocity; human review kept the result coherent, safe, and honest.
 
 ## Installation
 
@@ -207,7 +273,8 @@ The current server route uses deterministic planning. External model-backed plan
 - Add Supabase authentication, guest conversion, synchronized progress, history, and leaderboard with tested row-level security.
 - Expand adventure themes, mission environments, and movement-aware encounters.
 - Broaden device/browser performance testing and physical camera-loss recovery evidence.
-- Publish a hosted demo, screenshots, contribution guidelines, and release automation.
+- Publish a hosted demo, permanent screenshots, and release automation.
+- Continue using GPT-5.6 for evaluated product experiments and Codex for test-backed implementation, while retaining human approval for architecture, safety, and release decisions.
 
 ## Known limitations
 
@@ -223,12 +290,10 @@ The current server route uses deterministic planning. External model-backed plan
 
 QuestFit is currently maintained in the [stran1023/questfit](https://github.com/stran1023/questfit) repository.
 
-Contributions are welcome once the project publishes its contribution process.
+Contributions are welcome. Read [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request, follow the [Code of Conduct](CODE_OF_CONDUCT.md), and see [CONTRIBUTORS.md](CONTRIBUTORS.md) for project recognition.
 
-> **TODO:** Add `CONTRIBUTING.md`, a code of conduct, issue templates, and a maintained contributor list.
+Use the structured [bug report](https://github.com/stran1023/questfit/issues/new?template=bug_report.yml) and [feature request](https://github.com/stran1023/questfit/issues/new?template=feature_request.yml) forms when opening an issue.
 
 ## License
 
-No license has been selected or added to the repository yet. All rights remain with the project owner unless stated otherwise.
-
-> **TODO:** Choose an open-source license and add a root `LICENSE` file before distributing or accepting external contributions.
+QuestFit is available under the [MIT License](LICENSE).

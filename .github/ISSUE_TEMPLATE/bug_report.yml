@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a reproducible problem in QuestFit.
+title: "[Bug]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for helping improve QuestFit. Do not attach webcam captures, raw pose landmarks, personal health information, or secrets.
+  - type: textarea
+    id: summary
+    attributes:
+      label: What happened?
+      description: Describe the problem and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Reproduction steps
+      placeholder: |
+        1. Open...
+        2. Select...
+        3. Observe...
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, browser and version, viewport, and device type.
+    validations:
+      required: true
+  - type: dropdown
+    id: camera
+    attributes:
+      label: Does this involve camera or movement recognition?
+      options:
+        - "No"
+        - "Yes"
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Non-sensitive evidence
+      description: Add console output or screenshots only after removing personal and sensitive data.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Safety check
+      options:
+        - label: I removed webcam imagery, raw landmarks, personal health information, and secrets.
+          required: true

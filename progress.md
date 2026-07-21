@@ -12,6 +12,19 @@
 
 ## Session Log
 
+### 2026-07-21 — Open-source governance added
+
+- Replaced the README license and contribution TODOs with an MIT License, contribution guide, QuestFit-specific code of conduct, contributor list, structured bug/feature forms, and a pull-request template.
+- Contribution checks preserve the project's privacy, deterministic scoring, validation, accessibility, architecture, and full-verification expectations.
+- Governance links and issue-form YAML validate, whitespace checks pass, and post-change `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+
+### 2026-07-21 — AI development workflow documented
+
+- Added a judge-facing README section showing how GPT-5.6 accelerated concept, UX, story, and trade-off exploration and how Codex accelerated the Next.js migration, contracts, feature implementation, refactoring, debugging, tests, and documentation.
+- Recorded concrete decisions and rejected alternatives for deterministic planning, local pose inference, runtime ownership, validation, guest-local scope, route design, scoring, and procedural audio.
+- Made human ownership explicit for architecture, privacy, safety, validation, physical evidence, final implementation, and release claims.
+- README links, feature JSON, and whitespace checks pass; post-edit `./init.sh` passed 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+
 ### 2026-07-21 — Public README refresh
 
 - Rebuilt the root README into a GitHub-ready overview with project value, shipped features, demo placeholders, stack, architecture, setup, configuration, usage, AI boundaries, roadmap, limitations, contributors, and license status.
