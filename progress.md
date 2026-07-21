@@ -15,10 +15,11 @@
 ### 2026-07-21 — QuestFit production deployment
 
 - Created and Git-connected the Vercel project, then renamed it from the inherited local directory name to `questfit`.
-- Production build completed successfully on Node.js 24 and is live at `https://questfit.vercel.app`.
+- Production build completed successfully on Node.js 24 and is live at `https://questfit-adventure.vercel.app`.
 - Live HTTP checks passed for the QuestFit-branded homepage, `/plan`, and `POST /api/workout/generate`; the API returned a personalized validated workout.
 - Added the verified demo link to README. Physical clean-profile rehearsals remain the active release evidence and are not replaced by deployment.
 - Post-deployment local verification passed README links, feature JSON, whitespace checks, 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+- After Git-triggered deployment, corrected a collision with an unrelated `questfit.vercel.app`, assigned the public `questfit-adventure.vercel.app` alias, disabled inherited Vercel SSO protection, and verified the QuestFit title over unauthenticated HTTPS.
 
 ### 2026-07-21 — Open-source governance added
 

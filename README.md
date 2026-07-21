@@ -36,7 +36,7 @@ The development team collaborated with **GPT-5.6** for product exploration and t
 | --- | --- | --- |
 | _TODO: Add planner screenshot_ | _TODO: Add mission screenshot_ | _TODO: Add results screenshot_ |
 
-**[Launch the live QuestFit demo](https://questfit.vercel.app)**
+**[Launch the live QuestFit demo](https://questfit-adventure.vercel.app)**
 
 For the complete presenter sequence, expected behavior, recovery paths, and claim boundaries, see the [demo runbook](docs/DEMO_RUNBOOK.md).
 

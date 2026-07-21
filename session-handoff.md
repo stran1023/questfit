@@ -2,11 +2,12 @@
 
 ## 2026-07-21 — Production deployment live
 
-- QuestFit is deployed at `https://questfit.vercel.app` under Vercel project `sonchans-projects/questfit`, connected to `https://github.com/stran1023/questfit`.
+- QuestFit is deployed at `https://questfit-adventure.vercel.app` under Vercel project `sonchans-projects/questfit`, connected to `https://github.com/stran1023/questfit`.
 - Vercel production build passed and live HTTP checks returned 200 for `/`, `/plan`, and the workout-generation API; the homepage exposes the correct QuestFit metadata and tagline.
 - `.vercel` and the generated local Vercel environment file remain ignored; no deployment credentials are committed.
 - README links to the live demo. `demo-liftoff` remains active for two real-camera clean-profile rehearsals.
 - Post-deployment local verification passed README links, feature JSON, whitespace checks, 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+- The shorter `questfit.vercel.app` belongs to an unrelated project. The final alias is `questfit-adventure.vercel.app`; inherited Vercel SSO protection was disabled and anonymous HTTPS access now returns the QuestFit application.
 
 ## 2026-07-21 — Open-source governance ready
 
