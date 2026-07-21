@@ -1,5 +1,13 @@
 # Session Handoff
 
+## 2026-07-21 — Production deployment live
+
+- QuestFit is deployed at `https://questfit.vercel.app` under Vercel project `sonchans-projects/questfit`, connected to `https://github.com/stran1023/questfit`.
+- Vercel production build passed and live HTTP checks returned 200 for `/`, `/plan`, and the workout-generation API; the homepage exposes the correct QuestFit metadata and tagline.
+- `.vercel` and the generated local Vercel environment file remain ignored; no deployment credentials are committed.
+- README links to the live demo. `demo-liftoff` remains active for two real-camera clean-profile rehearsals.
+- Post-deployment local verification passed README links, feature JSON, whitespace checks, 6 core tests, 94 Vitest tests, 10 Playwright checks, and production build.
+
 ## 2026-07-21 — Open-source governance ready
 
 - README now links to a root MIT License, contribution guide, code of conduct, contributor list, and structured issue forms; the previous governance TODOs are removed.

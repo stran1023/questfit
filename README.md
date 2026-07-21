@@ -36,10 +36,12 @@ The development team collaborated with **GPT-5.6** for product exploration and t
 | --- | --- | --- |
 | _TODO: Add planner screenshot_ | _TODO: Add mission screenshot_ | _TODO: Add results screenshot_ |
 
+**[Launch the live QuestFit demo](https://questfit.vercel.app)**
+
 For the complete presenter sequence, expected behavior, recovery paths, and claim boundaries, see the [demo runbook](docs/DEMO_RUNBOOK.md).
 
 > [!NOTE]
-> A hosted demo URL and permanent screenshot gallery have not been published yet. Add them here when release assets are available.
+> The live demo uses HTTPS so supported browsers can request webcam access. A permanent screenshot gallery has not been published yet.
 
 ## Technology stack
 
@@ -273,7 +275,7 @@ The current server route uses deterministic planning. External model-backed plan
 - Add Supabase authentication, guest conversion, synchronized progress, history, and leaderboard with tested row-level security.
 - Expand adventure themes, mission environments, and movement-aware encounters.
 - Broaden device/browser performance testing and physical camera-loss recovery evidence.
-- Publish a hosted demo, permanent screenshots, and release automation.
+- Publish permanent screenshots and expand release automation.
 - Continue using GPT-5.6 for evaluated product experiments and Codex for test-backed implementation, while retaining human approval for architecture, safety, and release decisions.
 
 ## Known limitations

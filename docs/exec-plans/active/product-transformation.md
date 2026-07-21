@@ -76,6 +76,7 @@ Every feature owns observable steps in `feature_list.json`. The standard gate wi
 
 ## Progress
 
+- 2026-07-21: Deployed the verified production build to the Git-connected Vercel project `questfit`; the public homepage, planning route, and workout-generation API passed live HTTP checks at `https://questfit.vercel.app`.
 - 2026-07-21: Replaced public governance placeholders with the MIT License, contribution and conduct policies, contributor recognition, structured issue forms, and a verification/safety-aware pull-request template.
 - 2026-07-21: Documented the team, GPT-5.6, and Codex collaboration in the public README with concrete implementation examples, decision trade-offs, and explicit human ownership of architecture, safety, validation, evidence, and release claims.
 - 2026-07-21: Rebuilt the root README as the concise public onboarding surface for QuestFit, with verified setup, architecture, features, AI boundaries, limitations, and explicit TODOs for missing release assets and governance files.
