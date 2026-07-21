@@ -14,7 +14,7 @@
 
 ### 2026-07-21 — QuestFit production deployment
 
-- Created and Git-connected the Vercel project, then renamed it from the inherited local directory name to `questfit`.
+- Created and Git-connected the Vercel project, then assigned the `questfit-adventure` slug so its permanent production domain matches the product without colliding with an unrelated `questfit.vercel.app` deployment.
 - Production build completed successfully on Node.js 24 and is live at `https://questfit-adventure.vercel.app`.
 - Live HTTP checks passed for the QuestFit-branded homepage, `/plan`, and `POST /api/workout/generate`; the API returned a personalized validated workout.
 - Added the verified demo link to README. Physical clean-profile rehearsals remain the active release evidence and are not replaced by deployment.
